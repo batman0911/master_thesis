@@ -111,7 +111,7 @@
 
 % Customizing of citations in the text
 \RequirePackage[
-    style=apa,
+    style=numeric,
     backend=biber,
     natbib=true]
     {biblatex}
@@ -197,7 +197,7 @@
 		\renewcommand*{\DTMdisplaydate}[4]{\DTMenglishordinal{##3} \DTMenglishmonthname{##2}  ##1}%
 		\renewcommand*{\DTMDisplaydate}{\DTMdisplaydate}%
 	}
-	\isthesis@new@option{label-principal}{label@principal}{Giảng viên}
+	\isthesis@new@option{label-principal}{label@principal}{Giảng viên hướng dẫn}
 	\isthesis@new@option{label-associate}{label@associate}{Associate Supervisor}
 	\isthesis@new@option{label-tutor}{label@tutor}{Tutor}
 	\isthesis@new@option{label-author}{label@author}{Học viên}

@@ -10,7 +10,6 @@
 ]{isthesis}
 
 \usepackage[utf8]{vntex}
-% \usepackage[vietnamese]{babel}
 
 % custom package
 \usepackage{eurosym}
@@ -21,6 +20,7 @@
 \usepackage{longtable}
 \usepackage{algorithm} 
 \usepackage{algpseudocode}
+\usepackage{biblatex} %Imports biblatex package
 % \usepackage{multirow}
 % \usepackage{floatrow}
 
@@ -76,7 +76,7 @@
 % \newtheorem*{remark}{Remark}
 
 %Add your library here
-\addbibresource{library.bib}
+\addbibresource{refs.bib}
 
 % Import acronyms
 \input{config/acronyms}
@@ -171,16 +171,15 @@
     % Content
     \begin{content}
         % Add your content files:
-        
+        \input{sections/math_model.tex}
     \end{content}
     
     \pagenumbering{Roman}
     \setcounter{page}{\numexpr\value{savepage}}
 
     % References
-    % \references{}
-    \input{ref.tex}
-    % \bibliography{refs}
+    \references{}
+
     
     % Appendix
     %  \begin{appendix}
