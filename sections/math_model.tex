@@ -1,2 +1,19 @@
 \chapter{Mô hình toán học}
 Phần này, chúng ta sẽ cùng xây dựng mô hình toán học của bài toán định tuyến xe với ràng buộc thời gian. \cite{griersonRH}
+
+\section{CVRP}
+Trước hết ta xem xét mô hình cho bài toán \textit{nguyên bản}: \textit{bài toán định tuyến xe với ràng buộc tải trọng}. Một cách tự nhiên, tại sao không phải là VRP (không ràng buộc)? Bạn sẽ thấy rằng nếu không có bất kì ràng buộc nào thì một xe có thể phục vụ tất cả các yêu cầu và bài toán VRP sẽ suy biến về TSP (\textit{travelling salesman problem}). CVRP có thể được mô tả bằng ngôn ngữ của lý thuyết đồ thị. Biểu diễn dựa trên Toth (2002) \cite{toth2002vehicle}.
+
+Gọi $G=(V,A)$ là một độ thị đầy đủ với $V=\{ 0, ..., n \}$ là tập nút và $A$ là tập các cung. Các nút $i=1,...,n$ đại diện cho các yêu cầu hay khách hàng cần phục vụ, nút $0$ là kho hàng. 
+
+Một số không âm được gọi là chi phí $c_{ij}$ đại diện cho mỗi cung $(i,j) \in A$. Nói cách khác $c_{ij}$ là  chi phí cần bỏ ra để di chuyển từ đỉnh $i$ tới nút $j$. Trong bài toán này và hầu hết các bài toán định tuyến ta không định nghĩa canh $(i,i)$ nên có thể gán $c_{ii} = \infty$ với $i \in V$.
+
+Nếu đồ thị là có hướng thì ma trận chi phí $C$ là bất đối xứng, khi đó ta có bài toán CVRP bất đối xứng ACVRP (\textit{asymetric CVRP}). Ngược lại nếu $c_{ij} = c_{ji}$ với mọi $(i,j) \in A$ ta có bài toán CVRP đối xứng SCVRP (\textit{symetric CVRP}) và các cung của $A$ được thay thế bằng tập cách cạnh vô hướng $E$. Với một cạnh $e \in E$, gọi $\alpha(e)$ và $\beta(e)$ là nút bắt đầu và kết thúc của cạnh. 
+
+Đồ thị $G$ phải là đồ thị kết nối mạnh và nhìn chung ta giả thiết đồ thị $G$ là đầy đủ. Với một nút $i$, gọi $\Delta^+(i)$ là tập ra của $i$ (\textit{forward star}), được định nghĩa là tập các nút $j$ mà cung $(i,j) \in A$, nói cách khác đây là tập các nút có thể tiếp cận trực tiếp từ nút $i$. Tương tự như vậy, $\Delta^-{i}$ là tập vào của $i$ (\textit{backward star}), được định nghĩa là tập các nút $j$ mà cung $(j,i) \in A$ hay là tập các nút tiếp cận trực tiếp tới nút $i$. Với một tập nút con $S \subseteq V$, gọi $\delta(S)$ và $E(S)$ là tập các cạnh $e \in E$ chỉ có một hoặc cả hai đầu mút thuộc $S$. Để thuận tiện khi xét một nút $i \in V$, ta viết $\delta(i)$ thay cho $\delta(\{i\})$.
+
+Trong hầu hết các bài toán thực tế, ma trận chi phí thỏa mãn bất đẳng thức tam giác 
+\begin{equation}
+    c_{ij} + c_{jk} \geq c_{ik} \quad \forall i,j,k \in V
+\end{equation}
+Nói cách khác việc đi trực tiếp từ nút $i$ tới nút $j$ luôn tốn ít chi phí hơn là đi gián tiếp. Với nhiều thuật toán, bất đẳng thức tam giác là điều kiện cần, điều này có thể được đảm bảo bằng cách thêm một đại lượng dương lớn (hợp lý) vào chi phí của mỗi cung.
