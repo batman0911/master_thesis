@@ -6,7 +6,7 @@ VRPTW là bài toán NP-khó, việc tìm lời giải hay nghiệm tối ưu (c
 \section{Biểu diễn toán học}
 Như đã trình bày ở chương trước, VRPTW được định nghĩa trên đồ thị $G = (V, A)$, kho hàng được biểu diễn bởi nút $0$ và $n+1$. Một tuyến thỏa mãn là một đường đi trên đồ thị $G$ bắt đầu từ $0$ và kết thúc ở $n+1$. Nếu kho hàng được biểu diễn chỉ bởi nút $0$ thì tuyến thỏa mãn là một đơn chu trình trên đồ thị $G$ chứ nút $0$. Khung thời gian của nút $0$ và $n+1$ là $[a_0, b_0] = [a_{n+1}, b_{n+1}] = [E, L]$, trong đó $E$ và $L$ lần lượt là thời gian sớm nhất rời kho và thời gian muộn nhất trở về kho. Ngoài ra, thời gian phục vụ và nhu cầu của kho đều được đặt bằng 0, hay $s_0 = s_{n+1} = 0$ và $d_0 = d_{n+1} = 0$. Lời giải chấp nhận được chỉ tồn tại nếu $a_0 = E \leq \min_{i \in V \setminus \{0\}} \{b_i - t_{0i}\}$ và $b_{n+1} = L \geq \min_{i \in V \setminus \{0\}} \{ a_i + s_i + t_{0i} \}$. Chú ý rằng, cung $(i,j) \in A$ có thể được bỏ đi nếu không thỏa mãn ràng buộc thời gian $a_i + s_i + t_{ij} > b_j$ hoặc vi phạm ràng buộc về tải trọng $d_i + d_j > C$. Cuối cùng nếu mục tiêu chính là giảm thiểu số lượng xe thì cung $(0,n+1)$ với $c_{0,n+1} = t_{0,n+1} = 0$ phải được thêm vào $A$.
 
-Tiếp theo, chúng ta trình bày một mô hình toán cho VRPTW với hai biến: biến $x_{ijk}$ với $(i,j) \in A, k \in K$ nhận giá trị 1 nếu xe $k$ đi trực tiếp từ nút $i$ tới nút $j$ và 0 nếu ngược lại. Biến $w_{ik}$ với $i \in V, k \in K$ là thời gian bắt đầu phục vụ khách hàng $i$ bởi xe $k$. VRPTW được mô hình một cách chính tắc như sau theo Toth (2002) \cite{toth2002vehicle}:
+Tiếp theo, chúng ta trình bày một mô hình toán cho VRPTW với hai biến: biến $x_{ijk}$ (\textit{flow variable}) với $(i,j) \in A, k \in K$ nhận giá trị 1 nếu xe $k$ đi trực tiếp từ nút $i$ tới nút $j$ và 0 nếu ngược lại. Biến $w_{ik}$ với $i \in V, k \in K$ là thời gian bắt đầu phục vụ khách hàng $i$ bởi xe $k$. VRPTW được mô hình một cách chính tắc như sau theo Toth (2002) \cite{toth2002vehicle}:
 
 \begin{equation} \label{eq1}
   \min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij} x_{ijk}
@@ -19,10 +19,29 @@ Với ràng buộc:
   \label{ct:4} &\sum_{i \in \Delta^-(n+1)} x_{i,n+1,k} = 1 &\quad \forall k \in K, \\
   \label{ct:5} &x_{ijk} (w_{ik} + s_i + t_{ij} - w_{jk}) \leq 0 &\quad \forall k \in K, (i,j) \in A, \\
   \label{ct:6} &a_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq w_{ik} \leq b_i \sum_{j \in \Delta^+(i)} x_{ijk} &\quad \forall k \in K, i \in N, \\
-  \label{ct:6} &E \leq w_{ik} \leq L &\quad \forall k \in K, i \in \{0, n+1\}, \\
-  \label{ct:7} &\sum_{i \in N} d_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq C &\quad \forall k \in K, \\
-  \label{ct:7} &x_{ijk} \geq 0 &\quad \forall k \in K, (i,j) \in A, \\
-  \label{ct:8} &x_{ijk} \in \{0,1\} &\quad \forall k \in K, (i,j) \in A.
+  \label{ct:7} &E \leq w_{ik} \leq L &\quad \forall k \in K, i \in \{0, n+1\}, \\
+  \label{ct:8} &\sum_{i \in N} d_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq C &\quad \forall k \in K, \\
+  \label{ct:9} &x_{ijk} \geq 0 &\quad \forall k \in K, (i,j) \in A, \\
+  \label{ct:10} &x_{ijk} \in \{0,1\} &\quad \forall k \in K, (i,j) \in A.
 \end{flalign}
-Hàm mục tiêu trong phương trình (\ref{eq1})
-  
+Hàm mục tiêu trong phương trình (\ref{eq1}) biểu diễn tổng chi phí của tất cả các tuyến đường. 
+Tập $N = V \setminus \{0\}$ biểu diễn cho tập khách hàng. 
+
+\begin{itemize}
+  \item Ràng buộc (\ref{ct:1}) đảm bảo rằng mỗi khách hàng chỉ được phục vụ bởi một xe.
+  \item Ràng buộc (\ref{ct:2}) đảm bảo rằng mỗi xe phải xuất phát từ kho hàng.
+  \item Ràng buộc (\ref{ct:3}) đảm bảo rằng trên một tuyến nếu khách hàng $i$ được phục vụ thì trước và sau đó đều có một khách hàng khác được phục vụ.
+  \item Ràng buộc (\ref{ct:4}) đảm bảo rằng mỗi xe phải trở về kho hàng.
+  \item Ràng buộc (\ref{ct:5}) đảm bảo về khung thời gian khi xe đi từ khách hàng $i$ tới khách hàng $j$.
+  \item Ràng buộc (\ref{ct:6}) đảm bảo rằng thời gian bắt đầu phục vụ khách hàng $i$ bởi xe $k$ nằm trong khoảng thời gian $[a_i, b_i]$.
+  \item Ràng buộc (\ref{ct:7}) đảm bảo rằng thời gian bắt đầu phục vụ khách hàng $i$ bất kì phải nằm trong khoảng thời gian từ sớm nhất xuất phát từ kho và muộn nhất về kho.
+  \item Ràng buộc (\ref{ct:8}) đảm bảo rằng tổng tải của mỗi xe không được vượt quá tải trọng tối đa $C$.
+  \item Ràng buộc (\ref{ct:9}) và (\ref{ct:10}) đảm bảo điều kiện nhị phân của \textit{flow variable} $x_{ijk}$.
+\end{itemize}
+
+Ta có thể nhận thấy rằng, ràng buộc (\ref{ct:6}) ép $w_{ik} = 0$ nếu như khách hàng $i$ không được phục vụ bởi xe $k$. Điều kiện nhị phân trong ràng buộc (\ref{ct:10}) cho phép ràng buộc (\ref{ct:5}) được thay thế bởi 
+\begin{equation}
+  \label{ct:5'}
+  w_{ik} + s_i + t_{ij} - w_{jk} \leq (1 - x_{ijk}) M_{ij} \quad \forall k \in K, (i,j) \in A,
+\end{equation}
+với $M_{ij}$ là các hằng số rất lớn. Hơn nữa $M_{ij}$ có thể thay bằng $\max \{b_i + s_i + t_{ij} - a_j, 0\}$ với $(i,j) \in A$ và như vậy ta chỉ cần kiểm tra ràng buộc (\ref{ct:5}) và (\ref{ct:5'}) cho các cung $(i, j) \in A$ thỏa mãn $M_{ij} > 0$. Mặt khác, khi $\max \{b_i + s_i + t_{ij} - a_j, 0\} = 0$ các điều kiện này được thỏa mãn với mọi $w_{ik}$, $w_{jk}$ và $x_{ijk}$.
