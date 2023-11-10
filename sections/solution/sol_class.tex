@@ -1,3 +1,31 @@
 \section{Thuật toán chính xác}
 
+\subsection{Nhánh và cận}
 Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm} 
+
+\subsection{Quy hoạch động}
+Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có:
+\begin{equation}
+  \label{eq:dp}
+    f_k(U) = 
+    \begin{cases}
+      c(U) \quad \text{nếu } k = 1, \\
+      \min_{U^* \subseteq U \subseteq V \setminus \{0\}} \{f_{k-1} (U \setminus U^*) + c(U^*)\} \quad \text{nếu } k > 1. \\
+    \end{cases}
+\end{equation}
+Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
+
+\subsection{Công thức và thuật toán dòng xe}
+Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau:
+\begin{equation}
+  \text{cực tiểu} \sum_{(i,j) \in E} c_{ij} x_{ij}
+\end{equation}
+với ràng buộc:
+\begin{flalign}
+\label{ct2:1} &\sum_{j=1}^n x_{0j}=2m, &\quad \\
+\label{ct2:2} &\sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2 &\quad (k \in V \setminus \{0\}), \\
+\label{ct2:3} &\sum_{i,j \in S} x_{ij} \leq |S| - \nu(S) &\quad (S \subseteq V \setminus \{0\}), \\
+\label{ct3:3} &x_{0j} = 0,1,2 &\quad (j \in V \setminus \{0\}), \\
+\label{ct2:4} &x_{ij} = 0,1 &\quad (i,j \in V \setminus \{0\}),
+\end{flalign}
+trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$.
