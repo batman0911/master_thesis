@@ -15,7 +15,7 @@ Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đ�
 \end{equation}
 Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
 
-\subsection{Công thức và thuật toán dòng xe}
+\subsection{Công thức  dòng xe và thuật toán}
 Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau:
 \begin{equation}
   \text{cực tiểu} \sum_{(i,j) \in E} c_{ij} x_{ij}
@@ -29,3 +29,53 @@ với ràng buộc:
 \label{ct2:4} &x_{ij} = 0,1 &\quad (i,j \in V \setminus \{0\}),
 \end{flalign}
 trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$.
+
+\subsection{Công thức dòng hàng và thuật toán}
+Trong công thức dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi Gavish, Graves (1979) \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi Baldacci, Hadjiconstantinou, Mingozzi (2004) \cite{baldacci2004exact} dựa trên mô hình TSP của Finke, Claus, Gunn
+(1984) \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn xe rỗng trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Công thức dòng hàng được mô hình hóa như sau:
+
+\begin{equation}
+  \text{cực tiểu} \sum_{(i,j) \in E} c_{ij} x_{ij}
+\end{equation}
+với ràng buộc:
+\begin{flalign}
+\label{ct3:1} &\sum_{j \in \bar{V}} (y_{ji} - y_{ij}) = 2q_i &\quad (i \in V \setminus \{0\}), \\
+\label{ct3:2} &\sum_{j \in V \setminus \{0\}} y_{0j} = \sum_{i \in V \setminus \{0\}} q_i, &\quad \\
+\label{ct3:3} &\sum_{j \in V \setminus \{0\}} y_{j0} = mQ - \sum_{i \in V \setminus \{0\}} q_i, &\quad \\
+\label{ct3:4} &\sum_{j \in V \setminus \{0\}} y_{n+1,j} = mQ, &\quad \\
+\label{ct3:5} &y_{ij} + y_{ji} = Qx_{ij} &\quad ((i,j) \in \bar{E}), \\
+\label{ct3:5} &\sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2 &\quad (k \in V \setminus \{0\}), \\
+\label{ct3:6} &y_{ij} \geq 0, y_{ji} \geq 0 &\quad ((i,j) \in \bar{E}), \\
+\label{ct3:7} &x_{ij} = 0,1 &\quad ((i,j) \in \bar{E}).
+\end{flalign}
+
+Bài toán này được giải bằng \textit{branch-and-cut} với các bất đẳng thức VRP được biểu diễn theo các biến $x_{ij}$
+
+\subsection{Công thức phân hoạch tập hợp và thuật toán}
+Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là hệ số nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau:
+
+\begin{equation}
+  \text{cực tiểu } \sum_r{c_r^* y_r}
+\end{equation}
+với ràng buộc: 
+\begin{flalign}
+  \label{ct4:1} &\sum_r a_{ir} = 1 &\quad (i \in V \setminus \{0\}), \\
+  \label{ct4:2} &\sum_r y_r = m, &\quad \\
+  \label{ct4:3} &y_r = 0, 1 &\quad (\text{mọi } r). 
+\end{flalign}
+
+Nói một cách chặt chẽ thì ràng buộc (\ref{ct4:2}) không phải một phần của công thức phân hoạch tập hợp chuẩn, tuy nhiên nó được sử dụng bởi hầu hết các nhà nghiên cứu trong trường hợp VRP.
+
+\section{Heuristics cổ điển}
+\subsection{Thuật toán tiết kiệm}
+\subsection{Heristics phân hoạch tập hợp}
+\subsection{Phân cụm trước, heuristics tuyến sau}
+\subsection{Heuristics cải tiến}
+
+\section{Metaheuristics}
+\subsection{Tìm kiếm cục bộ}
+\subsection{Tìm kiếm phổ biến}
+\subsection{Cơ chế học}
+
+
+
