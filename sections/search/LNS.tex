@@ -30,4 +30,10 @@ Phần còn lại của thuật toán cập nhật phương án tốt nhất (hi
 
 Dòng 10 kiểm tra điều kiện dừng đã đạt được hay chưa.
 
+Tham số $q \in \{0,...,n\}$ xác định kích cỡ tập lân cận. Nếu $q = 0$ thì có nghĩa là không có bước tìm kiếm nào hết vì không có yêu cầu nào được bỏ đi. Mặt khác nếu $q = n$, thì bài toán được giải luôn qua mỗi vòng lặp. Nói chung, $q$ càng lớn thì càng dễ di chuyển quanh không gian nghiệm, tuy nhiên khi $q$ lớn dần lên thì bước thêm lại yêu cầu sẽ chậm hơn. 
+
 Ngoài ra thay vì xem xét quá trình LNS như là một chuỗi hành động xoá và thêm lại, chúng ta có thể coi quá trình này là chuỗi hành động sửa lỗi và tối ưu. Cách nhìn này giúp chúng ta áp dụng chiến thuật này không chỉ cho bài toán VRP mà còn có thể áp dụng cho các bài toán tối ưu tổ hợp khác nữa. Chính vì tính chất mạnh mẽ này, tác giả đã lựa chọn LNS làm nền tảng cho phương pháp tìm kiếm lân cận trong luận văn này.
+
+\input{sections/search/destroy.tex}
+\input{sections/search/repair.tex}
+\input{sections/search/acceptance.tex}
