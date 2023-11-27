@@ -70,4 +70,6 @@ Ngoài ra để tránh việc bỏ đi tuyến "tệ" một cách cứng nhắc,
 \end{equation}
 với $d_{max}$ là khoảng cách lớn nhất giữa hai yêu cầu, $p$ là một số ngẫu nhiên trong khoảng $(-1,1)$ và $\lambda$ là một hằng số điều khiển.
 
-Từ đây, thuật toán chọn ra tuyến có $\text{avg\_cost}$ lớn nhất và bỏ đi toàn bộ yêu cầu trong tuyến đó.
+Ngoài ra, chúng ta cũng không muốn bỏ đi các tuyến đang phục vụ nhiều yêu cầu vì khi thêm lại thuật toán sẽ mất rất nhiều thời gian. Chính vì thế, tác giả chỉ bỏ đi những tuyến có số yêu cầu ít hơn số yêu cầu trung bình trên mỗi tuyến của nghiệm hiện tại.
+
+Cuối cùng, ta bỏ đi toàn bộ yêu cầu trên tuyến có số yêu cầu ít hơn số yêu cầu trung bình trên tất cả các tuyến và có chi phí trung bình trên mỗi yêu cầu cao nhất.

@@ -24,9 +24,9 @@ Phương pháp tìm kiếm lân cận rộng (Large neighbourhood search - LNS) 
 
 Thuật toán giả định rằng lời giải ban đầu \textit{s} đã có, ví dụ được tạo bằng một heuristic đơn giản. Tham số thứ 2 \textit{q} xác định phạm vi tìm kiếm. 
 
-Dòng 4 và 5 của thuật toán là phần thú vị của heuristic. Ở dòng 4, một số yêu cầu được loại bỏ khỏi phương án hiện tại \textit{s'}, các yêu cầu lại được thêm vào ở dòng 5. Hiệu năng cũng như sự mạnh mẽ của heuristic phụ thuộc vào sự lựa chọn chiến thuật bỏ và thêm lại các yêu cầu. Trong các bài trước đó về LNS cho VRPTW và PDPTW (Shaw (1997) \cite{}; Bent, Van Hentenryck (2003a) \cite{}) các phương pháp \textit{gần tối ưu} được sử dụng để thêm lại các yêu cầu. Mặc dù các cách thêm lại yêu cầu heuristic thường có chất lượng kém, nhưng chất lượng của LNS heurustic lại rất tốt, bởi vì các bước xấu được tạo ra bởi heuristic thêm lại yêu cầu dẫn đến sự đa dạng hóa hiệu quả của quá trình tìm kiếm. 
+Dòng 4 và 5 của thuật toán là phần thú vị của heuristic. Ở dòng 4, một số yêu cầu được loại bỏ khỏi phương án hiện tại \textit{s'}, các yêu cầu lại được thêm vào ở dòng 5. Hiệu năng cũng như sự mạnh mẽ của heuristic phụ thuộc vào sự lựa chọn chiến thuật bỏ và thêm lại các yêu cầu. Trong các bài trước đó về LNS cho VRPTW và PDPTW (Shaw (1997) \cite{shaw1997new}; Bent, Van Hentenryck (2003) \cite{bent2003two}) các phương pháp \textit{gần tối ưu} được sử dụng để thêm lại các yêu cầu. Mặc dù các cách thêm lại yêu cầu heuristic thường có chất lượng kém, nhưng chất lượng của LNS heurustic lại rất tốt, bởi vì các bước xấu được tạo ra bởi heuristic thêm lại yêu cầu dẫn đến sự đa dạng hóa hiệu quả của quá trình tìm kiếm. 
 
-Phần còn lại của thuật toán cập nhật phương án tốt nhất (hiện tại) và tìm kiếm phương án mới (tốt hơn). Một tiêu chí chấp nhận đơn giản là chấp nhận tất cả các phương án cải tiến. Tiêu chí này đã được sử dụng trong các triển khai LNS trước đó (Shaw 1997).
+Phần còn lại của thuật toán cập nhật phương án tốt nhất (hiện tại) và tìm kiếm phương án mới (tốt hơn). Một tiêu chí chấp nhận đơn giản là chấp nhận tất cả các phương án cải tiến. Tiêu chí này đã được sử dụng trong các triển khai LNS trước đó (Shaw (1997) \cite{shaw1997new}).
 
 Dòng 10 kiểm tra điều kiện dừng đã đạt được hay chưa.
 
