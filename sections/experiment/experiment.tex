@@ -4,7 +4,12 @@ Trong phần này, chúng ta sẽ xem xét kết quả thực nghiệm thu đư�
 
 Tất cả các thí nghiệm được chạy trên CPU Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz với Ubuntu 22.04.1 LTS. Mã nguồn được viết bằng ngôn ngữ C++ và được biên dịch bằng GCC 11.4.0 với các tùy chọn tối ưu hóa -O3.
 
-\begin{table}[caption={Kết quả đo với tập Solomon C}, label=exp:solomonC]
+\section{Chất lượng nghiệm}
+
+Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất đã biết trung bình $0.20\%$ và $0.42\%$ cho C1 và C2. 
+
+\begin{table}[caption={Kết quả đo với tập Solomon C \\
+  \scriptsize \textit{ins: cấu hình, cost: chi phí thu được với ALNS, nv: số xe được sử dụng, bkcost: chi phí tốt nhất đã biết, bknv: số xe tốt nhất đã biết, gap (\%): khoảng cách so với nghiệm tốt nhất đã biết}}, label=exp:solomonC]
   \begin{adjustbox}{width=1\textwidth}
   \small
   \begin{tabularx}{\textwidth}{lrrrlllrrrll}
@@ -23,6 +28,8 @@ Tất cả các thí nghiệm được chạy trên CPU Intel(R) Xeon(R) CPU E5-
   \end{tabularx}
   \end{adjustbox}
   \end{table}
+  Thí nghiệm được thiết lập có thời gian timeout 1 phút, chạy 5 lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tối ưu và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm tối ưu.
+
 
   \begin{table}[caption={Kết quả đo với tập Solomon R1}, label=exp:solomonR1]
     % \begin{adjustbox}{width=1\textwidth}
@@ -37,12 +44,12 @@ Tất cả các thí nghiệm được chạy trên CPU Intel(R) Xeon(R) CPU E5-
     \text{r105} & 1,360.78 & 15 & \text{1,355.30} & 15 & \text{0.40} \\ \hline
     \text{r106} & 1,239.37 & 13 & \text{1,234.60} & 13 & \text{0.39} \\ \hline
     \text{r107} & 1,073.60 & \text{12} & \text{1,064.60} & \text{11} & \text{0.85} \\ \hline
-    \text{r108} & 948.57 & 10 & \text{932.10} & 10 & \text{1.77} \\ \hline
+    \text{r108} & 944.44 & 10 & \text{932.10} & 10 & \text{1.32} \\ \hline
     \text{r109} & 1,152.38 & 13 & \text{1,146.90} & 13 & \text{0.48} \\ \hline
     \text{r110} & 1,078.59 & 12 & \text{1,068.00} & 12 & \text{0.99} \\ \hline
     \text{r111} & 1,053.50 & 12 & \text{1,048.70} & 12 & \text{0.46} \\ \hline
     \text{r112} & \text{955.68} & 10 & \text{948.60} & \text{10} & \text{0.75} \\ \hline
-    avg &  &  &  &  & 0.65 \\ \hline
+    avg &  &  &  &  & 0.61 \\ \hline
     \end{tabular}
     % \end{adjustbox}
   \end{table}
