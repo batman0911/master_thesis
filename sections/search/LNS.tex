@@ -1,1 +1,39 @@
 \section{Tìm kiếm lân cận rộng}
+Phương pháp tìm kiếm lân cận rộng (Large neighbourhood search - LNS) được trình bày bởi Shaw (1998) \cite{shaw1998using} thuộc lớp các thuật toán tìm kiếm lân cận. LNS dựa trên việc liên tục bỏ đi yêu cầu và tối ưu lại nghiệm. Nghĩa là một số yêu cầu được bỏ đi khỏi tuyến (theo một tiêu chí nào đó) và được thêm lại vào các tuyến (khác) với mục đích làm giảm hàm mục tiêu.
+
+\begin{algorithm}
+  \label{alg:lns}
+	\caption{LNS Heuristic} 
+	\begin{algorithmic}[1]
+        \Require $s \in {solutions}, q \in \mathbb{N}$
+        \State solution $s_{best} = s$;
+				\Repeat
+					\State $s'=s$;
+					\State remove $q$ requests from $s'$;
+					\State reinsert removed requests into $s'$;
+					\If{$f(s') < f(s)$}
+						\State $s_{best} = s'$;
+					\EndIf
+					\If{$accept(s',s)$}
+						\State $s=s'$;
+					\EndIf
+				\Until{stop-criterion met}\\
+				\Return $s_{best}$;
+	\end{algorithmic} 
+\end{algorithm}
+
+Thuật toán giả định rằng lời giải ban đầu \textit{s} đã có, ví dụ được tạo bằng một heuristic đơn giản. Tham số thứ 2 \textit{q} xác định phạm vi tìm kiếm. 
+
+Dòng 4 và 5 của thuật toán là phần thú vị của heuristic. Ở dòng 4, một số yêu cầu được loại bỏ khỏi phương án hiện tại \textit{s'}, các yêu cầu lại được thêm vào ở dòng 5. Hiệu năng cũng như sự mạnh mẽ của heuristic phụ thuộc vào sự lựa chọn chiến thuật bỏ và thêm lại các yêu cầu. Trong các bài trước đó về LNS cho VRPTW và PDPTW (Shaw (1997) \cite{shaw1997new}; Bent, Van Hentenryck (2003) \cite{bent2003two}) các phương pháp \textit{gần tối ưu} được sử dụng để thêm lại các yêu cầu. Mặc dù các cách thêm lại yêu cầu heuristic thường có chất lượng kém, nhưng chất lượng của LNS heurustic lại rất tốt, bởi vì các bước xấu được tạo ra bởi heuristic thêm lại yêu cầu dẫn đến sự đa dạng hóa hiệu quả của quá trình tìm kiếm. 
+
+Phần còn lại của thuật toán cập nhật phương án tốt nhất (hiện tại) và tìm kiếm phương án mới (tốt hơn). Một tiêu chí chấp nhận đơn giản là chấp nhận tất cả các phương án cải tiến. Tiêu chí này đã được sử dụng trong các triển khai LNS trước đó (Shaw (1997) \cite{shaw1997new}).
+
+Dòng 10 kiểm tra điều kiện dừng đã đạt được hay chưa.
+
+Tham số $q \in \{0,...,n\}$ xác định kích cỡ tập lân cận. Nếu $q = 0$ thì có nghĩa là không có bước tìm kiếm nào hết vì không có yêu cầu nào được bỏ đi. Mặt khác nếu $q = n$, thì bài toán được giải luôn qua mỗi vòng lặp. Nói chung, $q$ càng lớn thì càng dễ di chuyển quanh không gian nghiệm, tuy nhiên khi $q$ lớn dần lên thì bước thêm lại yêu cầu sẽ chậm hơn. 
+
+Ngoài ra thay vì xem xét quá trình LNS như là một chuỗi hành động xoá và thêm lại, chúng ta có thể coi quá trình này là chuỗi hành động sửa lỗi và tối ưu. Cách nhìn này giúp chúng ta áp dụng chiến thuật này không chỉ cho bài toán VRP mà còn có thể áp dụng cho các bài toán tối ưu tổ hợp khác nữa. Chính vì tính chất mạnh mẽ này, tác giả đã lựa chọn LNS làm nền tảng cho phương pháp tìm kiếm lân cận trong luận văn này.
+
+\input{sections/search/destroy.tex}
+\input{sections/search/repair.tex}
+\input{sections/search/acceptance.tex}
