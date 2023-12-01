@@ -1,0 +1,114 @@
+\section{Chất lượng nghiệm}
+
+Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất đã biết trung bình $0.20\%$ và $0.42\%$ cho C1 và C2. 
+
+\begin{table}[caption={Kết quả đo với tập Solomon C \\
+  \scriptsize \textit{ins: cấu hình, cost: chi phí thu được với ALNS, nv: số xe được sử dụng, bkcost: chi phí tốt nhất đã biết, bknv: số xe tốt nhất đã biết, gap (\%): khoảng cách so với nghiệm tốt nhất đã biết}}, label=exp:solomonC]
+  \begin{adjustbox}{width=1\textwidth}
+  \small
+  \begin{tabularx}{\textwidth}{lrrrlllrrrll}
+  \hline
+  \text{ins} & \multicolumn{1}{l}{\text{cost}} & \multicolumn{1}{l}{\text{nv}} & \multicolumn{1}{l}{\text{bkcost}} & \text{bknv} & \text{gap} & \text{ins} & \multicolumn{1}{l}{\text{cost}} & \multicolumn{1}{l}{\text{nv}} & \multicolumn{1}{l}{\text{bkcost}} & \text{bknv} & \text{gap} \\ \hline
+  c101 & 828.94 & 10 & 827.30 & 10 & 0.20 & c201 & 591.56 & 3 & 589.10 & 3 & 0.42 \\ \hline
+  c102 & 828.94 & 10 & 827.30 & 10 & 0.20 & c202 & 591.56 & 3 & 589.10 & 3 & 0.42 \\ \hline
+  c103 & 828.06 & 10 & 826.30 & 10 & 0.21 & c203 & 591.17 & 3 & 588.70 & 3 & 0.42 \\ \hline
+  c104 & 824.78 & 10 & 822.90 & 10 & 0.23 & c204 & 590.60 & 3 & 588.10 & 3 & 0.42 \\ \hline
+  c105 & 828.94 & 10 & 827.30 & 10 & 0.20 & c205 & 588.88 & 3 & 586.40 & 3 & 0.42 \\ \hline
+  c106 & 828.94 & 10 & 827.30 & 10 & 0.20 & c206 & 588.49 & 3 & 586.00 & 3 & 0.43 \\ \hline
+  c107 & 828.94 & 10 & 827.30 & 10 & 0.20 & c207 & 588.29 & 3 & 585.80 & 3 & 0.42 \\ \hline
+  c108 & 828.94 & 10 & 827.30 & 10 & 0.20 & c208 & 588.32 & 3 & 585.80 & 3 & 0.43 \\ \hline
+  c109 & 828.94 & 10 & 827.30 & 10 & 0.20 &  &  &  &  &  &  \\ \hline
+  avg & & & & & 0.20 &  &  &  &  & & 0.42 \\ \hline
+  \end{tabularx}
+  \end{adjustbox}
+  \end{table}
+  Thí nghiệm được thiết lập có thời gian timeout 1 phút, chạy 5 lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tối ưu và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm tối ưu.
+
+
+  \begin{table}[caption={Kết quả đo với tập Solomon R1}, label=exp:solomonR1]
+    % \begin{adjustbox}{width=1\textwidth}
+    \centering
+    \begin{tabular}{lrrrll}
+    \hline
+    instance & \multicolumn{1}{l}{alns best} & \multicolumn{1}{l}{nv} & \multicolumn{1}{l}{bk cost} & bk nv & gap (\%) \\ \hline
+    \text{r101} & 1,642.88 & 20 & \text{1,637.70} & 20 & \text{0.32} \\ 
+   \text{r102} & 1,472.81 & 18 & \text{1,466.60} & 18 & \text{0.42} \\ \hline
+    \text{r103} & 1,213.62 & 15 & \text{1,208.70} & 14 & \text{0.41} \\ \hline
+    \text{r104} & 976.61 & 11 & \text{971.50} & 11 & \text{0.53} \\ \hline
+    \text{r105} & 1,360.78 & 15 & \text{1,355.30} & 15 & \text{0.40} \\ \hline
+    \text{r106} & 1,239.37 & 13 & \text{1,234.60} & 13 & \text{0.39} \\ \hline
+    \text{r107} & 1,073.60 & \text{12} & \text{1,064.60} & \text{11} & \text{0.85} \\ \hline
+    \text{r108} & 944.44 & 10 & \text{932.10} & 10 & \text{1.32} \\ \hline
+    \text{r109} & 1,152.38 & 13 & \text{1,146.90} & 13 & \text{0.48} \\ \hline
+    \text{r110} & 1,078.59 & 12 & \text{1,068.00} & 12 & \text{0.99} \\ \hline
+    \text{r111} & 1,053.50 & 12 & \text{1,048.70} & 12 & \text{0.46} \\ \hline
+    \text{r112} & \text{955.68} & 10 & \text{948.60} & \text{10} & \text{0.75} \\ \hline
+    avg &  &  &  &  & 0.61 \\ \hline
+    \end{tabular}
+    % \end{adjustbox}
+  \end{table}
+
+
+  \begin{table}[caption={Kết quả đo với tập Solomon R2}, label=exp:solomonR2]
+    % \begin{adjustbox}{width=1\textwidth}
+    \centering
+    \begin{tabular}{lrrrll}
+    \hline
+    instance & \multicolumn{1}{l}{alns best} & \multicolumn{1}{l}{nv} & \multicolumn{1}{l}{bk cost} & bk nv & gap (\%) \\ \hline
+    r201 & 1,152.96 & \textbf{7} & 1,143.20 & 8 & 0.32 \\ 
+    r202 & 1,035.32 & \textbf{7} & 1,029.60 & 8 & 0.42 \\ \hline
+    r203 & 880.90 & 6 & 870.80 & 6 & 0.41 \\ \hline
+    r204 & 743.91 & \textbf{4} & 731.30 & 5 & 0.53 \\ \hline
+    r205 & 958.81 & 5 & 949.80 & 5 & 0.40 \\ \hline
+    r206 & 883.92 & 5 & 875.90 & 5 & 0.39 \\ \hline
+    r207 & 806.31 & 5 & 794.00 & 4 & 0.85 \\ \hline
+    r208 & 948.57 & 4 & 701.00 & 4 & 1.77 \\ \hline
+    r209 & 717.53 & 5 & 854.80 & 5 & 0.48 \\ \hline
+    r210 & 909.32 & \textbf{5} & 900.50 & 6 & 0.99 \\ \hline
+    r211 & 1,053.50 & 5 & 746.70 & 4 & 0.46 \\ \hline
+    avg &  &  &  &  & 1.38 \\ \hline
+    \end{tabular}
+    % \end{adjustbox}
+  \end{table}
+
+  Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu cục bộ. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có quá nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. 
+
+  \begin{table}[caption={Kết quả đo với tập Solomon RC1}, label=exp:solomonRC1]
+    % \begin{adjustbox}{width=1\textwidth}
+    \centering
+    \begin{tabular}{lrrrll}
+    \hline
+    instance & \multicolumn{1}{l}{alns best} & \multicolumn{1}{l}{nv} & \multicolumn{1}{l}{bk cost} & bk nv & gap (\%) \\ \hline
+    rc101 & 1,623.58 & 16 & 1,619.80 & 15 & 0.23 \\ 
+    rc102 & 1,461.23 & 14 & 1,457.40 & 14 & 0.26 \\ \hline
+    rc103 & 1,266.62 & 11 & 1,258.00 & 11 & 0.69 \\ \hline
+    rc104 & 1,136.91 & 10 & 1,132.30 & 10 & 0.41 \\ \hline
+    rc105 & 1,518.58 & 16 & 1,513.70 & 15 & 0.32 \\ \hline
+    rc106 & 1,376.99 & 13 & 1,372.70 & 12 & 0.31 \\ \hline
+    rc107 & 1,211.11 & 12 & 1,207.80 & 12 & 0.27 \\ \hline
+    rc108 & 1,118.13 & 11 & 1,114.20 & 11 & 0.35 \\ \hline
+    avg &  &  &  &  & 0.36 \\ \hline
+    \end{tabular}
+    % \end{adjustbox}
+  \end{table}
+
+  \begin{table}[caption={Kết quả đo với tập Solomon RC2}, label=exp:solomonRC2]
+    % \begin{adjustbox}{width=1\textwidth}
+    \centering
+    \begin{tabular}{lrrrll}
+    \hline
+    instance & \multicolumn{1}{l}{alns best} & \multicolumn{1}{l}{nv} & \multicolumn{1}{l}{bk cost} & bk nv & gap (\%) \\ \hline
+    rc201 & 1,274.61 & \textbf{8} & 1,261.80 & 9 & 1.02 \\ 
+    rc202 & 1,099.54 & \textbf{6} & 1,092.30 & 8 & 0.66 \\ \hline
+    rc203 & 931.16 & 5 & 923.70 & 5 & 0.81 \\ \hline
+    rc204 & 788.66 & 4 & 783.50 & 4 & 0.66 \\ \hline
+    rc205 & 1,157.66 & 7 & 1,154.00 & 7 & 0.32 \\ \hline
+    rc206 & 1,060.50 & \textbf{6} & 1,051.10 & 7 & 0.89 \\ \hline
+    rc207 & 966.08 & 6 & 962.90 & 6 & 0.33 \\ \hline
+    rc208 & 785.73 & 4 & 776.10 & 4 & 1.24 \\ \hline
+    avg &  &  &  &  & 0.74 \\ \hline
+    \end{tabular}
+    % \end{adjustbox}
+  \end{table}
+
+  Tập RC1 và RC2 chứa các yêu cầu ở các vị trí được phân cụm một cách tương đối (lai giữa tập R và tập C) được đánh giá là tập khó, do các vị trí của yêu cầu đủ ngẫu nhiên để bài toán có nhiều nghiệm chấp nhận được nhưng lại dễ bị bẫy ở nghiệm tối ưu cục bộ khi mà xe đã phụ vụ các yêu cầu ở trong một cụm chỉ cần ta bỏ đi một (vài) yêu cầu "quan trọng" trong cụm là đã nhận được một nghiệm tệ hơn trước khá nhiều. Mặc dù vậy ALNS vẫn tỏ ra hiệu quả khi tìm được nghiệm với chênh lệch trung bình $0.36\%$ và $0.74\%$ cho RC1 và RC2. Ngoài ra, ALNS cũng tìm được nghiệm với số xe ít hơn nghiệm tốt nhất đã biết trong một số cấu hình của tập RC2.
