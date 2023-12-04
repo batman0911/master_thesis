@@ -1,5 +1,5 @@
 \section{Các đối tượng chính}
-Chương trình được xây dựng theo tiêu chuẩn lập trình hướng đối tượng. Trước hết chúng ta xây dựng các đối tượng chính. Các đối tượng được xây dựng với kiểu dữ liệu của ngôn ngữ \code{C++}, ta hoàn toàn có thể triển khai tương tự với các ngôn ngữ lập trình khác.
+Trước hết chúng ta xây dựng các đối tượng chính. Các đối tượng được xây dựng với kiểu dữ liệu của ngôn ngữ \code{C++}, ta hoàn toàn có thể triển khai tương tự với các ngôn ngữ lập trình khác. Các kiểu số nguyên được sử dụng là \code{uint16\_t} với giá trị lớn nhất là $65535$ (đủ lớn để lưu số lượng khách hàng thực tế cũng như nhu cầu hay tải trọng của khách hàng...) để tiết kiệm bộ nhớ. Các kiểu số thực được sử dụng là \code{float}. Đôi khi, trong một số framework (như Google Ortool chẳng hạn), thay vì sử dụng số thực để lưu khoảng cách hay thời gian di chuyển giữa các yêu cầu hoặc giá trị hàm mục tiêu, số nguyên được sử dụng để tiết kiệm bộ nhớ cũng như tính toán nhanh hơn. Nếu cần nhiều hơn độ chính xác, ta có thể nhân tất cả với một hệ số ($1000$ chẳng hạn để đạt độ chính xác $3$ chữ số sau dấu phảy) và chia lại khi nhận kết quả cuối cùng. Các đối tượng được liệt kê dưới đây.
 
 \begin{figure}[H] % places figure environment here   
   \centering % Centers Graphic
@@ -9,7 +9,7 @@ Chương trình được xây dựng theo tiêu chuẩn lập trình hướng đ
   \label{fig:fg_02}
 \end{figure}
 
-\code{Customer}: đối tương lưu các thuộc tính của một yêu cầu. Đối với VRPTW, mỗi yêu cầu là một khách hàng (đơn).
+\code{Customer}: đối tượng lưu các thuộc tính của một yêu cầu. Đối với VRPTW, mỗi yêu cầu là một khách hàng (đơn).
 
 \begin{itemize}
   \item \code{id}: id của khách hàng.
