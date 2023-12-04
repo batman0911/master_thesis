@@ -1,0 +1,76 @@
+\section{Các đối tượng chính}
+Chương trình được xây dựng theo tiêu chuẩn lập trình hướng đối tượng. Trước hết chúng ta xây dựng các đối tượng chính. Các đối tượng được xây dựng với kiểu dữ liệu của ngôn ngữ \code{C++}, ta hoàn toàn có thể triển khai tương tự với các ngôn ngữ lập trình khác.
+
+\begin{figure}[H] % places figure environment here   
+  \centering % Centers Graphic
+  \includegraphics[width=0.35\textwidth]{figures/Customer.png} 
+  % \includesvg[scale=1]{figures/core-object}
+  \caption{Đối tượng thuộc tính của khách hàng} 
+  \label{fig:fg_02}
+\end{figure}
+
+\code{Customer}: đối tương lưu các thuộc tính của một yêu cầu. Đối với VRPTW, mỗi yêu cầu là một khách hàng (đơn).
+
+\begin{itemize}
+  \item \code{id}: id của khách hàng.
+  \item \code{coord}: mảng lưu toạ độ của khách hàng (vĩ độ, kinh độ). Đôi khi chúng ta không cần quan tâm tới tọa độ của khách hàng mà quan tâm tới khoảng cách hoặc thời gian di chuyển giữa các khách hàng, nên thuộc tính này có thể không cần thiết đối với một số cấu hình trong thực tế.
+  \item \code{demand}: nhu cầu (về tải) của khách hàng.
+  \item \code{time\_window}: mảng lưu khung thời gian để phục vụ khách hàng. Mảng gồm 2 phần tử lần lượt là thời điểm sớm nhất và muộn nhất để phục vụ khách hàng.
+  \item \code{service\_time}: thời gian phục vụ khách hàng.
+\end{itemize}
+
+\begin{figure}[H] % places figure environment here   
+  \centering % Centers Graphic
+  \includegraphics[width=0.6\textwidth]{figures/CustomerState.png} 
+  % \includesvg[scale=1]{figures/core-object}
+  \caption{Đối tượng trạng thái của khách hàng} 
+  \label{fig:fg_03}
+\end{figure}
+
+\code{CustomerRoute}: đối tượng lưu trạng thái về tuyến đường.
+\begin{itemize}
+  \item \code{route\_idx}: id của tuyến chứa khách hàng.
+  \item \code{position}: vị trí của khách hàng trong tuyến.
+\end{itemize}
+
+\code{CustomerTime}: đối tượng lưu trạng thái về thời gian của yêu cầu.
+\begin{itemize}
+  \item \code{arrival}: thời gian xe đến vị trí của khách hàng.
+  \item \code{complete}: thời gian xe hoàn thành phục vụ khách hàng.
+\end{itemize}
+
+\code{CustomerState}: đối tượng lưu trạng thái của khách hàng.
+\begin{itemize}
+  \item \code{id}: id của khách hàng.
+  \item \code{customer\_route}: trạng thái về tuyến đường của khách hàng.
+  \item \code{customer\_time}: trạng thái về thời gian của khách hàng.
+\end{itemize}
+
+\begin{figure}[H] % places figure environment here   
+  \centering % Centers Graphic
+  \includegraphics[width=1\textwidth]{figures/core-object.png} 
+  % \includesvg[scale=1]{figures/core-object}
+  \caption{Đối tượng trạng thái của hệ} 
+  \label{fig:fg_03}
+\end{figure}
+
+\code{Instance}: đối tượng lưu cấu hình của bài toán.
+\begin{itemize}
+  \item \code{name}: tên cấu hình (ví dụ \code{C101} trong tập Solomon (1987)).
+  \item \code{num\_vehicle}: số xe tối đa được sử dụng.
+  \item \code{capacity}: tải trọng của mỗi xe.
+  \item \code{customers}: mảng các yêu cầu.
+  \item \code{edge\_weight}: ma trận trọng số cạnh. Ma trận này có thể là ma trận khoảng cách hay thời gian di chuyển giữa các yêu cầu.
+  \item \code{get\_instance\_size()}: phương thức trả về kích thước của cấu hình (số khách hàng cộng với kho).
+\end{itemize}
+
+\code{State}: đối tượng lưu trạng thái của bài toán.
+\begin{itemize}
+  \item \code{instance}: tham chiếu tới cấu hình bài toán.
+  \item \code{routes}: các tuyến đường. Các tuyến đường được tổ chức như một \code{vector} với mỗi thành phần là một \code{linked\_list}. Cấu trúc dữ liệu \code{linked\_list} được lựa chọn phù hợp với ALNS khi ta có thể  bỏ đi hoặc chèn thêm các yêu cầu vào giữa tuyến một cách nhanh chóng. Trong nhiều thuật toán khác, các yêu cầu được trao đổi giữa các tuyến thì \code{vector} là phù hợp hơn do ta có thể truy cập đến phần từ (yêu cầu) theo index rất nhanh mà không phải duyệt lần lượt từ đầu mảng giống như \code{linked\_list}. Việc sử dụng \code{linked\_list} cho ALNS là cực kì phù hợp, thao bỏ đi hay chèn thêm phần tử vào giữa tuyến nhanh hơn khoảng $250$ lần khi so sánh với việc sử dụng cấu trúc dữ liệu \code{vector}!
+  \item \code{unassigned}: danh sách các khách hàng chưa được phục vụ bởi bất kì xe nào.
+  \item \code{customer\_states}: trạng thái của các khách hàng.
+  \item \code{cost}: tổng chi phí của hệ (hay nghiệm) hiện tại.
+  \item \code{get\_cost()}: phương thức trả về cost hiên tại.
+  \item \code{find\_route(customer)}: phương thức trả về trạng thái của một khách hàng với đầu vào là id của khách hàng.
+\end{itemize}
