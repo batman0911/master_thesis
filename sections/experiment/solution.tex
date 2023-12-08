@@ -136,6 +136,8 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
   \end{itemize}
   Thời gian timeout là 1 phút.
   }
+
+  Nếu cho rằng việc chênh lệch chất lượng nghiệm so với nghiệm tốt nhất đã biết không vượt quá $10\%$ là đủ thì ALNS thể hiện tốt đối với các cấu hình từ $600$ yêu cầu trở xuống. Ngoài ra, tác giả tiến hành chạy thử nghiệm với thời gian tối đa 1 phút. Con số 1 phút được lựa chọn để phù hợp với yêu cầu thực tế khi mà ta không thể chờ quá lâu để nhận được kết quả. Một chiến thuật khác là ta có thể lên lịch cho các xe vào ngày hôm trước để có các tuyến đường cho ngày hôm sau chẳng hạn (cho chương trình chạy "qua đêm", hay chạy với thời gian chờ lâu có thể là vài tiếng đồng hồ). Tác giả đã thử nghiệm và nhận thấy rằng, với thời gian chạy lâu hơn nữa ALNS cho kết quả tốt hơn nhưng tốc độ giảm nghiệm là chậm, do càng gần với nghiệm tối ưu thì các tuyến đường khá khó để thay đổi. 
   
   \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_2 200 yêu cầu}, label=exp:HGC12]
     % \begin{adjustbox}{width=1\textwidth}
@@ -290,17 +292,17 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
     \begin{tabular}{rrrrrrrr}
     \hline
     ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
-    R1\_6\_1 & 22644.25 & 22884.57 & 221.71 & 63 & 21274.2 & 58 & 6.44 \\ \hline
-    R1\_6\_2 & 19949.98 & 20078.02 & 70.83 & 57 & 18519.8 & 56 & 7.72 \\ \hline
-    R1\_6\_3 & 18414.62 & 18454.87 & 28.94 & 55 & 16874.9 & 54 & 9.12 \\ \hline
-    R1\_6\_4 & 16936.06 & 17148.87 & 138.7 & 55 & 15720.8 & 54 & 7.73 \\ \hline
-    R1\_6\_5 & 20865.96 & 20995.57 & 86.73 & 58 & 19294.9 & 55 & 8.14 \\ \hline
-    R1\_6\_6 & 19151.88 & 19300.89 & 83.89 & 56 & 17763.7 & 54 & 7.81 \\ \hline
-    R1\_6\_7 & 17942.26 & 18125.39 & 179.06 & 56 & 16496.2 & 54 & 8.77 \\ \hline
-    R1\_6\_8 & 16902.91 & 16931.08 & 20.71 & 55 & 15584.3 & 54 & 8.46 \\ \hline
-    R1\_6\_9 & 19988.23 & 20147.67 & 143.02 & 57 & 18474.1 & 55 & 8.2 \\ \hline
-    R1\_6\_10 & 19000.47 & 19154.36 & 125.48 & 56 & 17583.7 & 54 & 8.06 \\ \hline
-    avg & 19,179.66 & 19,322.13 & 109.91 & & 17,758.66 & & 8.05 \\ \hline
+    R1\_6\_1 & 22,534.32 & 22,810.62 & 165.87 & 63 & 21,274.2 & 58 & 5.92 \\ \hline
+    R1\_6\_2 & 19,751.55 & 19,960.87 & 115.13 & 57 & 18,519.8 & 56 & 6.65 \\ \hline
+    R1\_6\_3 & 18,268.88 & 18,398.55 & 87.36 & 55 & 16,874.9 & 54 & 8.26 \\ \hline
+    R1\_6\_4 & 16,863.99 & 16,997.55 & 99.47 & 55 & 15,720.8 & 54 & 7.27 \\ \hline
+    R1\_6\_5 & 20,818.89 & 20,944.12 & 85.35 & 58 & 19,294.9 & 55 & 7.9 \\ \hline
+    R1\_6\_6 & 19,168.72 & 19,293.47 & 88.32 & 56 & 17,763.7 & 54 & 7.91 \\ \hline
+    R1\_6\_7 & 17,959.3 & 181,00.5 & 129.91 & 56 & 16,496.2 & 54 & 8.87 \\ \hline
+    R1\_6\_8 & 16,650.4 & 167,75.82 & 92.25 & 55 & 15,584.3 & 54 & 6.84 \\ \hline
+    R1\_6\_9 & 19,882.68 & 20,099.04 & 183 & 57 & 18,474.1 & 55 & 7.62 \\ \hline
+    R1\_6\_10 & 18,899.08 & 18,967.51 & 48.97 & 56 & 17,583.7 & 54 & 7.48 \\ \hline
+    avg & 19,079.78 & 19,234.81 & 109.56 & & 17,758.66 & & 7.47 \\ \hline
     \end{tabular}
     % \end{adjustbox}
   \end{table}
