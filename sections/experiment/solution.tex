@@ -4,8 +4,7 @@
 
 Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất đã biết trung bình $0.20\%$ và $0.42\%$ cho C1 và C2. 
 
-\begin{table}[caption={Kết quả đo với tập Solomon C \\
-  \scriptsize \textit{ins: cấu hình, cost: chi phí thu được với ALNS, nv: số xe được sử dụng, bkcost: chi phí tốt nhất đã biết, bknv: số xe tốt nhất đã biết, gap (\%): khoảng cách so với nghiệm tốt nhất đã biết}}, label=exp:solomonC]
+\begin{table}[caption={Kết quả đo với tập Solomon C}, label=exp:solomonC]
   \begin{adjustbox}{width=1\textwidth}
   \small
   \begin{tabularx}{\textwidth}{rrrrrrrrrrrr}
@@ -24,6 +23,19 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
   \end{tabularx}
   \end{adjustbox}
   \end{table}
+
+  \textit{ Trong đó
+    \begin{itemize}
+      \item[-] ins: cấu hình
+      \item[-] cost: chi phí thu được với ALNS
+      \item[-] nv: số xe được sử dụng
+      \item[-] bkcost: chi phí tốt nhất đã biết
+      \item[-] bknv: số xe tốt nhất đã biết
+      \item[-] gap (\%): khoảng cách so với nghiệm tốt nhất đã biết
+    \end{itemize}
+  }
+
+
   Thí nghiệm được thiết lập có thời gian timeout 1 phút, chạy 5 lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tối ưu và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm tối ưu.
 
 
