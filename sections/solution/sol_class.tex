@@ -4,7 +4,7 @@
 Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm}
 
 \subsection{Quy hoạch động}
-Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có:
+Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có
 \begin{equation}
 	\label{eq:dp}
 	f_k(U) =
@@ -16,11 +16,11 @@ Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đ�
 Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
 
 \subsection{Công thức  dòng xe và thuật toán}
-Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau:
+Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
 \begin{equation}
-	\text{cực tiểu} \sum_{(i,j) \in E} c_{ij} x_{ij}
+	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
 \end{equation}
-với ràng buộc:
+s.t.
 \begin{flalign}
 	\label{ct2:1} & \sum_{j=1}^n x_{0j}=2m,                   & \quad                                  \\
 	\label{ct2:2} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2 & \quad (k \in V \setminus \{0\}),       \\
@@ -32,12 +32,12 @@ trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để
 
 \subsection{Công thức dòng hàng và thuật toán}
 Trong công thức dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi Gavish, Graves (1979) \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi Baldacci, Hadjiconstantinou, Mingozzi (2004) \cite{baldacci2004exact} dựa trên mô hình TSP của Finke, Claus, Gunn
-(1984) \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn xe rỗng trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Công thức dòng hàng được mô hình hóa như sau:
+(1984) \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn xe rỗng trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Công thức dòng hàng được mô hình hóa như sau
 
 \begin{equation}
-	\text{cực tiểu} \sum_{(i,j) \in E} c_{ij} x_{ij}
+	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
 \end{equation}
-với ràng buộc:
+s.t.
 \begin{flalign}
 	\label{ct3:1} & \sum_{j \in \bar{V}} (y_{ji} - y_{ij}) = 2q_i                                    & \quad (i \in V \setminus \{0\}), \\
 	\label{ct3:2} & \sum_{j \in V \setminus \{0\}} y_{0j} = \sum_{i \in V \setminus \{0\}} q_i,      & \quad                            \\
@@ -52,12 +52,12 @@ với ràng buộc:
 Bài toán này được giải bằng \textit{branch-and-cut} với các bất đẳng thức VRP được biểu diễn theo các biến $x_{ij}$
 
 \subsection{Công thức phân hoạch tập hợp và thuật toán}
-Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là hệ số nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau:
+Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là hệ số nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau
 
 \begin{equation}
-	\text{cực tiểu } \sum_r{c_r^* y_r}
+	\min \sum_r{c_r^* y_r}
 \end{equation}
-với ràng buộc:
+s.t.
 \begin{flalign}
 	\label{ct4:1} & \sum_r a_{ir} = 1 & \quad (i \in V \setminus \{0\}), \\
 	\label{ct4:2} & \sum_r y_r = m,   & \quad                            \\
