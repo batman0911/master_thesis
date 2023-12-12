@@ -111,7 +111,7 @@
 
 % Customizing of citations in the text
 \RequirePackage[
-    style=numeric,
+    style=ieee,
     backend=biber,
     natbib=true]
     {biblatex}
@@ -911,7 +911,8 @@
 
 \newcommand{\references}{%
     \addcontentsline{toc}{chapter}{\bibname}%
-    \printbibliography[title=\bibname]
+    \printbibliography[sorting=anyt]
+    % \bibliographystyle{abbrv}
     \pagebreak%
 }
 

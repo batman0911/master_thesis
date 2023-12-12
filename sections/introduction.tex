@@ -9,12 +9,23 @@ Một trong những bài toán quan trọng nhất của logistic là bài toán
 
 VRP lần đầu tiên được giới thiệu bởi Dantzig, George B và Ramser, John H (1959) \cite{dantzig1959truck}, rất sớm trước thời kì bùng nổ Internet những năm 90! Tuy nhiên, cho tới nay, VRP vẫn thu hút được sự quan tâm lớn từ cộng đồng những nhà toán học hay khoa học máy tính bởi tính ứng dụng cao của nó. Với nhu cầu giao vận cùng lượng khách hàng cần phục vụ ngày càng tăng của các doanh nghiệp, việc tối ưu hóa chi phí vận hành là một vấn đề cấp thiết. Ngoài ra, việc tìm ra lời giải "gần" tối ưu cần diễn ra nhanh chóng để tránh người giao hàng, hay xe phải chờ lâu để có được lộ trình cần thiết trước khi thực hiện giao hàng. 
 
-Trong luận văn này, tác giả nghiên cứu mô hình toán học của VRP cùng các biến thể của nó và các thuật toán giải quyết bài toán này. Tác giả sử dụng thuật toán ALNS (\textit{Adaptive Large Neighborhood Search - Ropke, Stefan và Pisinger, David (2006)} \cite{ropke2006adaptive}). ALNS được phát triển dựa trên LNS - \textit{Large Neighbourhood Search - Shaw (1997, 1998)} \cite{shaw1997new}, \cite{shaw1998using}. Hiệu năng và chất lượng nghiệm của ALNS được đánh giá trên các tập dữ liệu thực tế với số lượng yêu cầu (khách hàng) từ nhỏ tới rất lớn. Tác giả đề xuất một thuật toán hủy mới cho ALNS gọi là \textit{Bad Route Removal} giúp giảm số xe sử dụng một cách nhanh chóng. Thêm vào đó, tác giả cũng đề xuất một hiệu chỉnh cho việc tự động điều chỉnh trọng số lựa chọn thuật toán trong ALNS giúp tăng hiệu năng và tiết kiệm tài nguyên so với ALNS gốc một cách đáng kể, thuật toán được đặt tên là B-ALNS (\textit{Boosted - Adaptive Large Neighborhood Search}).
+Trong luận văn này, tác giả nghiên cứu mô hình toán học của VRP cùng các biến thể của nó và các thuật toán giải quyết bài toán này. Tác giả sử dụng thuật toán ALNS (\textit{Adaptive Large Neighborhood Search - Ropke, Stefan và Pisinger, David (2006)} \cite{ropke2006adaptive}). ALNS được phát triển dựa trên LNS - \textit{Large Neighbourhood Search - Shaw (1997, 1998)} \cite{shaw1997new}, \cite{shaw1998using}. Hiệu năng và chất lượng nghiệm của ALNS được đánh giá trên các tập dữ liệu thực tế với số lượng yêu cầu (khách hàng) từ nhỏ tới rất lớn. Tác giả đề xuất một thuật toán hủy mới cho ALNS gọi là \textit{Bad Route Removal} giúp giảm số xe sử dụng một cách nhanh chóng. Thêm vào đó, tác giả cũng đề xuất một hiệu chỉnh cho việc tự động điều chỉnh trọng số lựa chọn thuật toán trong ALNS giúp tăng hiệu năng và tiết kiệm tài nguyên so với ALNS gốc một cách đáng kể, thuật toán được đặt tên là B-ALNS (\textit{Boosted - Adaptive Large Neighborhood Search}). Trong thực nghiệm với tập dữ liệu rất lớn với $1000$ yêu cầu, B-ALNS tiết kiệm đến $75\%$ tài nguyên so với ALNS gốc, khi sử dụng cùng một lượng tài nguyên, B-ALNS đạt được kết quả tốt hơn ALNS gốc đến $20\%$. 
 
 \begin{figure}[H] % places figure environment here   
   \centering % Centers Graphic
-  \includegraphics[width=0.9\textwidth]{figures/routes.png} 
+  \includegraphics[width=0.9\textwidth]{figures/routes_c101.png} 
   % \includesvg[scale=1]{figures/core-object}
   \caption{VRP với 10 xe phục vụ 100 khách hàng (cấu hình Solomon C101)} 
   % \label{fig:fg_02}
 \end{figure}
+
+Các vấn đề được đề cập trong luận văn này được trình bày trong 7 chương
+\begin{itemize}
+  \item \hyperref[chap:introduction]{Chương 1} - \textit{Mở đầu}: Giới thiệu vấn đề nghiên cứu.
+  \item \hyperref[chap:model]{Chương 2} - \textit{Định nghĩa và một số kí hiệu}: Phân loại các biến thể của VRP và đưa ra các định nghĩa cũng như mô hình toán học của chúng.
+  \item \hyperref[chap:solution]{Chương 3} - \textit{Một số phương pháp cho VRP}: Trình bày khái quát một số  phương pháp giải quyết VRP đã được nghiên cứu trước đó.
+  \item \hyperref[chap:search]{Chương 4} - \textit{Phương pháp tìm kiếm lân cận}: Trình bày phương pháp tìm kiếm lân cận rộng và thuật toán tìm kiếm lân cận rộng thích ứng.
+  \item \hyperref[chap:application]{Chương 5} - \textit{Ứng dụng ALNS vào VRPTW}: Cấu trúc chương trình và các lớp chính được sử dụng để triển khai thuật toán tìm kiếm lân cận rộng thích ứng giải bài toán VRP với ràng buộc khung thời gian.
+  \item \hyperref[chap:experiment]{Chương 6} - \textit{Thực nghiệm và kết quả}: Trình bày kết quả thực nghiệm và đánh giá hiệu năng của thuật toán.
+  \item \hyperref[chap:conclusion]{Chương 7} - \textit{Kết luận}: Tóm tắt lại các kết quả đạt được và đề xuất hướng phát triển trong tương lai.
+\end{itemize}

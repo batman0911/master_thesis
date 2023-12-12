@@ -1,55 +1,55 @@
 \subsection{Thuật toán hủy}
 
 \subsubsection*{Phương pháp xóa tệ nhất}
-Cho 1 yêu cầu $i$ được phục vụ bởi vài xe trong tập nghiệm $s$, chi phí của yêu cầu \textit{cost} được định nghĩa như sau: $cost(i,s)=f(s)-f_{-i}(s)$ với $f_{-i}(s)$ là chi phí của nghiệm mà không có yêu cầu $i$ (yêu cầu được xóa mà không chuyển đến hàng chờ). Chiến thuật ở đây là ta xóa đi những yêu cầu có chi phí cao và cố gắng thêm lại vào các tuyến với chi phí ít hơn. 
+Cho 1 yêu cầu $i$ được phục vụ bởi vài xe trong tập nghiệm $s$, chi phí của yêu cầu \textit{cost} được định nghĩa là hàm $cost(i,s)=f(s)-f_{-i}(s)$ với $f_{-i}(s)$ là chi phí của nghiệm mà không có yêu cầu $i$ (yêu cầu được xóa mà không chuyển đến hàng chờ). Chiến thuật ở đây là ta xóa đi những yêu cầu có chi phí cao và cố gắng thêm lại vào các tuyến với chi phí ít hơn.
 
 Tuy nhiên chúng ta không xóa đi chính xác các yêu cầu có chi phí cao nhất mà thay vào đó chúng ta chọn ngẫu nhiên 1 yêu cầu có chi phí cao. Điều này được thực hiện để tránh việc xóa các yêu cầu có chi phí cao nhất liên tục và thuật toán bị bẫy trong một nghiệm tối ưu cục bộ.
 
 \begin{algorithm}
-  \label{alg:worst_removal}
-    \caption{Worst Removal} 
+	\label{alg:worst_removal}
+	\caption{Worst Removal}
 	\begin{algorithmic}[1]
-        \Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
-        \While {$q > 0$}
-		  \State Array: \textit{L} = All planned requests \textit{i}, sorted by descending \textit{cost(i,s)};
-            \State choose a random number \textit{y} in the interval $[0, 1)$;
-            \State request: $r = L\left[ y^p |L| \right]$;
-            \State remove r from solution s;
-            \State $q = q-1$;
-        \EndWhile
-	\end{algorithmic} 
+		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
+		\While {$q > 0$}
+		\State Array: \textit{L} = All planned requests \textit{i}, sorted by descending \textit{cost(i,s)};
+		\State choose a random number \textit{y} in the interval $[0, 1)$;
+		\State request: $r = L\left[ y^p |L| \right]$;
+		\State remove r from solution s;
+		\State $q = q-1$;
+		\EndWhile
+	\end{algorithmic}
 \end{algorithm}
 
 \subsubsection*{Phương pháp xóa ngẫu nhiên}
-Thuật toán xóa ngẫu nhiên đơn giản chọn ngẫu nhiên $q$ yêu cầu và loại bỏ chúng khỏi nghiệm hiện tại. Kỹ thuật này có thể coi là 1 trường hợp đặc biệt của phương pháp xóa Shaw với $p=1$. 
+Thuật toán xóa ngẫu nhiên đơn giản chọn ngẫu nhiên $q$ yêu cầu và loại bỏ chúng khỏi nghiệm hiện tại. Kỹ thuật này có thể coi là 1 trường hợp đặc biệt của phương pháp xóa Shaw với $p=1$.
 
 \subsubsection*{Phương pháp xóa Shaw}
 Phương pháp xóa này được phát triển bởi Shaw (1997, 1998) \cite{}. Cách trình bày trong phần này đã được chỉnh sửa lại để phù hợp với VRPTW. Ý tưởng chung là xóa bỏ các yêu cầu có "liên quan", vì chúng ta hy vọng sẽ dễ dàng thêm lại các yêu cầu tương tự với nhau để tạo ra các nghiệm mới có thể tốt hơn. Nếu chúng ta chọn xóa bỏ các yêu cầu rất khác nhau, thì sau đó, việc thêm các yêu cầu mới sẽ không nhận lại được điều gì do các yêu cầu này có thể chỉ được thêm vào tại vị trí ban đầu của chúng hoặc ở các vị trí tệ. Mức độ liên quan giữa 2 yêu cầu \textit{i} và \textit{j} được định nghĩa dựa trên chỉ số độ liên quan $R(i,j)$. Chỉ số này càng thấp thì 2 yêu cầu càng "giống" nhau.
 
-Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện: khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$. Chỉ số độ tương đồng được tính như sau:
+Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện là khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$. Chỉ số độ tương đồng được tính như sau
 \begin{equation}
-  \label{eq:shaw_related}
-  R(i,j) = \varphi d_{ij} + \chi |t_{i}-t_{j}| + \psi|l_i - l_j|
+	\label{eq:shaw_related}
+	R(i,j) = \varphi d_{ij} + \chi |t_{i}-t_{j}| + \psi|l_i - l_j|
 \end{equation}
-$d_{ij}$ là khoảng cách từ $i$ tới $j$, $t_i$ là thời gian khi đến địa điểm $i$, $l_i$ là tải của xe tại $i$. 
+$d_{ij}$ là khoảng cách từ $i$ tới $j$, $t_i$ là thời gian khi đến địa điểm $i$, $l_i$ là tải của xe tại $i$.
 
 Mức độ liên quan được sử dụng để xóa các yêu cầu được mô tả trong Algorithm 3. Ban đầu, một yêu cầu được chọn ngẫu nhiên. Trong các vòng lặp tiếp theo, thuật toán sẽ thực hiện xóa các yêu cầu "giống" với các yêu cầu đã được xóa. Tham số $p \geqslant 1$ biểu diễn cho sự ngẫu nhiên trong cách lựa chọn yêu cầu (\textit{p} càng thấp thì độ ngẫu nhiên càng cao).
 
 \begin{algorithm}
-	\caption{Shaw Removal} 
+	\caption{Shaw Removal}
 	\begin{algorithmic}[1]
-        \Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
-        \State request: r = a randomly selected request from s;
-        \State set of requests: $\mathbb{D}=\{r\}$;
-        \While {$|\mathbb{D}| < q$}
-		  \State r = a randomly selected request from $\mathbb{D}$;
-            \State Array: L = an array containing all request from s not in $\mathbb{D}$;
-            \State sort \textit{L} such that $i<j \Rightarrow R(r, L\left[ i \right]) < R(r, L\left[ j \right])$;
-            \State choose a random number \textit{y} from the interval [0, 1);
-            \State $\mathbb{D}=\mathbb{D}\cup {L \left[ y^p|L| \right]}$
-        \EndWhile
-    \State remove the requests in $\mathbb{D}$ from \textit{s};
-	\end{algorithmic} 
+		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
+		\State request: r = a randomly selected request from s;
+		\State set of requests: $\mathbb{D}=\{r\}$;
+		\While {$|\mathbb{D}| < q$}
+		\State r = a randomly selected request from $\mathbb{D}$;
+		\State Array: L = an array containing all request from s not in $\mathbb{D}$;
+		\State sort \textit{L} such that $i<j \Rightarrow R(r, L\left[ i \right]) < R(r, L\left[ j \right])$;
+		\State choose a random number \textit{y} from the interval [0, 1);
+		\State $\mathbb{D}=\mathbb{D}\cup {L \left[ y^p|L| \right]}$
+		\EndWhile
+		\State remove the requests in $\mathbb{D}$ from \textit{s};
+	\end{algorithmic}
 \end{algorithm}
 
 Tinh thần của thuật toán Shaw là cố gắng bỏ đi top các yêu cầu có độ đo liên quan $R(i,j)$ nhỏ. Top các yêu cầu này được kiểm soát bằng tham số $p$. Tuy nhiên việc sắp xếp các yêu cầu (mảng $L$) theo thứ tự tăng dần của $R(r, L[i])$ là phép toán tốn chi phí. Trong thực tế cài đặt chúng ta có thể sử dụng cấu trúc dữ liệu \textit{min heap} để lấy ra top các yêu cầu có độ đo liên quan nhỏ nhất.
@@ -57,16 +57,16 @@ Tinh thần của thuật toán Shaw là cố gắng bỏ đi top các yêu cầ
 \subsubsection*{Hủy tuyến}
 Thuật toán hủy tuyến được tác giả đề xuất trong luận văn này. Tinh thần chung của thuật toán là chúng ta cố gắng bỏ đi toàn bộ yêu cầu trên một hoặc một vài tuyến đường nào đó. Việc bỏ đi cả tuyến cũng tương đương với việc làm giảm số xe cần để phục vụ khách hàng. Mục tiêu của CVRPTW là giảm tổng khoảng cách di chuyển và nghiệm thu được phải thỏa mãn các ràng buộc về tải trọng, số xe cũng như khung thời gian. Tuy nhiên, trong thực tế vận hành của một doanh nghiệp, giảm bớt được số xe phục vụ là điều rất có ý nghĩa bởi chi phí mua (thuê) xe là đắt đỏ so với việc di chuyển xa hơn một vài phần trăm.
 
-Áp dụng tư tưởng \textit{greedy}, tác giả cho rằng các tuyến nên được bỏ đi là các tuyến có chi phí trung bình trên mỗi khách hàng cao. Chúng ta kì vọng có thể thêm lại các khách hàng đó vào các tuyến khác "thoáng" hơn hay là chi phí trung bình trên mỗi khách hàng thấp hơn. 
+Áp dụng tư tưởng \textit{greedy}, tác giả cho rằng các tuyến nên được bỏ đi là các tuyến có chi phí trung bình trên mỗi khách hàng cao. Chúng ta kì vọng có thể thêm lại các khách hàng đó vào các tuyến khác "thoáng" hơn hay là chi phí trung bình trên mỗi khách hàng thấp hơn.
 \begin{equation}
-  \label{eq:destroy_route}
-  \text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1}
+	\label{eq:destroy_route}
+	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1}
 \end{equation}
 với $r$ là tuyến được chọn, $\text{cost}(r,s)$ là chi phí của tuyến $r$ trong nghiệm $s$, $\text{size}(r)$ là số phần tử của tuyến $r$. Lưu ý rằng tuyến bắt đầu và kết thúc tại nút $0$.
 
 Ngoài ra để tránh việc bỏ đi tuyến "tệ" một cách cứng nhắc, tác giả đưa vào một nhiễu nhỏ.\begin{equation}
-  \label{eq:destroy_route}
-  \text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1} + \lambda p d_{max}
+	\label{eq:destroy_route}
+	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1} + \lambda p d_{max}
 \end{equation}
 với $d_{max}$ là khoảng cách lớn nhất giữa hai yêu cầu, $p$ là một số ngẫu nhiên trong khoảng $(-1,1)$ và $\lambda$ là một hằng số điều khiển.
 
