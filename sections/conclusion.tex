@@ -1,3 +1,7 @@
 \chapter{Kết luận}
 \label{chap:conclusion}
 
+Trong luận văn này, tác giả đã nghiên cứu mô hình toán học, các thuật toán giải lớp các bài toán định tuyến xe, đi sâu vào phương pháp tìm kiếm lân cận rộng. Thuật toán \textit{Tìm kiếm lân cận rộng thích ứng - ALNS} được sử dụng để giải bài toán \textit{Định tuyến xe với ràng buộc tải trọng và khung thời gian - VRPTW}. Tác giả đã đề xuất một hiệu chỉnh giúp tăng hiệu năng của ALNS một cách đáng kể được chỉ ra trong kết quả thực nghiệm. Thuật toán được đặt tên là B-ALNS (\textit{Boosted - Adaptive Large Neighborhood Search - Tìm kiếm lân cận rộng thích ứng tăng tốc}). B-ALNS được đánh giá trên các tập dữ liệu thực tế với số lượng yêu cầu (khách hàng) từ trung bình tới rất lớn cho hiệu năng vượt xa ALNS gốc cũng như framework phổ biến \code{Google OR-Tools}. Điều này gợi ý sử dụng B-ALNS cho các bài toán thực tế yêu cầu chất lượng nghiệm tốt trong thời gian ngắn. Ngoài ra B-ALNS cũng tiết kiệm tài nguyên tính toán (CPU, bộ nhớ) đáng kể so với ALNS gốc.
+
+Mở rộng nghiên cứu, tác giả sẽ tiếp tục cải tiến hiệu chỉnh B-ALNS để thu được nghiệm chất lượng hơn cũng như hiệu năng cao hơn nữa. Thêm vào đó, tác giả tiếp tục nghiên cứu cơ chế thích ứng để "bỏ đi" và "thêm lại" yêu cầu với số lượng hợp lý theo trạng thái của hệ nhằm cải thiện chất lượng nghiệm cũng như tăng hiệu năng.
+
