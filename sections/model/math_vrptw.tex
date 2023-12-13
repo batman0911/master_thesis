@@ -14,16 +14,16 @@ Tiếp theo, chúng ta trình bày một mô hình toán cho VRPTW với hai bi�
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct:1}  & \sum_{k \in K} \sum_{j \in \Delta^+(i)} x_{ijk} = 1                                        & \quad \forall i \in N,                   \\
-	\label{ct:2}  & \sum_{j \in \Delta^+(0)} x_{0jk} = 1                                                       & \quad \forall k \in K,                   \\
-	\label{ct:3}  & \sum_{i \in \Delta^-(j)} x_{ijk} -  \sum_{i \in \Delta^+(j)} x_{jik} = 0                   & \quad \forall k \in K, j \in N,          \\
-	\label{ct:4}  & \sum_{i \in \Delta^-(n+1)} x_{i,n+1,k} = 1                                                 & \quad \forall k \in K,                   \\
-	\label{ct:5}  & x_{ijk} (w_{ik} + s_i + t_{ij} - w_{jk}) \leq 0                                            & \quad \forall k \in K, (i,j) \in A,      \\
-	\label{ct:6}  & a_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq w_{ik} \leq b_i \sum_{j \in \Delta^+(i)} x_{ijk} & \quad \forall k \in K, i \in N,          \\
-	\label{ct:7}  & E \leq w_{ik} \leq L                                                                       & \quad \forall k \in K, i \in \{0, n+1\}, \\
-	\label{ct:8}  & \sum_{i \in N} d_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq C                                 & \quad \forall k \in K,                   \\
-	\label{ct:9}  & x_{ijk} \geq 0                                                                             & \quad \forall k \in K, (i,j) \in A,      \\
-	\label{ct:10} & x_{ijk} \in \{0,1\}                                                                        & \quad \forall k \in K, (i,j) \in A.
+	\label{ct:1}  & \sum_{k \in K} \sum_{j \in \Delta^+(i)} x_{ijk} = 1 & \quad \forall i \in N, \\
+	\label{ct:2}  & \sum_{j \in \Delta^+(0)} x_{0jk} = 1 & \quad \forall k \in K,                   \\
+	\label{ct:3}  & \sum_{i \in \Delta^-(j)} x_{ijk} -  \sum_{i \in \Delta^+(j)} x_{jik} = 0 & \quad \forall k \in K, j \in N, \\
+	\label{ct:4}  & \sum_{i \in \Delta^-(n+1)} x_{i,n+1,k} = 1 & \quad \forall k \in K, \\
+	\label{ct:5}  & x_{ijk} (w_{ik} + s_i + t_{ij} - w_{jk}) \leq 0 & \quad \forall k \in K, (i,j) \in A, \\
+	\label{ct:6}  & a_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq w_{ik} \leq b_i \sum_{j \in \Delta^+(i)} x_{ijk} & \quad \forall k \in K, i \in N, \\
+	\label{ct:7}  & E \leq w_{ik} \leq L & \quad \forall k \in K, i \in \{0, n+1\}, \\
+	\label{ct:8}  & \sum_{i \in N} d_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq C & \quad \forall k \in K, \\
+	\label{ct:9}  & x_{ijk} \geq 0 & \quad \forall k \in K, (i,j) \in A, \\
+	\label{ct:10} & x_{ijk} \in \{0,1\} & \quad \forall k \in K, (i,j) \in A.
 \end{flalign}
 Hàm mục tiêu trong phương trình (\ref{eq1}) biểu diễn tổng chi phí của tất cả các tuyến đường.
 Tập $N = V \setminus \{0\}$ biểu diễn cho tập khách hàng.
