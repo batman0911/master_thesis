@@ -26,15 +26,6 @@ Thuật toán xóa ngẫu nhiên đơn giản chọn ngẫu nhiên $q$ yêu cầ
 \subsubsection*{Phương pháp xóa Shaw}
 Phương pháp xóa này được phát triển bởi Shaw (1997, 1998) \cite{}. Cách trình bày trong phần này đã được chỉnh sửa lại để phù hợp với VRPTW. Ý tưởng chung là xóa bỏ các yêu cầu có "liên quan", vì chúng ta hy vọng sẽ dễ dàng thêm lại các yêu cầu tương tự với nhau để tạo ra các nghiệm mới có thể tốt hơn. Nếu chúng ta chọn xóa bỏ các yêu cầu rất khác nhau, thì sau đó, việc thêm các yêu cầu mới sẽ không nhận lại được điều gì do các yêu cầu này có thể chỉ được thêm vào tại vị trí ban đầu của chúng hoặc ở các vị trí tệ. Mức độ liên quan giữa 2 yêu cầu \textit{i} và \textit{j} được định nghĩa dựa trên chỉ số độ liên quan $R(i,j)$. Chỉ số này càng thấp thì 2 yêu cầu càng "giống" nhau.
 
-Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện là khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$. Chỉ số độ tương đồng được tính như sau
-\begin{equation}
-	\label{eq:shaw_related}
-	R(i,j) = \varphi d_{ij} + \chi |t_{i}-t_{j}| + \psi|l_i - l_j|
-\end{equation}
-$d_{ij}$ là khoảng cách từ $i$ tới $j$, $t_i$ là thời gian khi đến địa điểm $i$, $l_i$ là tải của xe tại $i$.
-
-Mức độ liên quan được sử dụng để xóa các yêu cầu được mô tả trong Algorithm 3. Ban đầu, một yêu cầu được chọn ngẫu nhiên. Trong các vòng lặp tiếp theo, thuật toán sẽ thực hiện xóa các yêu cầu "giống" với các yêu cầu đã được xóa. Tham số $p \geqslant 1$ biểu diễn cho sự ngẫu nhiên trong cách lựa chọn yêu cầu (\textit{p} càng thấp thì độ ngẫu nhiên càng cao).
-
 \begin{algorithm}
 	\caption{Shaw Removal}
 	\begin{algorithmic}[1]
@@ -51,6 +42,15 @@ Mức độ liên quan được sử dụng để xóa các yêu cầu được 
 		\State remove the requests in $\mathbb{D}$ from \textit{s};
 	\end{algorithmic}
 \end{algorithm}
+
+Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện là khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$. Chỉ số độ tương đồng được tính như sau
+\begin{equation}
+	\label{eq:shaw_related}
+	R(i,j) = \varphi d_{ij} + \chi |t_{i}-t_{j}| + \psi|l_i - l_j|
+\end{equation}
+$d_{ij}$ là khoảng cách từ $i$ tới $j$, $t_i$ là thời gian khi đến địa điểm $i$, $l_i$ là tải của xe tại $i$.
+
+Mức độ liên quan được sử dụng để xóa các yêu cầu được mô tả trong Algorithm 3. Ban đầu, một yêu cầu được chọn ngẫu nhiên. Trong các vòng lặp tiếp theo, thuật toán sẽ thực hiện xóa các yêu cầu "giống" với các yêu cầu đã được xóa. Tham số $p \geqslant 1$ biểu diễn cho sự ngẫu nhiên trong cách lựa chọn yêu cầu (\textit{p} càng thấp thì độ ngẫu nhiên càng cao).
 
 Tinh thần của thuật toán Shaw là cố gắng bỏ đi top các yêu cầu có độ đo liên quan $R(i,j)$ nhỏ. Top các yêu cầu này được kiểm soát bằng tham số $p$. Tuy nhiên việc sắp xếp các yêu cầu (mảng $L$) theo thứ tự tăng dần của $R(r, L[i])$ là phép toán tốn chi phí. Trong thực tế cài đặt chúng ta có thể sử dụng cấu trúc dữ liệu \textit{min heap} để lấy ra top các yêu cầu có độ đo liên quan nhỏ nhất.
 

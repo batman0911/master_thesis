@@ -63,17 +63,17 @@ Bài toán này được giải bằng \textit{branch-and-cut} với các bất 
   % \label{fig:fg_02}
 \end{figure}
 
-\subsection{Công thức phân hoạch tập hợp và thuật toán}
-Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là hệ số nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau
+\subsection{Công thức phân hoạch tập hợp}
+Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là biến nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau
 
 \begin{equation}
 	\min \sum_r{c_r^* y_r}
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct4:1} & \sum_r a_{ir} = 1 & \quad (i \in V \setminus \{0\}), \\
+	\label{ct4:1} & \sum_r a_{ir} = 1 & \quad \forall i \in V \setminus \{0\}, \\
 	\label{ct4:2} & \sum_r y_r = m,   & \quad                            \\
-	\label{ct4:3} & y_r = 0, 1        & \quad (\text{mọi } r).
+	\label{ct4:3} & y_r = 0, 1        & \quad \forall r.
 \end{flalign}
 
 Nói một cách chặt chẽ thì ràng buộc (\ref{ct4:2}) không phải một phần của công thức phân hoạch tập hợp chuẩn, tuy nhiên nó được sử dụng bởi hầu hết các nhà nghiên cứu trong trường hợp VRP.
@@ -84,15 +84,19 @@ Nhìn chung thì các thuật toán giải chính xác khó đảm bảo hiệu 
 
 \subsection{Thuật toán tiết kiệm}
 
-Thuật toán tiết kiệm được đưa ra bởi Clark, Wright (1964) \cite{clarke1964scheduling}, mô tả và cài đặt khá đơn giản nhưng vẫn đưa ra được nghiệm tốt. Chính vì thế, thuật toán này được sử dụng rất rộng rãi. Thuật toán bắt đầu với nghiệm ban đầu với $n$ tuyến $(0, i, 0)$ với $i \in V \setminus \{0\}$. Tại mỗi vòng lặp thuật toán nối tuyến kết thúc với $i$ với một tuyến khác bắt đầu với $j$ cực đại hóa đại lượng \textit{tiết kiệm} $s_{ij}=c_{i0} + c_{0j} - c_{ij}$ và lới giải mới thỏa mãn các ràng buộc. Quá trình kết thúc khi không thể nối các tuyến vào nữa.
+Thuật toán tiết kiệm được đưa ra bởi Clark, Wright (1964) \cite{clarke1964scheduling}, mô tả và cài đặt khá đơn giản nhưng vẫn đưa ra được nghiệm tốt. Chính vì thế, thuật toán này được sử dụng rất rộng rãi. Thuật toán bắt đầu với nghiệm ban đầu với $n$ tuyến $(0, i, 0)$ với $i \in V \setminus \{0\}$. Tại mỗi vòng lặp, thuật toán nối tuyến kết thúc với $i$ với một tuyến khác bắt đầu với $j$ cực đại hóa đại lượng \textit{tiết kiệm} $s_{ij}=c_{i0} + c_{0j} - c_{ij}$ và lời giải mới thỏa mãn các ràng buộc. Quá trình kết thúc khi không thể nối các tuyến vào nữa.
 
 Một số cải tiến được đề xuất, ví dụ như nhân $c_{ij}$ với một trọng số dương $\lambda$ (Golden, Magnanti, Nguyen (1977) \cite{golden1977implementing}), tối ưu tuyến đường hợp nhất toàn cục thông qua việc sử dụng thuật toán phù hợp (Altinkemer, Gavish (1991) \cite{altinkemer1991parallel} và Wark, Holt (1994) \cite{wark1994repeated}), tăng tốc tính toán (Paessens (1988) \cite{paessens1988savings})...
 
 \subsection{Phân cụm trước, định tuyến sau}
 
-Heuristic phân cụm trước, định tuyến sau của Fisher, Jaikumar (1981) \cite{fisher1981generalized} trước hết đặt $m$ tâm và phân cụm sao cho tổng khoảng cách từ các nút đến tâm của nó là nhỏ nhất và thỏa mãn về ràng buộc tải trọng. Sau đó trên mỗi cụm, tuyến đường được thiết lập bằng cách giải bài toán TSP. Một vài chiến thuật để khởi tạo cũng như lựa chọn tâm cụm được trình bày trong Baker, Sheasby (1999) \cite{baker1999extensions}
+Heuristic phân cụm trước, định tuyến sau của Fisher, Jaikumar (1981) \cite{fisher1981generalized} trước hết đặt $m$ tâm và phân cụm sao cho tổng khoảng cách từ các nút đến tâm của nó là nhỏ nhất và thỏa mãn về ràng buộc tải trọng. Sau đó, trên mỗi cụm, tuyến đường được thiết lập bằng cách giải bài toán TSP. Một vài chiến thuật để khởi tạo cũng như lựa chọn tâm cụm được trình bày trong Baker, Sheasby (1999) \cite{baker1999extensions}
 
 \subsection{Heuristics cải tiến}
+
+Có hai loại phương pháp cải thiện nghiệm được sử dụng rộng rãi để giảm chi phí của nghiệm hiện tại. Phương pháp di chuyển nội tuyến cải thiện chi phí của từng tuyến bằng cách áp dụng một thuật toán TSP cho tuyến đó. Phương pháp di chuyển ngoại tuyến thực hiện các thay đổi trên một vài tuyến nhất định. Đôi khi hai phương pháp này được kết hợp lại với nhau để cải thiện nghiệm một cách tổng thể.
+
+Có khá nhiều thuật toán sử dụng di chuyển nội tuyến, hầu hết là trường hợp đặc biệt của chiến thuật \textit{b-cyclic} và \textit{k-transfer} được đề xuất bởi Thompson, Psaraftis (1993) \cite{thompson1993cyclic}. 
 
 \section{Metaheuristics}
 
