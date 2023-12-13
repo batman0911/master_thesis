@@ -1,0 +1,105 @@
+\subsection{Các mô hình cơ bản cho VRP}
+\label{sec:math_common}
+
+Trong phần này, chúng ta cùng xem xét các mô hình toán học cơ bản cho VRP và xem xét cách các mô hình này được mở rộng để kết hợp hay bổ sung ràng buộc hoặc hàm mục tiêu.
+
+Có ba cách tiếp cận để mô hình hóa VRP. Loại mô hình đầu tiên là "công thức dòng xe" (\textit{vehicle flow formulations}) sử dụng các biến nguyên ứng với mỗi cung hay cạnh của đồ thị. Các biến này để đếm số lần mà xe đi qua cung hay cạnh đó. Loại mô hình này thường được sử dụng cho những phiên bản cơ bản của VRP. Mô hình đặc biệt phù hợp cho những trường hợp mà tổng chi phí, hay hàm mục tiêu có thể biểu diễn bằng tổng chi phí của mỗi cung hay cạnh và hầu hết các ràng buộc liên quan đến sự thay đổi giữa các yêu cầu trong cùng một tuyến. Khi đó, mô hình có thể được xây dựng một cách hiệu quả qua việc định nghĩa hợp lý tập cung và chi phí của cung. Tuy nhiên, "công thức dòng xe" không được sử dụng cho các bài toán mà tổng chi phí phụ thuộc vào chuỗi (có thứ tự) các nút hoặc phụ thuộc vào loại phương tiện.
+
+Loại mô hình thứ hai là "công thức dòng hàng" (\textit{commodity flow formulation}). Trong loại mô hình này, các biến nguyên ứng với mỗi cung hoặc cạnh biểu diễn "dòng" của lượng hàng dọc theo các tuyến đường. "Công thức dòng hàng" thường được sử dụng làm cơ sở cho các phương pháp giải chính xác VRP.
+
+Loại mô hình cuối cùng có số biến nhị phân tăng theo cấp số nhân với kích thước của đầu vào, mỗi biến biểu thị cho một chu trình khả thi khác nhau. Trong loại mô hình này, VRP được mô hình hóa như một bài toán phân hoạch tập hợp (\textit{Set-Partitioning Problem - SPP}). SSP xác định một tập các chu trình có chi phí nhỏ nhất phục vụ mỗi yêu càu một lần và thỏa mãn các ràng buộc. Ưu điểm chính của loại mô hình này là nó cho phép tổng quát hóa chi phí của các tuyến đường ví dụ như khi chi phí của tuyến phụ thuộc vào toàn bộ chuỗi các cung hay cạnh và phụ thuộc vào loại xe. Hơn nữa, các ràng buộc không cần tính đến tính khả thi của một tuyến đường đơn lẻ. Kết quả là ràng buộc có thể được thay thế bằng các bất đẳng thức gọn gàng hơn. Đánh đổi lại, loại mô hình này cần một số lượng biến biểu diễn rất lớn.
+
+\subsubsection*{Mô hình dòng xe}
+
+Trước tiên, chúng ta mô tả công thức "lập trình tuyến tính nguyên" (\textit{integer linear programming}) cho ACVRP, sau đó là SCVRP. Mô hình "công thức dòng xe hai chỉ số" (\textit{wo-index vehicle flow formulation}) sử dụng $O(n^2)$ biến nhị phân $x$ để chỉ thị nếu một xe đi qua cung $(i,j)$ hay không. Nói cách khác, $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại. 
+
+\textit{VPR1}
+
+\begin{equation} \label{eq:vrp1}
+	\min \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}
+\end{equation}
+s.t.
+\begin{flalign}
+	\label{ct_vrp1:1}  & \sum_{i \in V} x_{ij} = 1 & \quad \forall j \in V \setminus \{0\}, \\
+  \label{ct_vrp1:2}  & \sum_{j \in V} x_{ij} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+  \label{ct_vrp1:3}  & \sum_{i \in V} x_{i0} = K, \\
+  \label{ct_vrp1:4}  & \sum_{j \in V} x_{0j} = K, \\
+  \label{ct_vrp1:5}  & \sum_{i \notin  S} \sum_{j \in S} x_{ij} \geq r(S) & \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp1:6}  & x_{ij} \in \{0,1\} & \quad \forall i,j \in V.
+\end{flalign}
+Ràng buộc (\ref{ct_vrp1:1}) và (\ref{ct_vrp1:2}) đảm bảo chỉ có đúng một cung vào và một cung ra cho mỗi nút ứng với mỗi yêu cầu. Ràng buộc (\ref{ct_vrp1:3}) và (\ref{ct_vrp1:4}) đảm bảo có đúng $K$ xe xuất phát từ kho và trở về kho. Ràng buộc (\ref{ct_vrp1:5}) đảm bảo số xe được sử dụng không nhỏ hơn số xe tối thiểu cần để phục vụ tất cả các yêu cầu. Trong thực tế, nhiều khi ràng buộc này được phát biểu lại là tổng số xe sử dụng không vượt quá một giới hạn trên $K_{max}$ nhất định. 
+
+Đối với hệ đối xứng, \textit{VRP1} được viết lại như sau
+
+\textit{VRP2}
+
+\begin{equation} \label{eq:vrp2}
+	\min \sum_{i \in V \setminus \{n\}} \sum_{j > i} c_{ij} x_{ij}
+\end{equation}
+s.t.
+\begin{flalign}
+	\label{ct_vrp2:1}  & \sum_{h < i} x_{hi} + \sum_{j < i} x_{ij} = 2 & \quad \forall j \in V \setminus \{0\}, \\
+  \label{ct_vrp2:2}  & \sum_{j \in V \setminus \{0\}} x_{0j} = 2K, \\
+  \label{ct_vrp2:3}  & \sum_{i \in S} \sum_{h < i, h \notin S} x_{hi} + \sum_{i \in S} \sum_{j < i, j \notin S} x_{ij} \geq 2r(S) & \quad S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp2:4}  & x_{ij} \in \{0,1\} & \quad \forall i,j \in V \setminus \{0\}, i < j, \\
+  \label{ct_vrp2:5}  & x_{0j} = \{0, 1, 2\} & \quad \forall i \in V \setminus \{0\}.
+\end{flalign}
+Ràng buộc (\ref{ct_vrp2:1}) và (\ref{ct_vrp2:2}) đảm bảo chỉ có đúng một cung vào và một cung ra cho mỗi nút ứng với mỗi yêu cầu, $2K$ để đảm bảo số xe xuất phát và kết thúc tại kho. Ràng buộc (\ref{ct_vrp2:3}) đảm bảo số xe được sử dụng không nhỏ hơn số xe tối thiểu cần để phục vụ tất cả các yêu cầu. 
+
+Phiên bản mô hình 2 chỉ số cho trường hợp hệ đối xứng có thể được biểu diễn chỉ với một chỉ số $e$ biểu thị cho cạnh vô hướng $e \in E$. Nếu ta không cho phép tuyến chỉ chứa đúng một yêu cầu thì các biến sử dụng đều là nhị phân. Ngoài ra, nếu $e \notin \delta(0)$ thì $x_e \in \{0, 1\}$ và nếu $e \in \delta(0)$ thì $x_e \in \{0, 1, 2\}$. Công thức \textit{VRP2} được viết lại như sau
+
+\textit{VRP3}
+
+\begin{equation} \label{eq:vrp3}
+	\min \sum_{e \in E} c_e x_e
+\end{equation}
+s.t.
+\begin{flalign}
+	\label{ct_vrp3:1}  & \sum_{e \in \delta(i)} x_e = 2 & \quad \forall i \in V \setminus \{0\}, \\
+  \label{ct_vrp3:2}  & \sum_{e \in \delta(0)} x_e = 2K, \\
+  \label{ct_vrp3:3}  & \sum_{e \in \delta(S)} x_e \geq 2r(S) & \quad S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp3:4}  & x_e \in \{0,1\} & \quad \forall e \notin \delta(0), \\
+  \label{ct_vrp3:5}  & x_e \in \{0,1,2\} & \quad \forall e \in \delta(0).
+\end{flalign}
+
+Mô hình dòng xe hai chỉ số được sử dụng khá rộng rãi trong các biến thể cơ bản của SCVRP và ACVRP chẳng hạn như VRPB. Tuy nhiên, mô hình này là không đủ mạnh cho các biến thể phức tạp hơn ví dụ như khi tổng chi phí phụ thuộc vào một chuỗi (có thứ tự) các nút hoặc phụ thuộc vào loại phương tiện. Ngoài ra, ta cũng không biết một cách tường minh xe nào được dùng cho tuyến đường. 
+
+Một mô hình mở rộng để khắc phục các điểm yếu của mô hình dòng xe hai chỉ số là mô hình dòng xe ba chỉ số (\textit{three-index vehicle flow formulation}). Mô hình này sử dụng $O(n^2K)$ biến nhị phân $x$. Biến $x_{ijk}$ đếm số lần cung $(i, j) \in A$ được đi qua bởi xe $k$ với $k=1,...,K$ trong nghiệm tối ưu. Ngoài ra ta sử dụng thêm $O(nK)$ biến nhị phân $y$, với $y_{ik}$ ($i \in V; k=1,...,K$) nhận giá trị $1$ nếu yêu cầu $i$ được phục vụ bởi xe $k$ và $0$ trong trường hợp còn lại. Mô hình ba chỉ số cho ACVRP được mô tả như sau
+
+\textit{VRP4}
+
+\begin{equation} \label{eq:vrp4}
+	\min \sum_{i \in V} \sum_{j \in V} c_{ij} \sum_{k=1}^K x_{ijk}
+\end{equation}
+s.t.
+\begin{flalign}
+	\label{ct_vrp4:1}  & \sum_{k=1}^K y_{ik} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+  \label{ct_vrp4:2}  & \sum_{k=1}^K y_{0k} = K, \\
+  \label{ct_vrp4:3}  & \sum_{j \in V} x_{ijk} = \sum_{j \in V} x_{jik} = y_{ik} & \quad \forall i \in V \setminus \{0\}, k=1,...,K, \\
+  \label{ct_vrp4:4}  & \sum_{i \in V} d_i y_{ik} \leq C & \quad \forall k=1,...,K, \\
+  \label{ct_vrp4:5}  & \sum_{i \in S} \sum_{j \notin S} x_{ijk} \geq y_{hk} & \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
+  \label{ct_vrp4:6}  & y_{ik} \in \{0,1\} & \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp4:7}  & x_{ijk} \in \{0,1\} & \quad \forall i,j \in V, k=1,...,K.
+\end{flalign}
+Ràng buộc (\ref{ct_vrp4:1}) đảm bảo mỗi yêu cầu được phục vụ đúng một lần. Ràng buộc (\ref{ct_vrp4:2}) đảm bảo có $K$ xe xuất phát từ kho. Ràng buộc (\ref{ct_vrp4:3}) đảm bảo có cùng số xe đến và rời khỏi vị trí của mỗi yêu cầu. Ràng buộc (\ref{ct_vrp4:4}) là ràng buộc về tải trọng của xe. Ràng buộc (\ref{ct_vrp4:5}) đảm bảo tính kết nối trong tuyến đường được phục vụ bởi xe $k$.
+
+Đối với bài toán đối xứng, ta có phiên bản hai chỉ số cho mô hình trên với biến nhị phân $x_{ek}$, $e \in E$ và $k=1,...,K$
+
+\textit{VRP5}
+
+\begin{equation} \label{eq:vrp5}
+	\min \sum_{e \in E} c_{ij} \sum_{k=1}^K x_{ek}
+\end{equation}
+s.t.
+\begin{flalign}
+	\label{ct_vrp5:1}  & \sum_{k=1}^K y_{ik} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+  \label{ct_vrp5:2}  & \sum_{k=1}^K y_{0k} = K, \\
+  \label{ct_vrp4:3}  & \sum_{e \in \delta(i)} x_{ek} = 2y_{ik} & \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp5:4}  & \sum_{i \in V} d_i y_{ik} \leq C & \quad \forall k=1,...,K, \\
+  \label{ct_vrp5:5}  & \sum_{e \in \delta(S)} x_{ijk} \geq 2y_{hk} & \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
+  \label{ct_vrp5:6}  & y_{ik} \in \{0,1\} & \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp5:7}  & x_{ek} \in \{0,1\} & \quad \forall e \notin \delta(0), k=1,...,K, \\
+  \label{ct_vrp5:8}  & x_{ek} \in \{0,1,2\} & \quad \forall e \in \delta(0), k=1,...,K.
+\end{flalign}
+
+Công thức dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Công thức này được trình bày trong phần \ref{sec:math_vrptw}. Công thức dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.

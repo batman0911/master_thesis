@@ -1,9 +1,13 @@
 \section{Thuật toán chính xác}
 
 \subsection{Nhánh và cận}
-Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm}
+
+Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm}. Với $m$ là tham số đầu vào, đầu tiên đồ thị được mở rộng với việc thêm vào $m-1$ kho ảo và đặt chi phí của chúng bằng một số vô cùng lớn. Sau đó giải bài toán m-TSP trên đồ thị này bằng thuật toán TSP được trình bày bởi Little et al. (1963) \cite{little1963algorithm}
+
+Hiệu năng của các thuật toán nhánh-cận đầu tiên được cải thiện đáng kể hai phương pháp cận dưới là k-degree centre trees (k-DCT) và q-routes (Christofides et al. (1981) \cite{christofides1981exact}).
 
 \subsection{Quy hoạch động}
+
 Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có
 \begin{equation}
 	\label{eq:dp}
@@ -22,13 +26,13 @@ Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct2:1} & \sum_{j=1}^n x_{0j}=2m,                   & \quad                                  \\
-	\label{ct2:2} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2 & \quad (k \in V \setminus \{0\}),       \\
-	\label{ct2:3} & \sum_{i,j \in S} x_{ij} \leq |S| - \nu(S) & \quad (S \subseteq V \setminus \{0\}), \\
-	\label{ct3:3} & x_{0j} = 0,1,2                            & \quad (j \in V \setminus \{0\}),       \\
-	\label{ct2:4} & x_{ij} = 0,1                              & \quad (i,j \in V \setminus \{0\}),
+	\label{ct2:1} & \sum_{j=1}^n x_{0j}=2m, & \quad \\
+	\label{ct2:2} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2, & \quad k \in V \setminus \{0\}, \\
+	\label{ct2:3} & \sum_{i,j \in S} x_{ij} \leq |S| - \nu(S), & \quad S \subseteq V \setminus \{0\}, \\
+	\label{ct3:3} & x_{0j} \in \{0,1,2\}, & \quad j \in V \setminus \{0\}, \\
+	\label{ct2:4} & x_{ij} \in \{0,1\}, & \quad i,j \in V \setminus \{0\},
 \end{flalign}
-trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$.
+trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$. Công thức dòng xe và các biến thể đã được trình bày kĩ từ chương \ref{chap:model}.
 
 \subsection{Công thức dòng hàng và thuật toán}
 Trong công thức dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi Gavish, Graves (1979) \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi Baldacci, Hadjiconstantinou, Mingozzi (2004) \cite{baldacci2004exact} dựa trên mô hình TSP của Finke, Claus, Gunn
@@ -39,17 +43,25 @@ Trong công thức dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩ
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct3:1} & \sum_{j \in \bar{V}} (y_{ji} - y_{ij}) = 2q_i                                    & \quad (i \in V \setminus \{0\}), \\
-	\label{ct3:2} & \sum_{j \in V \setminus \{0\}} y_{0j} = \sum_{i \in V \setminus \{0\}} q_i,      & \quad                            \\
+	\label{ct3:1} & \sum_{j \in \bar{V}} (y_{ji} - y_{ij}) = 2q_i, & \quad i \in V \setminus \{0\}, \\
+	\label{ct3:2} & \sum_{j \in V \setminus \{0\}} y_{0j} = \sum_{i \in V \setminus \{0\}} q_i, & \quad \\
 	\label{ct3:3} & \sum_{j \in V \setminus \{0\}} y_{j0} = mQ - \sum_{i \in V \setminus \{0\}} q_i, & \quad                            \\
-	\label{ct3:4} & \sum_{j \in V \setminus \{0\}} y_{n+1,j} = mQ,                                   & \quad                            \\
-	\label{ct3:5} & y_{ij} + y_{ji} = Qx_{ij}                                                        & \quad ((i,j) \in \bar{E}),       \\
-	\label{ct3:5} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2                                        & \quad (k \in V \setminus \{0\}), \\
-	\label{ct3:6} & y_{ij} \geq 0, y_{ji} \geq 0                                                     & \quad ((i,j) \in \bar{E}),       \\
-	\label{ct3:7} & x_{ij} = 0,1                                                                     & \quad ((i,j) \in \bar{E}).
+	\label{ct3:4} & \sum_{j \in V \setminus \{0\}} y_{n+1,j} = mQ, & \quad \\
+	\label{ct3:5} & y_{ij} + y_{ji} = Qx_{ij}, & \quad (i,j) \in \bar{E}, \\
+	\label{ct3:5} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2, & \quad k \in V \setminus \{0\}, \\
+	\label{ct3:6} & y_{ij} \geq 0, y_{ji} \geq 0, & \quad (i,j) \in \bar{E}, \\
+	\label{ct3:7} & x_{ij}, \in \{0,1\} & \quad (i,j) \in \bar{E}.
 \end{flalign}
 
 Bài toán này được giải bằng \textit{branch-and-cut} với các bất đẳng thức VRP được biểu diễn theo các biến $x_{ij}$
+
+\begin{figure}[H] % places figure environment here   
+  \centering % Centers Graphic
+  \includegraphics[width=0.8\textwidth]{figures/commondity-flow-model.png} 
+  % \includesvg[scale=1]{figures/core-object}
+  \caption{Minh họa dòng hàng với $Q=25$} 
+  % \label{fig:fg_02}
+\end{figure}
 
 \subsection{Công thức phân hoạch tập hợp và thuật toán}
 Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là hệ số nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ la biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong lời giải tối ưu. Bài toán được mô hình hóa như sau

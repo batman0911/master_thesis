@@ -1,49 +1,7 @@
 \section{Mô hình toán học}
-Trong phần này, tác giả trình bày biểu diễn toán học cho bài toán VRPTW. Trong khuôn khổ luận văn này, tác giả tập trung thực nghiệm giải quyết VRPTW, từ đó ta cũng có thể giản ước về CVRP cũng như tổng quát với VRPPD (\textit{VRP with pickup and delevery}) hoặc PDPTW (\textit{pickup and delivery with time window}). Như đã trình bày ở phần trước VRPTW là một mở rộng của CVRP với ràng buộc khung thời gian. Trong đó mỗi khách hàng $i$ được ràng buộc bởi một khung thời gian $[a_i,b_i]$. Xe không được đến $i$ tại thời điểm $t_i > b_i$, ngoài ra nếu đến sớm hơn thởi điểm $a_i$ hay $t_i < a_i$ thì xe cần phải chờ tới thời điểm $a_i$ để phục vụ khách hàng. Thời gian phục vụ của khách hàng $i$ là $s_i$.
+\label{sec:math}
 
-VRPTW là bài toán NP-khó, việc tìm lời giải hay nghiệm tối ưu (chính xác) gần như là bất khả thi. Để dễ hình dung, xét bài toán VRP, với số lượng khách hàng $n=100$, và chỉ một xe, số lượng lời giải là $n! \approx 10^{158}$. Nếu ta có số CPU ước tính bằng toàn bộ số nguyên tử trong vũ trụ $n_{CPU} \approx 10^{80}$, thời gian nhỏ nhất là thời gian Plank $t_p \approx 5.39 \times 10^{-44}$. Để kiểm tra toàn bộ lời giải có phải nghiệm tối ưu ta cần thời gian $T \approx 10^{158} \times 5.39 \times 10^{-44} / 10^{80} \approx 5.39 \times 10^{34}$. Để so sánh, tuổi của vũ trụ được ước tính khoảng $4.33 \times 10^{17}$. Nghĩa là ta sẽ mất thời gian lớn gấp cỡ \textit{một trăm triệu tỉ} lần tuổi của cả vũ trụ! \footnote[1]{Slides của Thibaut Vidal (SOICT, Nha Trang 2017)}
+Phần tiếp theo, tác giả trình bày một số mô hình toán học cơ bản cho VRP, mô hình cụ thể cho VRPTW được trình bày ở phần \ref{sec:math_vrptw}. 
 
-
-Như đã trình bày ở phần trước, VRPTW được định nghĩa trên đồ thị $G = (V, A)$, kho hàng được biểu diễn bởi nút $0$ và $n+1$. Một tuyến thỏa mãn là một đường đi trên đồ thị $G$ bắt đầu từ $0$ và kết thúc ở $n+1$. Nếu kho hàng được biểu diễn chỉ bởi nút $0$ thì tuyến thỏa mãn là một đơn chu trình trên đồ thị $G$ chứ nút $0$. Khung thời gian của nút $0$ và $n+1$ là $[a_0, b_0] = [a_{n+1}, b_{n+1}] = [E, L]$, trong đó $E$ và $L$ lần lượt là thời gian sớm nhất rời kho và thời gian muộn nhất trở về kho. Ngoài ra, thời gian phục vụ và nhu cầu của kho đều được đặt bằng 0, hay $s_0 = s_{n+1} = 0$ và $d_0 = d_{n+1} = 0$. Lời giải chấp nhận được chỉ tồn tại nếu $a_0 = E \leq \min_{i \in V \setminus \{0\}} \{b_i - t_{0i}\}$ và $b_{n+1} = L \geq \min_{i \in V \setminus \{0\}} \{ a_i + s_i + t_{0i} \}$. Chú ý rằng, cung $(i,j) \in A$ có thể được bỏ đi nếu không thỏa mãn ràng buộc thời gian $a_i + s_i + t_{ij} > b_j$ hoặc vi phạm ràng buộc về tải trọng $d_i + d_j > C$. Cuối cùng nếu mục tiêu chính là giảm thiểu số lượng xe thì cung $(0,n+1)$ với $c_{0,n+1} = t_{0,n+1} = 0$ phải được thêm vào $A$.
-
-Tiếp theo, chúng ta trình bày một mô hình toán cho VRPTW với hai biến: biến $x_{ijk}$ (\textit{flow variable}) với $(i,j) \in A, k \in K$ nhận giá trị 1 nếu xe $k$ đi trực tiếp từ nút $i$ tới nút $j$ và 0 nếu ngược lại. Biến $w_{ik}$ với $i \in V, k \in K$ là thời gian bắt đầu phục vụ khách hàng $i$ bởi xe $k$. VRPTW được mô hình một cách chính tắc như sau theo Toth (2002) \cite{toth2002vehicle}
-
-\begin{equation} \label{eq1}
-	\min \sum_{k \in K} \sum_{(i,j) \in A} c_{ij} x_{ijk}
-\end{equation}
-s.t.
-\begin{flalign}
-	\label{ct:1}  & \sum_{k \in K} \sum_{j \in \Delta^+(i)} x_{ijk} = 1                                        & \quad \forall i \in N,                   \\
-	\label{ct:2}  & \sum_{j \in \Delta^+(0)} x_{0jk} = 1                                                       & \quad \forall k \in K,                   \\
-	\label{ct:3}  & \sum_{i \in \Delta^-(j)} x_{ijk} -  \sum_{i \in \Delta^+(j)} x_{jik} = 0                   & \quad \forall k \in K, j \in N,          \\
-	\label{ct:4}  & \sum_{i \in \Delta^-(n+1)} x_{i,n+1,k} = 1                                                 & \quad \forall k \in K,                   \\
-	\label{ct:5}  & x_{ijk} (w_{ik} + s_i + t_{ij} - w_{jk}) \leq 0                                            & \quad \forall k \in K, (i,j) \in A,      \\
-	\label{ct:6}  & a_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq w_{ik} \leq b_i \sum_{j \in \Delta^+(i)} x_{ijk} & \quad \forall k \in K, i \in N,          \\
-	\label{ct:7}  & E \leq w_{ik} \leq L                                                                       & \quad \forall k \in K, i \in \{0, n+1\}, \\
-	\label{ct:8}  & \sum_{i \in N} d_i \sum_{j \in \Delta^+(i)} x_{ijk} \leq C                                 & \quad \forall k \in K,                   \\
-	\label{ct:9}  & x_{ijk} \geq 0                                                                             & \quad \forall k \in K, (i,j) \in A,      \\
-	\label{ct:10} & x_{ijk} \in \{0,1\}                                                                        & \quad \forall k \in K, (i,j) \in A.
-\end{flalign}
-Hàm mục tiêu trong phương trình (\ref{eq1}) biểu diễn tổng chi phí của tất cả các tuyến đường.
-Tập $N = V \setminus \{0\}$ biểu diễn cho tập khách hàng.
-
-\begin{itemize}
-	\item Ràng buộc (\ref{ct:1}) đảm bảo rằng mỗi khách hàng chỉ được phục vụ bởi một xe.
-	\item Ràng buộc (\ref{ct:2}) đảm bảo rằng mỗi xe phải xuất phát từ kho hàng.
-	\item Ràng buộc (\ref{ct:3}) đảm bảo rằng trên một tuyến, nếu khách hàng $i$ được phục vụ thì trước và sau đó đều có một khách hàng khác được phục vụ hoặc trước và sau đó là kho hàng. Nói cách khác, khách hàng $i$ phải ở giữa tuyến.
-	\item Ràng buộc (\ref{ct:4}) đảm bảo rằng mỗi xe phải trở về kho hàng.
-	\item Ràng buộc (\ref{ct:5}) đảm bảo về khung thời gian khi xe đi từ khách hàng $i$ tới khách hàng $j$. Nếu xe $k$ đi từ khách hàng $i$ tới khách hàng $j$ thì thời gian bắt đầu phục vụ khách hàng $i$ cộng với thời gian phục vụ khách hàng $i$ cộng với thời gian di chuyển từ khách hàng $i$ tới khách hàng $j$ phải nhỏ hơn hoặc bằng thời gian bắt đầu phục vụ khách hàng $j$. Dấu bằng xảy ra khi xe đến $j$ sau thời điểm $a_j$ (khách hàng $j$ được phục vụ luôn), nếu đến sớm hơn thì xe phải chờ để phục vụ khách hàng.
-	\item Ràng buộc (\ref{ct:6}) đảm bảo rằng thời gian bắt đầu phục vụ khách hàng $i$ bởi xe $k$ nằm trong khung thời gian $[a_i, b_i]$.
-	\item Ràng buộc (\ref{ct:7}) đảm bảo rằng thời gian bắt đầu phục vụ khách hàng $i$ bất kì phải nằm trong khoảng thời gian từ sớm nhất xuất phát từ kho và muộn nhất về kho.
-	\item Ràng buộc (\ref{ct:8}) đảm bảo rằng tổng tải của mỗi xe không được vượt quá tải trọng tối đa $C$.
-	\item Ràng buộc (\ref{ct:9}) và (\ref{ct:10}) đảm bảo điều kiện nhị phân của \textit{flow variable} $x_{ijk}$.
-\end{itemize}
-
-Ta có thể nhận thấy rằng, ràng buộc (\ref{ct:6}) ép $w_{ik} = 0$ nếu như khách hàng $i$ không được phục vụ bởi xe $k$. Điều kiện nhị phân trong ràng buộc (\ref{ct:10}) cho phép ràng buộc (\ref{ct:5}) được thay thế bởi
-\begin{equation}
-	\label{ct:5'}
-	w_{ik} + s_i + t_{ij} - w_{jk} \leq (1 - x_{ijk}) M_{ij} \quad \forall k \in K, (i,j) \in A,
-\end{equation}
-với $M_{ij}$ là các hằng số rất lớn. Hơn nữa $M_{ij}$ có thể thay bằng $\max \{b_i + s_i + t_{ij} - a_j, 0\}$ với $(i,j) \in A$ và như vậy ta chỉ cần kiểm tra ràng buộc (\ref{ct:5}) và (\ref{ct:5'}) cho các cung $(i, j) \in A$ thỏa mãn $M_{ij} > 0$. Mặt khác, khi $\max \{b_i + s_i + t_{ij} - a_j, 0\} = 0$ các điều kiện này được thỏa mãn với mọi $w_{ik}$, $w_{jk}$ và $x_{ijk}$.
-
-Chúng ta không cần đưa ra mô hình cho CVRP nữa, bởi ta có thể bỏ qua các ràng buộc về thời gian ở điều kiện từ (\ref{ct:5}) đến (\ref{ct:7}). Khi đó VRPTW suy biến về CVRP như đã trình bày ở những phần trước đó. Tác giả cũng không đưa ra mô hình cho VRPPD hay PDPTW để tránh sự phức tạp. VRPTW vừa đủ để ta có một mô hình đẹp và thực tế.
+\input{sections/model/math_common.tex}
+\input{sections/model/math_vrptw.tex}
