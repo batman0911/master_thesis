@@ -64,7 +64,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
   \end{table}
 
 
-  \begin{table}[caption={Kết quả đo với tập Solomon R2}, label=exp:solomonR2]
+  \begin{table}[caption={Kết quả đo với tập Solomon R2}, label=exp:solomonR2, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -89,7 +89,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
 
   Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu cục bộ. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có quá nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. 
 
-  \begin{table}[caption={Kết quả đo với tập Solomon RC1}, label=exp:solomonRC1]
+  \begin{table}[caption={Kết quả đo với tập Solomon RC1}, label=exp:solomonRC1, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -109,7 +109,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập Solomon RC2}, label=exp:solomonRC2]
+  \begin{table}[caption={Kết quả đo với tập Solomon RC2}, label=exp:solomonRC2, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -128,8 +128,6 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
     \end{tabular}
     % \end{adjustbox}
   \end{table}
-
-  Tập RC1 và RC2 chứa các yêu cầu ở các vị trí được phân cụm một cách tương đối (lai giữa tập R và tập C) được đánh giá là tập khó, do các vị trí của yêu cầu đủ ngẫu nhiên để bài toán có nhiều nghiệm chấp nhận được nhưng lại dễ bị bẫy ở nghiệm tối ưu cục bộ khi mà xe đã phụ vụ các yêu cầu ở trong một cụm chỉ cần ta bỏ đi một (vài) yêu cầu "quan trọng" trong cụm là đã nhận được một nghiệm tệ hơn trước khá nhiều. Mặc dù vậy ALNS vẫn tỏ ra hiệu quả khi tìm được nghiệm với chênh lệch trung bình $0.36\%$ và $0.74\%$ cho RC1 và RC2. Ngoài ra, ALNS cũng tìm được nghiệm với số xe ít hơn nghiệm tốt nhất đã biết trong một số cấu hình của tập RC2.
 
   \subsection{Số lượng yêu cầu lớn và rất lớn}
 

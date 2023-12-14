@@ -469,7 +469,7 @@
 
 \renewenvironment{table}[1][]{%
     \begingroup%
-    \newcommand{\table@internal@placement}{ht}%
+    \newcommand{\table@internal@placement}{h}%
     \setkeys{table}{#1}%
     \expandafter\table@default\expandafter[\table@internal@placement]%
     % \table@default[ht]

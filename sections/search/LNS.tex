@@ -35,7 +35,7 @@ Thuật toán giả định rằng nghiệm ban đầu \textit{s} đã được 
 
 Dòng 4 và 5 của thuật toán là phần thú vị của heuristic. Ở dòng 4, một số yêu cầu được loại bỏ khỏi phương án hiện tại \textit{s'}, các yêu cầu lại được thêm vào ở dòng 5. Hiệu năng cũng như sự mạnh mẽ của heuristic phụ thuộc vào sự lựa chọn chiến thuật bỏ và thêm lại các yêu cầu. Trong các bài trước đó về LNS cho VRPTW và PDPTW (Shaw (1997) \cite{shaw1997new}; Bent, Van Hentenryck (2003) \cite{bent2003two}) các phương pháp \textit{gần tối ưu} được sử dụng để thêm lại các yêu cầu. Mặc dù các cách thêm lại yêu cầu heuristic thường có chất lượng không tốt, nhưng chất lượng tổng thể của LNS heurustic lại rất tốt, bởi vì các bước "tệ" được tạo ra bởi heuristic thêm lại yêu cầu dẫn đến sự đa dạng hóa quá trình tìm kiếm. Nói cách khác LNS cho phép tìm kiếm đa dạng nghiệm trong vùng lân cận để tránh bị bẫy trong một nghiệm tối ưu cục bộ.
 
-Trong phần còn lại, LNS cập nhật phương án tốt nhất (hiện tại) và tìm kiếm phương án mới (tốt hơn). Một tiêu chí chấp nhận nghiệm đơn giản là chấp nhận tất cả các phương án cải tiến. Tiêu chí này đã được sử dụng trong triển khai LNS trước đó của Shaw (1997) \cite{shaw1997new}.
+Trong phần còn lại, LNS cập nhật phương án tốt nhất (hiện tại) và tìm kiếm phương án mới (tốt hơn). Tiêu chí chấp nhận đơn giản nhất là chỉ chấp nhận các nghiệm tốt hơn (có chi phí nhỏ hơn) nghiệm hiện tại. Tiêu chí này đã được sử dụng trong triển khai LNS của Shaw (1997) \cite{shaw1997new}.
 
 Dòng 10 kiểm tra điều kiện dừng đã đạt được hay chưa.
 

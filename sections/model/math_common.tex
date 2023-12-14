@@ -20,12 +20,12 @@ Trước tiên, chúng ta mô tả công thức "lập trình tuyến tính nguy
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct_vrp1:1}  & \sum_{i \in V} x_{ij} = 1 & \quad \forall j \in V \setminus \{0\}, \\
-  \label{ct_vrp1:2}  & \sum_{j \in V} x_{ij} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+	\label{ct_vrp1:1}  & \sum_{i \in V} x_{ij} = 1 \quad \forall j \in V \setminus \{0\}, \\
+  \label{ct_vrp1:2}  & \sum_{j \in V} x_{ij} = 1 \quad \forall i \in V \setminus \{0\}, \\
   \label{ct_vrp1:3}  & \sum_{i \in V} x_{i0} = K, \\
   \label{ct_vrp1:4}  & \sum_{j \in V} x_{0j} = K, \\
-  \label{ct_vrp1:5}  & \sum_{i \notin  S} \sum_{j \in S} x_{ij} \geq r(S) & \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
-  \label{ct_vrp1:6}  & x_{ij} \in \{0,1\} & \quad \forall i,j \in V.
+  \label{ct_vrp1:5}  & \sum_{i \notin  S} \sum_{j \in S} x_{ij} \geq r(S) \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp1:6}  & x_{ij} \in \{0,1\} \quad \forall i,j \in V.
 \end{flalign}
 Ràng buộc (\ref{ct_vrp1:1}) và (\ref{ct_vrp1:2}) đảm bảo chỉ có đúng một cung vào và một cung ra cho mỗi nút ứng với mỗi yêu cầu. Ràng buộc (\ref{ct_vrp1:3}) và (\ref{ct_vrp1:4}) đảm bảo có đúng $K$ xe xuất phát từ kho và trở về kho. Ràng buộc (\ref{ct_vrp1:5}) đảm bảo số xe được sử dụng không nhỏ hơn số xe tối thiểu cần để phục vụ tất cả các yêu cầu. Trong thực tế, nhiều khi ràng buộc này được phát biểu lại là tổng số xe sử dụng không vượt quá một giới hạn trên $K_{max}$ nhất định. 
 
@@ -38,11 +38,11 @@ Ràng buộc (\ref{ct_vrp1:1}) và (\ref{ct_vrp1:2}) đảm bảo chỉ có đú
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct_vrp2:1}  & \sum_{h < i} x_{hi} + \sum_{j < i} x_{ij} = 2 & \quad \forall j \in V \setminus \{0\}, \\
+	\label{ct_vrp2:1}  & \sum_{h < i} x_{hi} + \sum_{j < i} x_{ij} = 2 \quad \forall j \in V \setminus \{0\}, \\
   \label{ct_vrp2:2}  & \sum_{j \in V \setminus \{0\}} x_{0j} = 2K, \\
-  \label{ct_vrp2:3}  & \sum_{i \in S} \sum_{h < i, h \notin S} x_{hi} + \sum_{i \in S} \sum_{j < i, j \notin S} x_{ij} \geq 2r(S) & \quad S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
-  \label{ct_vrp2:4}  & x_{ij} \in \{0,1\} & \quad \forall i,j \in V \setminus \{0\}, i < j, \\
-  \label{ct_vrp2:5}  & x_{0j} = \{0, 1, 2\} & \quad \forall i \in V \setminus \{0\}.
+  \label{ct_vrp2:3}  & \sum_{i \in S} \sum_{h < i, h \notin S} x_{hi} + \sum_{i \in S} \sum_{j < i, j \notin S} x_{ij} \geq 2r(S) \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp2:4}  & x_{ij} \in \{0,1\} \quad \forall i,j \in V \setminus \{0\}, i < j, \\
+  \label{ct_vrp2:5}  & x_{0j} = \{0, 1, 2\} \quad \forall i \in V \setminus \{0\}.
 \end{flalign}
 Ràng buộc (\ref{ct_vrp2:1}) và (\ref{ct_vrp2:2}) đảm bảo chỉ có đúng một cung vào và một cung ra cho mỗi nút ứng với mỗi yêu cầu, $2K$ để đảm bảo số xe xuất phát và kết thúc tại kho. Ràng buộc (\ref{ct_vrp2:3}) đảm bảo số xe được sử dụng không nhỏ hơn số xe tối thiểu cần để phục vụ tất cả các yêu cầu. 
 
@@ -55,11 +55,11 @@ Phiên bản mô hình 2 chỉ số cho trường hợp hệ đối xứng có t
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct_vrp3:1}  & \sum_{e \in \delta(i)} x_e = 2 & \quad \forall i \in V \setminus \{0\}, \\
+	\label{ct_vrp3:1}  & \sum_{e \in \delta(i)} x_e = 2 \quad \forall i \in V \setminus \{0\}, \\
   \label{ct_vrp3:2}  & \sum_{e \in \delta(0)} x_e = 2K, \\
-  \label{ct_vrp3:3}  & \sum_{e \in \delta(S)} x_e \geq 2r(S) & \quad S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
-  \label{ct_vrp3:4}  & x_e \in \{0,1\} & \quad \forall e \notin \delta(0), \\
-  \label{ct_vrp3:5}  & x_e \in \{0,1,2\} & \quad \forall e \in \delta(0).
+  \label{ct_vrp3:3}  & \sum_{e \in \delta(S)} x_e \geq 2r(S) \quad S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+  \label{ct_vrp3:4}  & x_e \in \{0,1\} \quad \forall e \notin \delta(0), \\
+  \label{ct_vrp3:5}  & x_e \in \{0,1,2\} \quad \forall e \in \delta(0).
 \end{flalign}
 
 Mô hình dòng xe hai chỉ số được sử dụng khá rộng rãi trong các biến thể cơ bản của SCVRP và ACVRP chẳng hạn như VRPB. Tuy nhiên, mô hình này là không đủ mạnh cho các biến thể phức tạp hơn ví dụ như khi tổng chi phí phụ thuộc vào một chuỗi (có thứ tự) các nút hoặc phụ thuộc vào loại phương tiện. Ngoài ra, ta cũng không biết một cách tường minh xe nào được dùng cho tuyến đường. 
@@ -73,13 +73,13 @@ Một mô hình mở rộng để khắc phục các điểm yếu của mô hì
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct_vrp4:1}  & \sum_{k=1}^K y_{ik} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+	\label{ct_vrp4:1}  & \sum_{k=1}^K y_{ik} = 1 \quad \forall i \in V \setminus \{0\}, \\
   \label{ct_vrp4:2}  & \sum_{k=1}^K y_{0k} = K, \\
-  \label{ct_vrp4:3}  & \sum_{j \in V} x_{ijk} = \sum_{j \in V} x_{jik} = y_{ik} & \quad \forall i \in V \setminus \{0\}, k=1,...,K, \\
-  \label{ct_vrp4:4}  & \sum_{i \in V} d_i y_{ik} \leq C & \quad \forall k=1,...,K, \\
-  \label{ct_vrp4:5}  & \sum_{i \in S} \sum_{j \notin S} x_{ijk} \geq y_{hk} & \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
-  \label{ct_vrp4:6}  & y_{ik} \in \{0,1\} & \quad \forall i \in V, k=1,...,K, \\
-  \label{ct_vrp4:7}  & x_{ijk} \in \{0,1\} & \quad \forall i,j \in V, k=1,...,K.
+  \label{ct_vrp4:3}  & \sum_{j \in V} x_{ijk} = \sum_{j \in V} x_{jik} = y_{ik} \quad \forall i \in V \setminus \{0\}, k=1,...,K, \\
+  \label{ct_vrp4:4}  & \sum_{i \in V} d_i y_{ik} \leq C \quad \forall k=1,...,K, \\
+  \label{ct_vrp4:5}  & \sum_{i \in S} \sum_{j \notin S} x_{ijk} \geq y_{hk} \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
+  \label{ct_vrp4:6}  & y_{ik} \in \{0,1\} \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp4:7}  & x_{ijk} \in \{0,1\} \quad \forall i,j \in V, k=1,...,K.
 \end{flalign}
 Ràng buộc (\ref{ct_vrp4:1}) đảm bảo mỗi yêu cầu được phục vụ đúng một lần. Ràng buộc (\ref{ct_vrp4:2}) đảm bảo có $K$ xe xuất phát từ kho. Ràng buộc (\ref{ct_vrp4:3}) đảm bảo có cùng số xe đến và rời khỏi vị trí của mỗi yêu cầu. Ràng buộc (\ref{ct_vrp4:4}) là ràng buộc về tải trọng của xe. Ràng buộc (\ref{ct_vrp4:5}) đảm bảo tính kết nối trong tuyến đường được phục vụ bởi xe $k$.
 
@@ -92,14 +92,14 @@ Ràng buộc (\ref{ct_vrp4:1}) đảm bảo mỗi yêu cầu được phục v�
 \end{equation}
 s.t.
 \begin{flalign}
-	\label{ct_vrp5:1}  & \sum_{k=1}^K y_{ik} = 1 & \quad \forall i \in V \setminus \{0\}, \\
+	\label{ct_vrp5:1}  & \sum_{k=1}^K y_{ik} = 1 \quad \forall i \in V \setminus \{0\}, \\
   \label{ct_vrp5:2}  & \sum_{k=1}^K y_{0k} = K, \\
-  \label{ct_vrp4:3}  & \sum_{e \in \delta(i)} x_{ek} = 2y_{ik} & \quad \forall i \in V, k=1,...,K, \\
-  \label{ct_vrp5:4}  & \sum_{i \in V} d_i y_{ik} \leq C & \quad \forall k=1,...,K, \\
-  \label{ct_vrp5:5}  & \sum_{e \in \delta(S)} x_{ijk} \geq 2y_{hk} & \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
-  \label{ct_vrp5:6}  & y_{ik} \in \{0,1\} & \quad \forall i \in V, k=1,...,K, \\
-  \label{ct_vrp5:7}  & x_{ek} \in \{0,1\} & \quad \forall e \notin \delta(0), k=1,...,K, \\
-  \label{ct_vrp5:8}  & x_{ek} \in \{0,1,2\} & \quad \forall e \in \delta(0), k=1,...,K.
+  \label{ct_vrp4:3}  & \sum_{e \in \delta(i)} x_{ek} = 2y_{ik} \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp5:4}  & \sum_{i \in V} d_i y_{ik} \leq C \quad \forall k=1,...,K, \\
+  \label{ct_vrp5:5}  & \sum_{e \in \delta(S)} x_{ijk} \geq 2y_{hk} \quad \forall S \subseteq V \setminus \{0\}, h \in S, k=1,...,K, \\
+  \label{ct_vrp5:6}  & y_{ik} \in \{0,1\} \quad \forall i \in V, k=1,...,K, \\
+  \label{ct_vrp5:7}  & x_{ek} \in \{0,1\} \quad \forall e \notin \delta(0), k=1,...,K, \\
+  \label{ct_vrp5:8}  & x_{ek} \in \{0,1,2\} \quad \forall e \in \delta(0), k=1,...,K.
 \end{flalign}
 
 Công thức dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Công thức này được trình bày trong phần \ref{sec:math_vrptw}. Công thức dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.
