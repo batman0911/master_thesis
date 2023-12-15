@@ -1,8 +1,14 @@
 \section{Chất lượng nghiệm}
 
+Trong phần này, tác giả đưa ra các số liệu thực nghiệm về giá trị hàm mục tiêu khi áp dụng ALNS giải VRPTW. Do thuật toán sử dụng rất nhiều tham số ngẫu nhiên nên chúng ta không tiến hành chạy một lần mà chạy nhiều lần để thu được kết quả tốt nhất cũng như kết quả trung bình và đánh giá độ ổn định của thuật toán. Độ ổn định được đánh giá bằng độ lệch chuẩn của các kết quả đo giá trị hàm mục tiêu. Thực tế số lần chạy không quá lớn do thời gian chạy mỗi cấu hình là khá lâu nhưng tác giả vẫn cố gắng đưa vào độ đo độ lệch chuẩn để phần nào đánh gía được độ ổn định của thuật toán. Về mặt thống kê, điều này chưa hẳn là đúng đắn tuy nhiên ta vẫn thấy được một phần sự ổn định của ALNS qua các kết quả đo được. Số xe được sử dụng cũng được tác giả chỉ ra. Ta biết rằng số xe sử dụng ảnh hưởng rất nhiều đến hàm mục tiêu. Về cơ bản, khi có quá nhiều xe được sử dụng thì chất lượng nghiệm là tệ. Lâu dài, khi hàm mục tiêu "gần" hơn với giá trị tối ưu thì số xe cũng ổn định ở một mức nào đó và nhìn chung là giảm so với nghiệm ban đầu (được khởi tạo). Các kết quả sau đó được so sánh với nghiệm tốt nhất đã biết được lấy từ trang \textit{CVRPLIB} (\href{http://vrp.galgos.inf.puc-rio.br/index.php/en/}{http://vrp.galgos.inf.puc-rio.br/index.php/en/}). Sintef (\href{https://www.sintef.no/}{https://www.sintef.no/}) cũng là một nguồn được sử dụng khá rộng rãi trong các bài báo khoa học nhưng nghiệm được báo cáo có chất lượng không tốt bằng CVRPLIB. Các kết quả trong luận văn này hầu hết tốt hơn nghiệm của Sintef.
+
 \subsection{Số lượng yêu cầu liệu nhỏ}
 
-Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất đã biết trung bình $0.20\%$ và $0.42\%$ cho C1 và C2. 
+Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987) được đưa ra bởi Solomon (1987) \cite{solomon1987algorithms}. Solomon (1987) là một tập dữ liệu nổi tiếng được sử dụng để benchmark trong hầu hết các nghiên cứu về VRP. Các cấu hình và nghiệm được định dạng tiêu chuẩn bao gồm tên cấu hình, số xe tối đa dược sử dụng, tải trọng mỗi xe, ID của yêu cầu, tọa độ của các yêu cầu, nhu cầu (về tải) của mỗi yêu cầu, khung thời gian và thời gian phục vụ tại mỗi yêu cầu. Thông tin về kho được cho bởi ID 0. Với các cấu hình theo tiêu chuẩn định dạng Solomon (kể cả các cấu hình khác ngoài Solomon (1987)), tốc độ của xe được hiểu là 1 đơn vị; nói cách khác, thời gian di chuyển giữa các yêu cầu bằng với khoảng các giữa chúng. 
+
+Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai tập loại 1 và loại 2. Quy tắc đặt tên \code{\{class\}\{type\}\{num\}} với \code{class} là lớp C, R hoặc RC, \code{type} là loại 1 hoặc 2, \code{num} là số thứ tự của cấu hình. Mỗi lớp có từ $8$ đến $12$ cấu hình. Các cấu hình cũng được chia thành ba nhóm với $25$, $50$ và $100$ yêu cầu. Trong luận văn này, tác giả chỉ đưa ra các kết quả cho các tập $100$ yêu cầu do các cấu hình $25$ hay $50$ yêu cầu là khá nhỏ và ta không thấy rõ sự khác biệt do hầu hết các thuật toán đều cho kết quả rất tốt.
+
+Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất đã biết trung bình $0.20\%$ và $0.42\%$ cho C1 và C2. Trong thực tế, đối với các doanh nghiệp giao vận nhỏ, hoặc một nhóm người giao hàng thì số lượng yêu cầu như vậy là bình thường. Các nhóm giao hàng nhỏ thường nhận các yêu cầu được phân cụm một cách tương đối (theo khu vực địa lý) như vậy. Ngay cả với các doanh nghiệp lớn, các bưu cục cũng được đặt ở nhiều nơi trong thành phố nhằm phục vụ nhanh các yêu cầu trong cụm (theo địa lý).
 
 \begin{table}[caption={Kết quả đo với tập Solomon C}, label=exp:solomonC]
   \begin{adjustbox}{width=1\textwidth}
@@ -38,6 +44,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
 
   Thí nghiệm được thiết lập có thời gian timeout 1 phút, chạy 5 lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tối ưu và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm tối ưu.
 
+  Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu cục bộ. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. Lớp R có thể được sử dụng để mô phỏng các yêu cầu ở những vùng thưa dân cư như nông thôn chẳng hạn. Các yêu cầu thưa thớt hơn ở thành phố và khoảng cách giữa các yêu cầu cũng không gần nhau (các yêu cầu không tập trung thành các cụm rõ rệt). Việc đặt số lượng lớn các bưu cục ở vùng nông thôn là không khả thi về mặt chi phí vận hành cho các doanh nghiệp. Như vậy, sử dụng một thuật toán tối ưu nào đó là tiết kiệm chi phí (quãng đường) rất nhiều so với việc giao hàng một cách ngẫu nhiên hay theo quy tắc "tham lam". 
 
   \begin{table}[caption={Kết quả đo với tập Solomon R1}, label=exp:solomonR1]
     % \begin{adjustbox}{width=1\textwidth}
@@ -87,7 +94,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
     % \end{adjustbox}
   \end{table}
 
-  Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu cục bộ. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có quá nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. 
+  Tương tự như lớp R, ALNS vẫn thể hiện rất tốt khi cho khoảng cách trung bình so với nghiệm tốt nhất đã biết là $0.36\%$ và $0.74\%$. Với một số cầu hình \code{rc201}, \code{rc202} và \code{rc206}, ALNS cũng tìm được nghiệm với số xe ít hơn so với nghiệm tốt nhất đã biết. Việc tiết kiệm được số xe về tổng thể là rất có ý nghĩa trong thực tế  bởi chi phí thuê hay mua xe, trả lương cho tài xế và vận hành... là lớn hơn nhiều so với khi tiết kiệm được một vài phần trăm về quãng đường. Tuy nhiên, với một số cấu hình \code{rc1}, ALNS sử dụng nhiều xe hơn.
 
   \begin{table}[caption={Kết quả đo với tập Solomon RC1}, label=exp:solomonRC1, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
@@ -128,6 +135,8 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987). V
     \end{tabular}
     % \end{adjustbox}
   \end{table}
+
+  Nhìn chung, với tập dữ liệu dưới $100$ yêu cầu, ALNS luôn cho kết quả tốt với số xe cần sử dụng ít. Trong quá trình thực nhiệm, tác giả cũng nhận thấy các kết quả chênh lệch nhau rất ít giữa các lần chạy (dưới $1\%$). Như vậy, ta có thể đưa ra một nhận xét sớm rằng ALNS đáp ứng tốt cho các cấu hình VRPTW với số lượng yêu cầu nhỏ (dưới $100$ yêu cầu). Ngoài ra, ALNS chứng tỏ được sự ổn định và có hiệu năng đủ tốt (sẽ được trình bày ở phần \ref{sec:performance}) ngay cả với các cấu hình với số lượng yêu cầu rất lớn. Điều này gợi ý sử dụng ALNS cho các bài toán thực tế của doanh nghiệp nhỏ hoặc ít nhất là cho các bưu cục (ở các khu vực khác nhau) của các doanh nghiệp lớn. Mặc dù đã được đề xuất từ khá lâu (1987), nhưng tập Solomon (1987) vẫn chứng tỏ được giá trị của nó đối với các bài thí nghiệm hiện đại và có tính ứng dụng cao trong thực tế. Tác giả không đưa vào các kết quả trung bình của các lần chạy thuật toán và độ lệch chuẩn do tập dữ liệu khá nhỏ. Các độ đo này sẽ được trình bày trong phần tiếp theo với số lượng yêu cầu từ trung bình ($200$, $400$), lớn ($400$, $600$) và rất lớn ($800$, $1000$).
 
   \subsection{Số lượng yêu cầu lớn và rất lớn}
 
