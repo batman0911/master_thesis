@@ -11,12 +11,10 @@ Loại mô hình cuối cùng có số biến nhị phân tăng theo cấp số 
 
 \subsubsection*{Mô hình dòng xe}
 
-Trước tiên, chúng ta mô tả công thức "lập trình tuyến tính nguyên" (\textit{integer linear programming}) cho ACVRP, sau đó là SCVRP. Mô hình "công thức dòng xe hai chỉ số" (\textit{wo-index vehicle flow formulation}) sử dụng $O(n^2)$ biến nhị phân $x$ để chỉ thị nếu một xe đi qua cung $(i,j)$ hay không. Nói cách khác, $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại. 
-
-\textit{VPR1}
+Trước tiên, chúng ta mô tả công thức "lập trình tuyến tính nguyên" (\textit{integer linear programming}) cho ACVRP, sau đó là SCVRP. Mô hình "công thức dòng xe hai chỉ số" (\textit{two-index vehicle flow formulation}) sử dụng $O(n^2)$ biến nhị phân $x$ để chỉ thị nếu một xe đi qua cung $(i,j)$ hay không. Nói cách khác, $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại. 
 
 \begin{equation} \label{eq:vrp1}
-	\min \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}
+  \text{(VRP1)} \quad \min \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}
 \end{equation}
 s.t.
 \begin{flalign}
@@ -31,10 +29,8 @@ Ràng buộc (\ref{ct_vrp1:1}) và (\ref{ct_vrp1:2}) đảm bảo chỉ có đú
 
 Đối với hệ đối xứng, \textit{VRP1} được viết lại như sau
 
-\textit{VRP2}
-
 \begin{equation} \label{eq:vrp2}
-	\min \sum_{i \in V \setminus \{n\}} \sum_{j > i} c_{ij} x_{ij}
+	\text{(VRP2)} \quad \min \sum_{i \in V \setminus \{n\}} \sum_{j > i} c_{ij} x_{ij}
 \end{equation}
 s.t.
 \begin{flalign}
@@ -48,10 +44,8 @@ Ràng buộc (\ref{ct_vrp2:1}) và (\ref{ct_vrp2:2}) đảm bảo chỉ có đú
 
 Phiên bản mô hình 2 chỉ số cho trường hợp hệ đối xứng có thể được biểu diễn chỉ với một chỉ số $e$ biểu thị cho cạnh vô hướng $e \in E$. Nếu ta không cho phép tuyến chỉ chứa đúng một yêu cầu thì các biến sử dụng đều là nhị phân. Ngoài ra, nếu $e \notin \delta(0)$ thì $x_e \in \{0, 1\}$ và nếu $e \in \delta(0)$ thì $x_e \in \{0, 1, 2\}$. Công thức \textit{VRP2} được viết lại như sau
 
-\textit{VRP3}
-
 \begin{equation} \label{eq:vrp3}
-	\min \sum_{e \in E} c_e x_e
+	\text{(VRP3)} \quad \min \sum_{e \in E} c_e x_e
 \end{equation}
 s.t.
 \begin{flalign}
@@ -66,10 +60,8 @@ Mô hình dòng xe hai chỉ số được sử dụng khá rộng rãi trong c�
 
 Một mô hình mở rộng để khắc phục các điểm yếu của mô hình dòng xe hai chỉ số là mô hình dòng xe ba chỉ số (\textit{three-index vehicle flow formulation}). Mô hình này sử dụng $O(n^2K)$ biến nhị phân $x$. Biến $x_{ijk}$ đếm số lần cung $(i, j) \in A$ được đi qua bởi xe $k$ với $k=1,...,K$ trong nghiệm tối ưu. Ngoài ra ta sử dụng thêm $O(nK)$ biến nhị phân $y$, với $y_{ik}$ ($i \in V; k=1,...,K$) nhận giá trị $1$ nếu yêu cầu $i$ được phục vụ bởi xe $k$ và $0$ trong trường hợp còn lại. Mô hình ba chỉ số cho ACVRP được mô tả như sau
 
-\textit{VRP4}
-
 \begin{equation} \label{eq:vrp4}
-	\min \sum_{i \in V} \sum_{j \in V} c_{ij} \sum_{k=1}^K x_{ijk}
+	\text{(VRP4)} \quad \min \sum_{i \in V} \sum_{j \in V} c_{ij} \sum_{k=1}^K x_{ijk}
 \end{equation}
 s.t.
 \begin{flalign}
@@ -85,10 +77,8 @@ Ràng buộc (\ref{ct_vrp4:1}) đảm bảo mỗi yêu cầu được phục v�
 
 Đối với bài toán đối xứng, ta có phiên bản hai chỉ số cho mô hình trên với biến nhị phân $x_{ek}$, $e \in E$ và $k=1,...,K$
 
-\textit{VRP5}
-
 \begin{equation} \label{eq:vrp5}
-	\min \sum_{e \in E} c_{ij} \sum_{k=1}^K x_{ek}
+	\text{(VRP5)} \quad \min \sum_{e \in E} c_{ij} \sum_{k=1}^K x_{ek}
 \end{equation}
 s.t.
 \begin{flalign}

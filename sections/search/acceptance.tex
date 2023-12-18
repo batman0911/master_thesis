@@ -3,14 +3,15 @@
 Các tiêu chí chấp nhận nghiệm được tóm lược qua bảng \ref{tab:acceptance}
 
 \begin{table}[caption={Tiêu chí chấp nhận nghiệm}, label=tab:acceptance]
-  \begin{tabularx}{\textwidth}{|X|X|}
+  \begin{tabularx}{\textwidth}{|l|X|}
     \hline
     Phương pháp & Mô tả \\ \hline
-    Bước ngâu nhiên (Random Walk) & Mọi nghiệm $s'$ đều được chấp nhận \\ \hline
-    Chấp nhận tham lam (Greedy Acceptance) & Nghiệm $s'$ được chấp nhận nếu chi phí của nó là nhỏ hơn so với nghiệm hiện tại \\ \hline
-    Mô phỏng luyện kim (Simulated Annealing) & Mọi nghiệm cải thiện $s'$ được chấp nhận. Nếu $c(s') > c(s)$ thì $s'$ được chấp nhận với xác suất $\exp \{ \frac{c(s) - c(s')}{T} \}$ với $T$ là nhiệt độ. Nhiệt độ $T$ giảm sau mỗi vòng lặp với một hệ số $\Phi$ \\ \hline
-    Chấp nhận với ngưỡng (Threshold Acceptance) & Nghiệm $s'$ được chấp nhận nếu $c(s') - c(s) < T$ với $T$ là ngưỡng, ngưỡng này được giảm sau mỗi vòng lặp với hệ số $\Phi$ \\ \hline
-    Đại hồng thủy (Great Deluge Algorithm) & Nghiệm $s'$ được chấp nhận nếu $c(s') < L$ với một ngưỡng $L$, ngưỡng này chỉ giảm nếu nghiệm được chấp nhận, và giảm với hệ số $\Phi$ \\ \hline
+    \makecell[l]{Bước ngâu nhiên \\ (Random Walk)} & Mọi nghiệm $s'$ đều được chấp nhận \\ \hline
+    \makecell[l]{Chấp nhận tham lam \\ (Greedy Acceptance)} & Nghiệm $s'$ được chấp nhận nếu chi phí của nó là nhỏ hơn so với nghiệm hiện tại \\ \hline
+    \makecell[l]{Mô phỏng luyện kim \\ (Simulated Annealing)} & Mọi nghiệm cải thiện $s'$ được chấp nhận. Nếu $c(s') > c(s)$ thì $s'$ được chấp nhận với xác suất $\exp \{ \frac{c(s) - c(s')}{T} \}$ với $T$ là nhiệt độ. Nhiệt độ $T$ giảm sau mỗi vòng lặp với một hệ số $\Phi$ \\ \hline
+    \makecell[l]{Chấp nhận với ngưỡng \\ (Threshold Acceptance)} & Nghiệm $s'$ được chấp nhận nếu $c(s') - c(s) < T$ với $T$ là ngưỡng, ngưỡng này được giảm sau mỗi vòng lặp với hệ số $\Phi$ \\ \hline
+    \makecell[l]{Đại hồng thủy \\ (Great Deluge Algorithm)} & Nghiệm $s'$ được chấp nhận nếu $c(s') < L$ với một ngưỡng $L$, ngưỡng này chỉ giảm nếu nghiệm được chấp nhận, và giảm với hệ số $\Phi$ \\ \hline
     \end{tabularx}
 \end{table}
+
 Trong thực tế, tác giả cài đặt tất cả các tiêu chí chấp nhận trên, tuy nhiên mô phỏng luyện kim (\textit{Simulated Annealing}) cho hiệu năng và chất lượng nghiệm tốt nhất. Nhiệt độ ban đầu được cấu hình trước là $T_{\text{start}}$. Qua mỗi vòng lặp, nhiệt độ được giảm đi $T := T \times \Phi$ với $0 < \Phi < 1$ được gọi là hệ số làm lạnh. Việc lựa chọn $T_{\text{start}}$ phụ thuộc vào cấu hình bài toán, do đó, thay vì đặt $T_{\text{start}}$ là một tham số cố định, ta sẽ tính toán nó dựa trên cầu hình đầu vào bằng cách sửa dụng nghiệm khởi tạo ban đầu. Chi phí của nghiệm khởi tạo là $z$ (bỏ qua chi phí của các yêu cầu trong hàng chờ). Nhiệt độ ban đầu được đặt sao cho nghiệm tệ hơn $w\%$ được chấp nhận với xác suất $0.5$. $w$ lúc này là tham số điều khiển cho nhiệt độ ban đầu. 

@@ -84,7 +84,7 @@
 
 % Advanced tables
 \RequirePackage{array}
-\RequirePackage{tabularx}
+% \RequirePackage{tabularx}
 \RequirePackage{multirow}
 \RequirePackage{tablefootnote}
 \RequirePackage{booktabs}

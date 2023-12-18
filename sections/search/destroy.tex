@@ -7,14 +7,14 @@ Tuy nhiên, chúng ta không xóa đi chính xác các yêu cầu có chi phí c
 
 \begin{algorithm}
 	\label{alg:worst_removal}
-	\caption{Worst Removal}
+	\caption{Xóa yêu cầu tệ nhất}
 	\begin{algorithmic}[1]
 		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
 		\While {$q > 0$}
-		\State Array: \textit{L} = All planned requests \textit{i}, sorted by descending \textit{cost(i,s)};
-		\State choose a random number \textit{y} in the interval $[0, 1)$;
-		\State request: $r = L\left[ y^p |L| \right]$;
-		\State remove r from solution s;
+		\State Mảng: \textit{L} = tất cả các yêu cầu \textit{i}, sắp xếp theo thứ tự giảm dần của \textit{cost(i,s)};
+		\State chọn một số ngẫu nhiên \textit{y} trong khoảng $[0, 1)$;
+		\State yêu cầu: $r = L\left[ y^p |L| \right]$;
+		\State xóa $r$ khỏi $s$;
 		\State $q = q-1$;
 		\EndWhile
 	\end{algorithmic}
@@ -27,19 +27,19 @@ Thuật toán xóa ngẫu nhiên đơn giản chọn ngẫu nhiên $q$ yêu cầ
 Phương pháp xóa này được phát triển bởi Shaw (1998) \cite{shaw1998using}. Cách trình bày trong phần này đã được chỉnh sửa lại để phù hợp với VRPTW. Ý tưởng chung là xóa bỏ các yêu cầu có "liên quan", vì chúng ta hy vọng sẽ dễ dàng thêm lại các yêu cầu tương tự với nhau để tạo ra các nghiệm mới có thể tốt hơn. Nếu chúng ta chọn xóa bỏ các yêu cầu rất khác nhau, thì sau đó, việc thêm các yêu cầu mới sẽ không nhận lại được điều gì do các yêu cầu này có thể chỉ được thêm vào tại vị trí ban đầu của chúng hoặc ở các vị trí tệ. Mức độ liên quan giữa 2 yêu cầu \textit{i} và \textit{j} được định nghĩa dựa trên chỉ số độ liên quan $R(i,j)$. Chỉ số này càng thấp thì 2 yêu cầu càng "giống" nhau.
 
 \begin{algorithm}
-	\caption{Shaw Removal}
+	\caption{Xóa yêu cầu - Shaw}
 	\begin{algorithmic}[1]
 		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
-		\State request: r = a randomly selected request from s;
-		\State set of requests: $\mathbb{D}=\{r\}$;
+		\State yêu cầu: $r$ được chọn ngẫu nhiên từ $s$;
+		\State tập hợp yêu cầu: $\mathbb{D}=\{r\}$;
 		\While {$|\mathbb{D}| < q$}
-		\State r = a randomly selected request from $\mathbb{D}$;
-		\State Array: L = an array containing all request from s not in $\mathbb{D}$;
-		\State sort \textit{L} such that $i<j \Rightarrow R(r, L\left[ i \right]) < R(r, L\left[ j \right])$;
-		\State choose a random number \textit{y} from the interval [0, 1);
+		\State $r$ được chọn ngẫu nhiên từ $\mathbb{D}$;
+		\State Mảng: $L$ một mảng chứa tất cả các yêu cầu thuộc $s$ và không thuộc $\mathbb{D}$;
+		\State sắp xếp \textit{L} sao cho $i<j \Rightarrow R(r, L\left[ i \right]) < R(r, L\left[ j \right])$;
+		\State chọn một số ngẫu nhiên \textit{y} trong khoảng [0, 1);
 		\State $\mathbb{D}=\mathbb{D}\cup {L \left[ y^p|L| \right]}$
 		\EndWhile
-		\State remove the requests in $\mathbb{D}$ from \textit{s};
+		\State xóa các yêu cầu trong $\mathbb{D}$ khỏi $s$;
 	\end{algorithmic}
 \end{algorithm}
 
@@ -57,14 +57,15 @@ Tinh thần của thuật toán Shaw là cố gắng bỏ đi tốp các yêu c�
 \subsubsection*{Hủy tuyến tệ nhất}
 Thuật toán hủy tuyến tệ nhất được tác giả đề xuất trong luận văn này. Tinh thần chung của thuật toán là chúng ta cố gắng bỏ đi toàn bộ yêu cầu trên một hoặc một vài tuyến đường nào đó. Việc bỏ đi cả tuyến cũng tương đương với việc làm giảm số xe cần để phục vụ khách hàng. Mục tiêu của CVRPTW là giảm tổng khoảng cách di chuyển và nghiệm thu được phải thỏa mãn các ràng buộc về tải trọng, số xe cũng như khung thời gian. Tuy nhiên, trong thực tế vận hành của một doanh nghiệp, giảm bớt được số xe phục vụ là điều rất có ý nghĩa bởi chi phí mua (thuê) xe là đắt đỏ so với việc di chuyển xa hơn một vài phần trăm.
 
-Áp dụng tư tưởng \textit{tham lam}, cho rằng các tuyến nên được bỏ đi là các tuyến có chi phí trung bình trên mỗi khách hàng cao. Chúng ta kì vọng có thể thêm lại các khách hàng đó vào các tuyến khác "thoáng" hơn hay là chi phí trung bình trên mỗi khách hàng thấp hơn
+Áp dụng tư tưởng \textit{tham lam}, cho rằng các tuyến nên được bỏ đi là các tuyến có chi phí trung bình trên mỗi khách hàng cao. Chúng ta kì vọng có thể thêm lại các khách hàng đó vào các tuyến khác "thoáng" hơn hay là chi phí trung bình trên mỗi khách hàng thấp hơn. Chi phí trung bình trên mỗi yêu cầu được cho bởi công thức
 \begin{equation}
 	\label{eq:destroy_route}
 	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1}
 \end{equation}
 với $r$ là tuyến được chọn, $\text{cost}(r,s)$ là chi phí của tuyến $r$ trong nghiệm $s$, $\text{size}(r)$ là số phần tử của tuyến $r$. Lưu ý rằng tuyến bắt đầu và kết thúc tại nút $0$.
 
-Ngoài ra để tránh việc bỏ đi tuyến "tệ" một cách cứng nhắc, tác giả đưa vào một nhiễu nhỏ.\begin{equation}
+Ngoài ra để tránh việc bỏ đi tuyến "tệ" một cách cứng nhắc, tác giả đưa vào một nhiễu nhỏ. Khi đó, công thức tính chi phí trung bình trên mỗi yêu cầu được thay đổi thành
+\begin{equation}
 	\label{eq:destroy_route}
 	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1} + \lambda \phi d_{max}
 \end{equation}
