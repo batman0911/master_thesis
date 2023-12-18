@@ -1,0 +1,34 @@
+\begin{frame}{Định nghĩa}
+    \begin{figure}[H] % places figure environment here   
+        \centering % Centers Graphic
+        \includegraphics[width=0.8\textwidth]{figures/vrp.png} 
+        \caption{Các bài toán, biến thể của VRP} % Creates caption underneath graph
+        \label{fig:fg_01}
+      \end{figure}
+\end{frame}
+
+
+\begin{frame}{Mô hình - Dòng xe}
+    \textbf{Công thức dòng xe hai chỉ số }\\
+    $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại
+    \begin{equation} \label{eq:vrp1}
+        \text{(VRP1)} \quad \min \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}
+      \end{equation}
+      s.t.
+      \begin{flalign}
+          \label{ct_vrp1:1}  & \sum_{i \in V} x_{ij} = 1 \quad \forall j \in V \setminus \{0\}, \\
+        \label{ct_vrp1:2}  & \sum_{j \in V} x_{ij} = 1 \quad \forall i \in V \setminus \{0\}, \\
+        \label{ct_vrp1:3}  & \sum_{i \in V} x_{i0} = K,
+    \end{flalign}
+\end{frame}
+
+\begin{frame}{Mô hình - Dòng xe}
+    \begin{flalign}
+        \label{ct_vrp1:4}  & \sum_{j \in V} x_{0j} = K, \\
+        \label{ct_vrp1:5}  & \sum_{i \notin  S} \sum_{j \in S} x_{ij} \geq r(S) \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\
+        \label{ct_vrp1:6}  & x_{ij} \in \{0,1\} \quad \forall i,j \in V.
+    \end{flalign}
+\end{frame}
+
+
+
