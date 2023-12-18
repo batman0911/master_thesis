@@ -1,7 +1,6 @@
 \documentclass{beamer}
 \usetheme{CambridgeUS}
-% \usecolortheme{spruce}
-% \usecolortheme{orchid}
+\usecolortheme{spruce}
 \usefonttheme{serif}
 
 \usepackage{lipsum}
@@ -11,12 +10,28 @@
 \usepackage{verbatim,longtable}
 \setbeamertemplate{caption}[numbered]
 
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+% \usepackage{algorithm,algorithmic}
+% \usepackage{algorithm2e}
+% \usepackage{algpseudocode}
+% \usepackage{float}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{blindtext}
+\apptocmd{\frame}{}{\justifying}{}
+% \addtobeamertemplate{frame begin}{}{\justifying}
+
+\apptocmd{\column}{}{\justifying}{}
+
+\usepackage{subfig}
+
 \AtBeginSection[]{ 
     \begin{frame}{Outline} 
         \tableofcontents[currentsection] 
     \end{frame} }
 
-\title[para-dis]{Phương pháp tìm kiếm lân cận rộng thích ứng \\
+\title[thesis]{Phương pháp tìm kiếm lân cận rộng thích ứng \\
 cho một số lớp bài toán định tuyến phương tiện}
 % \subtitle{Luận văn thạc sĩ}
 \author[Linh]{Nguyễn Mạnh Linh}
@@ -36,6 +51,18 @@ cho một số lớp bài toán định tuyến phương tiện}
 
 \section{Định nghĩa và một số kí hiệu}
 \input{segments/2_def}
+
+\section{Phương pháp}
+\input{segments/3_method}
+
+\section{Tìm kiếm lân cận}
+\input{segments/4_ns}
+
+\section{Ứng dụng ALNS}
+\input{segments/5_app}
+
+\section{Thực nghiệm}
+\input{segments/6_exp}
 
 
 % \section*{Tài liệu tham khảo}
