@@ -21,7 +21,7 @@ Trọng số được điều chỉnh mỗi khi có nghiệm mới được ch�
 	\end{tabularx}
 \end{table}
 
-Trong mỗi bước, thao tác xóa và thêm lại được cập nhật một lượng như nhau vì ta không chắc sự "cải thiện" nghiệm đến từ việc xóa hay thêm lại yêu cầu. Mỗi khi kết thúc bước, ta tính toán lại trọng số mới sử dụng các điểm sô trên. Gọi $\omega_{ij}$ là trọng số của heuristic $i$ trong bước $j$. Ta đánh các trọng số như nhau tại bước đầu tiên, sau đó khi bước $j$ kết thúc, ta tính lại trọng số cho tất cả các heuristic để sử dụng cho bước $j+1$ như sau
+Trong mỗi bước, thao tác xóa và thêm lại được cập nhật một lượng như nhau vì ta không chắc sự "cải thiện" nghiệm đến từ việc xóa hay thêm lại yêu cầu. Mỗi khi kết thúc bước, ta tính toán lại trọng số mới sử dụng các điểm số trên. Gọi $\omega_{ij}$ là trọng số của heuristic $i$ trong bước $j$. Ta đánh các trọng số như nhau tại bước đầu tiên, sau đó khi bước $j$ kết thúc, ta tính lại trọng số cho tất cả các heuristic để sử dụng cho bước $j+1$ như sau
 \begin{equation}
 	\label{eq:adaptive_weight}
 	\omega_{i, j+1} = \omega_{ij}(1-r)+r\frac{\pi_i}{\theta_i}.
