@@ -1,0 +1,60 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+% \usecolortheme{spruce}
+% \usecolortheme{orchid}
+\usefonttheme{serif}
+
+\usepackage{lipsum}
+\usepackage{graphicx,xcolor}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[utf8]{vietnam}
+\usepackage{verbatim,longtable}
+\setbeamertemplate{caption}[numbered]
+
+\AtBeginSection[]{ 
+    \begin{frame}{Outline} 
+        \tableofcontents[currentsection] 
+    \end{frame} }
+
+\title[para-dis]{Phương pháp tìm kiếm lân cận rộng thích ứng \\
+cho một số lớp bài toán định tuyến phương tiện}
+% \subtitle{Luận văn thạc sĩ}
+\author[Linh]{Nguyễn Mạnh Linh}
+\institute[MIM, HUS]{Khoa Toán-Cơ-Tin học \\ Đại học Khoa học Tự nhiên}
+\date{2023/12}
+% \titlegraphic{\includegraphics[width=2cm]{images/logo/iiserm_logo.jpg}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Giới thiệu}
+\input{segments/1_intro}
+
+\section{Các nghiên cứu liên quan}
+\input{segments/2_related_work}
+
+\section{EAD: Tấn công Elastic-Net vào DNN}
+\input{segments/3_ead}
+
+\section{Thực nghiệm}
+\input{segments/4_experiment.tex}
+
+\section{Nhận xét}
+\input{segments/5_rev.tex}
+
+\section{Kết luận}
+\input{segments/6_conclude}
+
+
+% \section*{Tài liệu tham khảo}
+% \begin{frame}
+%     \frametitle{References}
+%     \bibliographystyle{amsalpha}
+%     \bibliography{ref.bib}
+% \end{frame}
+    
+\end{document}
