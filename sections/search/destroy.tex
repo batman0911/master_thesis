@@ -9,11 +9,11 @@ Tuy nhiên, chúng ta không xóa đi chính xác các yêu cầu có chi phí c
 	\label{alg:worst_removal}
 	\caption{Xóa yêu cầu tệ nhất}
 	\begin{algorithmic}[1]
-		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
+		\Require $s \in \text{\{nghiệm chấp nhận được\}}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
 		\While {$q > 0$}
-		\State Mảng: \textit{L} = tất cả các yêu cầu \textit{i}, sắp xếp theo thứ tự giảm dần của \textit{cost(i,s)};
+		\State \textit{L} tất cả các yêu cầu \textit{i}, sắp xếp theo thứ tự giảm dần của \textit{cost(i,s)};
 		\State chọn một số ngẫu nhiên \textit{y} trong khoảng $[0, 1)$;
-		\State yêu cầu: $r = L\left[ y^p |L| \right]$;
+		\State yêu cầu $r = L\left[ y^p |L| \right]$;
 		\State xóa $r$ khỏi $s$;
 		\State $q = q-1$;
 		\EndWhile
@@ -29,12 +29,12 @@ Phương pháp xóa này được phát triển bởi Shaw (1998) \cite{shaw1998
 \begin{algorithm}
 	\caption{Xóa yêu cầu - Shaw}
 	\begin{algorithmic}[1]
-		\Require $s \in {solutions}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
-		\State yêu cầu: $r$ được chọn ngẫu nhiên từ $s$;
-		\State tập hợp yêu cầu: $\mathbb{D}=\{r\}$;
+		\Require $s \in \text{\{nghiệm chấp nhận được\}}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
+		\State yêu cầu $r$ được chọn ngẫu nhiên từ $s$;
+		\State tập hợp yêu cầu $\mathbb{D}=\{r\}$;
 		\While {$|\mathbb{D}| < q$}
 		\State $r$ được chọn ngẫu nhiên từ $\mathbb{D}$;
-		\State Mảng: $L$ một mảng chứa tất cả các yêu cầu thuộc $s$ và không thuộc $\mathbb{D}$;
+		\State Mảng $L$ chứa tất cả các yêu cầu thuộc $s$ và không thuộc $\mathbb{D}$;
 		\State sắp xếp \textit{L} sao cho $i<j \Rightarrow R(r, L\left[ i \right]) < R(r, L\left[ j \right])$;
 		\State chọn một số ngẫu nhiên \textit{y} trong khoảng [0, 1);
 		\State $\mathbb{D}=\mathbb{D}\cup {L \left[ y^p|L| \right]}$
