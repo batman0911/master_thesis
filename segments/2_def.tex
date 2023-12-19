@@ -7,6 +7,61 @@
       \end{figure}
 \end{frame}
 
+\begin{frame}{Định nghĩa}
+    \begin{block}{Định nghĩa theo ngôn ngữ lý thuyết đồ thị}
+        \begin{itemize}
+            \item Gọi $G=(V,A)$ là một độ thị đầy đủ với $V=\{ 0, ..., n \}$ là tập nút và $A$ là tập cung. Các nút $i=1,...,n$ đại diện cho các yêu cầu cần phục vụ, nút $0$ là kho hàng.
+            \item Một số không âm được gọi là chi phí $c_{ij}$ đại diện cho mỗi cung $(i,j) \in A$.
+            \item Bất đẳng thức tam giác cho chi phí
+            \begin{equation}
+                c_{ij} + c_{jk} \geq c_{ik} \quad \forall i,j,k \in V.
+            \end{equation}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Định nghĩa}
+    \begin{block}{Định nghĩa theo ngôn ngữ lý thuyết đồ thị}
+        \begin{itemize}
+            \item Mỗi yêu cầu $i$ có một nhu cầu (về tải trọng) là $d_i$ và nhu cầu của kho $d_0=0$. Gọi $d(S) = \sum_{i \in S} d_i$ là tổng nhu cầu của tập.
+            \item Tập $K$ đại diện cho các xe, mỗi xe có tải trọng $C$, các xe ở kho tại thời điểm bắt đầu. Giả thiết $d_i \leq C$ với mỗi $i=1,...,n$.
+            \item $K_{min}$ là số xe ít nhất cần để phục vụ toàn bộ khách hàng.
+            \item Với một tập $S \subseteq V \setminus \{0\}$, gọi $r(S)$ là số xe ít nhất để phục vụ toàn bộ khách hàng thuộc tập $S$.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Định nghĩa - CVRP}
+    Bài toán định tuyến xe với ràng buộc tải trọng (\textit{Capacited Vehicle Routing Problem - CVRP}) yêu cầu tìm một tập chính xác $K$ các chu trình (mỗi chu trình ứng với một tuyến đường) với tổng chi phí của tất cả các cung thuộc các chu trình này là nhỏ nhất. 
+    \begin{block}{Các ràng buộc}
+        \begin{itemize}
+            \item[] (i) Mỗi chu trình đều đi qua nút ứng với kho hàng.
+            \item[] (ii) Mỗi nút ứng với một khách hàng được đi qua bởi đúng một chu trình.
+            \item[] (iii) Tổng nhu cầu của các khách hàng trong mỗi chu trình không được vượt quá tải trọng của xe.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Định nghĩa - VRPTW}
+    \begin{block}{VRPTW}
+        \begin{itemize}
+            \item Bài toán định tuyến xe với ràng buộc thời gian - VRPTW (\textit{VRP with time windows}) mở rộng CVRP. Mỗi khách hàng $i$ bị ràng buộc bởi một khoảng thời gian $[a_i, b_i]$ (\textit{time window}), thời gian phục vụ khách hàng $i$ là $s_i$.
+            \item Nếu xe đến nút $i$ sớm thì phải chờ đến thời gian $a_i$ mới được phục vụ. Nếu xe đến nút $i$ muộn hơn $b_i$ thì khách hàng sẽ không được phục vụ.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Định nghĩa - VRPTW}
+    VRPTW yêu cầu tìm một tập chính xác $K$ chu trình với tổng chi phí là nhỏ nhất.
+    \begin{block}{Các ràng buộc}
+        \begin{itemize}
+            \item[] (i) Mỗi chu trình đều đi qua nút ứng với kho hàng.
+            \item[] (ii) Mỗi nút ứng với một khách hàng được đi qua bởi đúng một chu trình.
+            \item[] (iii) Tổng nhu cầu của các khách hàng trong mỗi chu trình không được vượt quá tải trọng của xe.
+            \item[] (iv) Với mỗi khách hàng $i$, thời gian bắt đầu phục vụ phải nằm trong khung thời gian $[a_i, b_i]$ và xe hoàn thành việc phục vụ sau khoảng thời gian $s_i$.
+        \end{itemize}    
+    \end{block}
+\end{frame}
 
 \begin{frame}{Mô hình - CVRP}
     \textbf{Công thức dòng xe hai chỉ số }\\
