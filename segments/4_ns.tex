@@ -58,6 +58,16 @@
 \end{frame}
 
 \begin{frame}{Tìm kiếm lân cận rộng thích ứng (\textit{ALNS})}
+  \begin{figure}[H] % places figure environment here   
+    \centering % Centers Graphic
+    \includegraphics[width=0.3\textwidth]{figures/ALNS-flowchart.png} 
+    % \includesvg[scale=1]{figures/core-object}
+    \caption{Lược đồ chính của ALNS} 
+    % \label{fig:fg_02}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{ALNS - Lựa chọn thuật toán}
   \begin{block}{Lựa chọn thuật toán hủy và thêm lại}
     Gán cho mỗi heuristic một trọng số khác nhau và sử dụng nguyên tắc "bánh xe lựa chọn". Nếu có $k$ heuristic với trọng số $w_i, i \in \{1,...,k\}$, ta chọn heuristic $j$ với xác suất
     \begin{equation}

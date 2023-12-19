@@ -8,7 +8,7 @@
 \end{frame}
 
 
-\begin{frame}{Mô hình - Dòng xe}
+\begin{frame}{Mô hình - CVRP}
     \textbf{Công thức dòng xe hai chỉ số }\\
     $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại.
     \begin{equation} \label{eq:vrp1}
@@ -22,7 +22,7 @@
     \end{flalign}
 \end{frame}
 
-\begin{frame}{Mô hình - Dòng xe}
+\begin{frame}{Mô hình - CVRP}
     \begin{flalign}
         \label{ct_vrp1:4}  & \sum_{j \in V} x_{0j} = K, \\
         \label{ct_vrp1:5}  & \sum_{i \notin  S} \sum_{j \in S} x_{ij} \geq r(S) \quad \forall S \subseteq V \setminus \{0\}, S \neq \emptyset, \\

@@ -5,7 +5,7 @@
     \subfloat[Lớp R]{\includegraphics[width=0.3\linewidth]{figures/cls_r.png}}\quad
     \subfloat[Lớp RC]{\includegraphics[width=0.3\linewidth]{figures/cls_rc.png}}
   \caption{Lớp các cấu hình}
-  \label{fig:perf_ct_c1}
+  
   \end{figure}
 \end{frame}
 
@@ -117,12 +117,135 @@
     \begin{tabular}{cccccc}
       \hline
       ins & best & avg & std & bk & gap (\%) \\ \hline
-      R1\_2 & 3,628.58 & 3,657.67 & 11.44 & 2,672.73 & 0.23 \\ \hline
-      R1\_4 & 7,158.13 & 7,216.72 & 58.54 & 7,021.10 & 1.99 \\ \hline
-      R1\_6 & 14,626.95 & 14,867.10 & 202.71 & 13,879.77 & 5.44 \\ \hline
-      R1\_8 & 27,131.40 & 27,633.31 & 393.53 & 24,652.04 & 10.11 \\ \hline
-      R1\_10 & 47,005.59 & 47,904.60 & 632.61 & 41,232.21 & 14.06 \\ \hline
+      R1\_2 & 3,628.58 &	3,657.67 &20.33	& 3,572.90	& 1.60 \\ \hline
+      R1\_4 & 8,691.74 & 8,767.74 &	56.40	&	8,334.37	& 4.35 \\ \hline
+      R1\_6 & 19,079.78 & 19,234.81 & 109.56 & 17,758.66 & 7.47 \\ \hline
+      R1\_8 & 34,272.76 &	34,595.79	& 230.14	& 30,959.89	& 10.69 \\ \hline
+      R1\_10 & 54,042.04 & 54,636.52 & 376.85	& 46,854.07	& 15.40 \\ \hline
     \end{tabular}
-    \caption{Kết quả thực nghiệm trên tập HG - C1 từ 200 đến 1000 yêu cầu}
+    \caption{Kết quả thực nghiệm trên tập HG - R1 từ 200 đến 1000 yêu cầu}
   \end{table}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Tập HG}
+  \begin{table}
+    \begin{tabular}{cccccc}
+      \hline
+      ins & best & avg & std & bk & gap (\%) \\ \hline
+      RC1\_2 & 3,205.24	& 3,235.20 & 25.30 & 3,151.30	& 1.73 \\ \hline
+      RC1\_4 & 8,304.23 & 8,380.06	& 60.39	& 7,849.98 & 5.78 \\ \hline
+      RC1\_6 & 17,185.75 & 17,322.09 & 112.87 & 15,918.08	& 7.98 \\ \hline
+      RC1\_8 & 31,245.28 & 31,491.67 & 191.38 & 28,424.05	&	9.91 \\ \hline
+      RC1\_10 & 49,633.08	& 50,050.37	& 321.19 & 43,859.18 & 13.15 \\ \hline
+    \end{tabular}
+    \caption{Kết quả thực nghiệm trên tập HG - RC1 từ 200 đến 1000 yêu cầu}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_60s_C1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_C1_10_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình C1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_60s_R1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_R1_10_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình R1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_60s_RC1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_RC1_10_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình RC1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_C1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_1s_C1_4_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình C1\_4\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_R1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_1s_R1_4_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình R1\_4\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_10s_RC1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/cost_time_1s_RC1_4_1.png}}
+  \caption{Giá trị hàm mục tiêu theo thời gian, cấu hình RC1\_4\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_60s_C1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_C1_10_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình C1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_60s_R1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_R1_10_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình R1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[60s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_60s_RC1_10_1.png}}\quad
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_RC1_10_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình RC1\_10\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_C1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_1s_C1_4_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình C1\_4\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_R1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_1s_R1_4_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình R1\_4\_1}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Thực nghiệm - Hiệu năng}
+  \begin{figure}
+    \centering
+    \subfloat[10s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_10s_RC1_4_1.png}}\quad
+    \subfloat[1s]{\includegraphics[width=0.4\linewidth]{figures/nv_time_1s_RC1_4_1.png}}
+  \caption{Số xe sử dụng theo thời gian, cấu hình RC1\_4\_1}
+  \end{figure}
 \end{frame}
