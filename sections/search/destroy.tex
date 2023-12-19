@@ -11,7 +11,7 @@ Tuy nhiên, chúng ta không xóa đi chính xác các yêu cầu có chi phí c
 	\begin{algorithmic}[1]
 		\Require $s \in \text{\{nghiệm chấp nhận được\}}, q \in \mathbb{N}, p \in \mathbb{R}_{+}$
 		\While {$q > 0$}
-		\State \textit{L} tất cả các yêu cầu \textit{i}, sắp xếp theo thứ tự giảm dần của \textit{cost(i,s)};
+		\State Mảng \textit{L} tất cả các yêu cầu \textit{i}, sắp xếp theo thứ tự giảm dần của \textit{cost(i,s)};
 		\State chọn một số ngẫu nhiên \textit{y} trong khoảng $[0, 1)$;
 		\State yêu cầu $r = L\left[ y^p |L| \right]$;
 		\State xóa $r$ khỏi $s$;
