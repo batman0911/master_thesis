@@ -16,7 +16,7 @@ Nếu đồ thị là có hướng thì ma trận chi phí $c$ là bất đối 
 
 Trong hầu hết các bài toán thực tế, ma trận chi phí thỏa mãn bất đẳng thức tam giác
 \begin{equation}
-	c_{ij} + c_{jk} \geq c_{ik} \quad \forall i,j,k \in V.
+	c_{ij} + c_{jk} \geq c_{ik}, \quad \forall i,j,k \in V.
 \end{equation}
 Nói cách khác, việc đi trực tiếp từ nút $i$ tới nút $j$ luôn tốn ít chi phí hơn là đi gián tiếp. Với nhiều thuật toán, bất đẳng thức tam giác là điều kiện cần, điều này có thể được đảm bảo bằng cách thêm một đại lượng dương lớn (hợp lý) vào chi phí của mỗi cung. Ta chú ý thêm rằng, nếu chi phí của mỗi cung thuộc đồ thị bằng với chi phí của đường đi ngắn nhất giữa hai đầu mút của cung thì mà trận chi phí thỏa mãn bất đẳng thức tam giác.
 
