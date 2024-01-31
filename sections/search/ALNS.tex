@@ -15,9 +15,9 @@ Trọng số được điều chỉnh mỗi khi có nghiệm mới được ch�
 	\begin{tabularx}{\textwidth}{|l|X|}
 		\hline
 		Tham số    & Mô tả  \\ \hline
-		$\sigma_1$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm mới tốt hơn nghiệm tốt nhất toàn cục \\ \hline
-		$\sigma_2$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm chưa được chấp nhận trước đó, chi phí tốt hơn chi phí của nghiệm hiện tại \\ \hline
-		$\sigma_3$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm chưa được chấp nhận trước đó, chi phí của nghiệm mới tệ hơn chi phí của nghiệm hiện tại nhưng thỏa mãn điều kiện chấp nhận nghiệm \\ \hline
+		$\sigma_1$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm mới tốt hơn nghiệm tốt nhất toàn cục. \\ \hline
+		$\sigma_2$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm mới có chi phí tốt hơn chi phí của nghiệm hiện tại. \\ \hline
+		$\sigma_3$ & Hành động xóa-chèn cuối cùng dẫn đến một nghiệm mới có chi phí tệ hơn chi phí của nghiệm hiện tại nhưng thỏa mãn điều kiện chấp nhận nghiệm. \\ \hline
 	\end{tabularx}
 \end{table}
 
@@ -28,7 +28,7 @@ Trong mỗi bước, thao tác xóa và thêm lại được cập nhật một 
 \end{equation}
 Trong đó $\pi_i$ là điểm số của heuristic $i$ trong bước $j$ và $\theta_i$ là số lần ta cố gắng sử dụng heuristic $i$ trong bước $j$. Tham số $r$ là tham số điều khiển tốc độ điều chỉnh trọng số. Nếu $r=0$, nghĩa là chúng ta không sử dụng điểm để điều chỉnh trọng số hay nói cách khác là các trọng số được giữ nguyên từ trong suốt quá trình tìm kiếm. Nếu $r=1$, nghĩa là ta lấy điểm thu được từ bước gần nhất để quyết định trọng số.
 
-Việc điều chỉnh trọng số như trên làm tăng xác suất chọn thuật toán xóa (chèn) đã mang lại hiệu quả ở bước trước đó. Về cơ bản, với việc sử dụng chiến thuật điều chỉnh trọng số như trên, ta kì vọng rằng các thuật toán xóa (chèn) đã hiệu quả ở bước trước thì cũng sẽ hiệu quả ở bước tiếp theo. Trong thực nghiệm, các tham số được lựa chọn lần lượt là $\sigma_1=2$, $\sigma_2=4$ và $\sigma_3=10$.
+Việc điều chỉnh trọng số như trên làm tăng xác suất chọn thuật toán xóa (chèn) đã mang lại hiệu quả ở bước trước đó. Về cơ bản, với việc sử dụng chiến thuật điều chỉnh trọng số như trên, ta kì vọng rằng các thuật toán xóa (chèn) đã hiệu quả ở bước trước thì cũng sẽ hiệu quả ở bước tiếp theo. Trong thực nghiệm, các tham số được lựa chọn lần lượt là $\sigma_1=10$, $\sigma_2=4$ và $\sigma_3=2$.
 
 \subsection{Thêm nhiễu khi chỉnh tham số tự động}
 Như đã trình bày, với việc sử dụng chiến thuật lựa chọn tham số tự động như trên, ta kì vọng rằng thuật toán nếu đang hiệu quả thì nó sẽ tiếp tục hiệu quả. Tuy nhiên việc cộng một lượng cố định vào thuật toán đó về lâu dài (khi trải qua nhiều vòng lặp) thì trọng số của nó trở lên lớn dẫn đến xác suất lựa chọn thuật toán này cũng lớn theo. Chúng ta cũng chưa sử dụng yếu tố vòng lặp (hay thời gian chạy). Do đó, tác giả đề xuất ý tưởng đơn giản là nếu rất "lâu" rồi ta mới có một thuật toán hiệu quả thì ta cũng nên điều chỉnh trọng số của nó theo "thời gian chờ đó". Giả sử sau $m$ vòng lặp, chúng ta mới lại có một nghiệm được chấp nhận từ lần cuối cùng nghiệm được chấp nhận, trọng số của thuật toán sẽ được điều chỉnh một lượng tỉ lệ với $1 - e^{-\gamma m}$. Hàm $\text{exp}$ được sử dụng để chuẩn hóa lượng này trong khoảng $(0,1)$ khi $m$ lớn hoặc nhỏ. Cuối cùng ta có biểu thức cho trọng số của thuật toán như sau

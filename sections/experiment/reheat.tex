@@ -4,6 +4,12 @@ Một trong những vấn đề mà nhiều thuật toán tìm kiếm lân cận
 
 Có một vài cách tăng nhiệt khác nhau ví dụ như tăng nhiệt khi sau một số vòng lặp mà thuật toán không cải thiện được nghiệm hoặc tăng nhiệt sau một số vòng lặp nhất định (cố định). Trong quá trình thực nghiệm cho luận văn này, cách thứ hai được sử dụng. Tăng nhiệt không cần thiết phải sử dụng với các cấu hình quá nhỏ hoặc thời gian chạy ngắn vì nó cũng không tìm ra nghiệm tốt hơn (đáng kể) khi không sử dụng. 
 
+Nhiệt độ mới được cho bởi công thức
+\begin{equation}
+  T_{new} = T_{old} \times \alpha,
+\end{equation}
+trong đó, $T_{old}$ là nhiệt độ tại lần cuối cùng thuật toán tìm được nghiệm mới cải thiện so với nghiệm hiện tại, $T_{new}$ là nhiệt độ mới và $\alpha$ là hệ số tăng nhiệt được cấu hình từ đầu.
+
 \begin{figure}[H] % places figure environment here   
   \centering % Centers Graphic
   \includegraphics[width=1\textwidth]{figures/cost_time_R1_10_1_rh.png} 
