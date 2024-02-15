@@ -4,7 +4,7 @@ Trong phần này, chúng ta sẽ theo dõi trọng số của các thuật toá
  
 \begin{figure}[H] % places figure environment here   
 	\centering % Centers Graphic
-	\includegraphics[width=1\textwidth]{figures/destroy_weights_R1_8_1.png}
+	\includegraphics[width=1\textwidth]{figures/destroy_weights_R1_10_1.png}
 	% \includesvg[scale=1]{figures/core-object}
 	\caption{Trọng số của các thuật toán hủy}
 	\label{fig:alg_01}
@@ -13,7 +13,7 @@ Trong phần này, chúng ta sẽ theo dõi trọng số của các thuật toá
 
 \begin{figure}[H] % places figure environment here   
 	\centering % Centers Graphic
-	\includegraphics[width=1\textwidth]{figures/repair_weights_R1_8_1.png}
+	\includegraphics[width=1\textwidth]{figures/repair_weights_R1_10_1.png}
 	% \includesvg[scale=1]{figures/core-object}
 	\caption{Trọng số của các thuật toán chèn}
 	\label{fig:alg_02}
@@ -25,4 +25,4 @@ Trong giai đoạn đầu của ALNS, thuật toán \textit{hủy tuyến tệ} 
 Ngược lại với thuật toán \textit{hủy tuyến tệ}, thuật toán \textit{hủy yêu cầu tệ} cho thấy hiệu quả vào giai đoạn sau của ALNS. Thuật toán \textit{hủy yêu cầu ngẫu nhiên}, \textit{hủy yêu cầu ngẫu nhiên với tuyến} hay thuật toán hủy \textit{Shaw} cho thấy sự "ổn định" khi luôn giữ trọng số cao trong suốt quá trình chạy ALNS.
 
 \subsection*{Thuật toán chèn}
-Đối với các thuật toán chèn, ta thấy rõ sự hiệu quả của nhóm các thuật toán \textit{hối tiếc} khi so sánh với nhóm \textit{tham lam} khi trong suốt quá trình chạy, các thuật toán chèn \textit{hối tiếc} luôn giữ trọng số cao. Nói riêng về thuật toán \textit{tham lam}, trong giai đoạn đầu (dưới $2500$ bước lặp), ta thấy rằng việc thêm nhiễu mang lại hiệu quả hơn so với việc chỉ chèn các yêu cầu vào vị trí làm tăng hàm mục tiêu ít nhất. 
+Đối với các thuật toán chèn, ta thấy rõ sự hiệu quả của nhóm các thuật toán \textit{hối tiếc} khi so sánh với nhóm \textit{tham lam} khi trong suốt quá trình chạy, các thuật toán chèn \textit{hối tiếc} luôn giữ trọng số cao. Trong giai đoạn đầu, nhóm thuật toán chèn tham lam giữ trọng số cao, tuy nhiên sau đó, chúng có xu hướng giảm và tỏ ra không còn hiệu quả như nhóm các thuật toán \textit{hối tiếc}.
