@@ -23,7 +23,7 @@ Tuy nhiên, chúng ta không xóa đi chính xác các yêu cầu có chi phí c
 \subsubsection*{Phương pháp xóa ngẫu nhiên}
 Thuật toán xóa ngẫu nhiên đơn giản chọn ngẫu nhiên $q$ yêu cầu và loại bỏ chúng khỏi nghiệm hiện tại. Kỹ thuật này có thể coi là một trường hợp đặc biệt của phương pháp xóa Shaw với $p=1$ (Ropke, Pisinger (2006) \cite{ropke2006adaptive}).
 
-\subsection*{Phương pháp xóa yêu cầu với tuyến ngẫu nhiên}
+\subsection*{Phương pháp xóa yêu cầu ngẫu nhiên với tuyến}
 Một hạn chế của thuật toán xóa ngẫu nhiên đó là sau khi chọn ngẫu nhiên yêu cầu cần xóa, ta cần tìm tuyến đường chứa yêu cầu đó để tiến hành phép xóa yêu cầu. Việc tìm tuyến đường khá tốn chi phí khi ta cần duyệt qua toàn bộ các tuyến và duyệt qua từng yêu cầu trong tuyến đó (cỡ $O(n)$). Thay vì chọn ngẫu nhiên yêu cầu trong tập tất cả các yêu cầu, ta chọn ngẫu nhiên một tuyến và sau đó chọn ngẫu nhiên một yêu cầu trong tuyến đó. Tuyến được chọn cũng như vị trí xóa đã được lưu lại vào bộ nhớ khiến cho việc xóa yêu cầu nhanh hơn rất nhiều. Xác xuất chọn không như nhau cho mọi yêu cầu (giống như phương pháp xóa ngẫu nhiên) do ta không tính đến kích thước của tuyến khi chọn ngẫu nhiên. Do đó, cải thiện này không chỉ về mặt kĩ thuật mà còn thay đổi cách thức các yêu cầu được chọn để xóa. Thực nghiệm cho thấy phương pháp xóa này cùng với phương pháp xóa yêu cầu ngẫu nhiên nhiều lần "đóng góp" vào việc tìm ra nghiệm chấp nhận được cũng như nghiệm tốt nhất (đã biết) trong suốt vòng đời của thuật toán.
 
 \subsubsection*{Phương pháp xóa Shaw}
