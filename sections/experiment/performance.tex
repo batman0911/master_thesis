@@ -223,3 +223,26 @@ Với thời gian chạy lâu hơn, đương nhiên chúng ta rất khó để g
   \end{subfigure}
   \caption{Số xe sử dụng theo thời gian, cấu hình RC1\_4\_1}
 \end{figure}
+
+\subsection{Hiệu quả của thuật toán hủy khác nhau}
+Để làm rõ hơn về hiệu quả của thuật toán \textit{hủy tuyến tệ}, ta thí nghiệm với việc chỉ sử dụng riêng lẻ các thuật toán hủy và đo số xe sử dụng theo thời gian. 
+
+\begin{figure}[H] % places figure environment here   
+	\centering % Centers Graphic
+	\includegraphics[width=0.7\textwidth]{figures/nv_time_des_10s_R1_10_1.png}
+	% \includesvg[scale=1]{figures/core-object}
+	\caption{Số xe theo thời gian với các thuật toán hủy khác nhau}
+	\label{fig:nv_des_01}
+\end{figure}
+
+Hình (\ref{fig:nv_des_01}) biểu diễn số xe sử dụng theo thời gian cho cấu hình \code{R\_10\_1} trong tập dữ liệu Gehring, Hermann, Homberger (1999) \cite{gehring1999parallel}. Thuật toán \textit{hủy tuyến tệ} giúp giảm số xe một cách nhanh chóng trong thời gian đầu chạy ALNS. Điều này cũng khá dễ hiểu do thay vì xóa một số yêu cầu nhất định, thuật toán \textit{hủy tuyến tệ} xóa một tuyến đường hay chính là giảm đi một xe. Ngoài ra thuật toán hủy \textit{Shaw} và thuật toán \textit{hủy ngẫu nhiên với tuyến (random route customer)} cũng cho hiệu quả tốt. Trong quá trình thực nghiệm, chúng tôi nhận thấy rằng, tốc độ thực hiện bước lặp của thuật toán \textit{hủy tuyến tệ} và thuật toán \textit{hủy ngẫu nhiên với tuyến} nhanh hơn đáng kể so với các thuật toán hủy khác. Bản chất hai thuật toán này lựa chọn yêu cầu cần bỏ đi rất nhanh.
+
+Tương tự như hiệu quả về số xe, các thuật toán hủy cũng thể hiện tương tự khi ta biểu diễn giá trị hàm mục tiêu theo thời gian trong hình (\ref{fig:cost_des_01}). Thuật toán \textit{hủy tuyến tệ} tỏ ra rất hiệu quả trong giai đoạn đầu của ALNS. Thuật toán \textit{hủy ngẫu nhiên với tuyến} và thuật toán hủy \textit{Shaw} cũng cho hiệu quả rất tốt không chỉ trong giai đoạn đầu mà còn trong suốt quá trình chạy ALNS (sẽ được chỉ ra trong phần sau).
+
+\begin{figure}[H] % places figure environment here   
+	\centering % Centers Graphic
+	\includegraphics[width=0.7\textwidth]{figures/cost_time_des_10s_R1_10_1.png}
+	% \includesvg[scale=1]{figures/core-object}
+	\caption{Giá trị hàm mục tiêu theo thời gian với các thuật toán hủy khác nhau}
+	\label{fig:cost_des_01}
+\end{figure}
