@@ -149,15 +149,15 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{Tìm kiếm lân cận rộng thích ứng (\textit{ALNS})}
-  \begin{figure}[H] % places figure environment here   
-    \centering % Centers Graphic
-    \includegraphics[width=0.3\textwidth]{figures/ALNS-flowchart.png} 
-    % \includesvg[scale=1]{figures/core-object}
-    \caption{Lược đồ chính của ALNS} 
-    % \label{fig:fg_02}
-  \end{figure}
-\end{frame}
+% \begin{frame}{Tìm kiếm lân cận rộng thích ứng (\textit{ALNS})}
+%   \begin{figure}[H] % places figure environment here   
+%     \centering % Centers Graphic
+%     \includegraphics[width=0.3\textwidth]{figures/ALNS-flowchart.png} 
+%     % \includesvg[scale=1]{figures/core-object}
+%     \caption{Lược đồ chính của ALNS} 
+%     % \label{fig:fg_02}
+%   \end{figure}
+% \end{frame}
 
 \begin{frame}{ALNS - Lựa chọn thuật toán}
   \begin{block}{Lựa chọn thuật toán hủy và thêm lại}
@@ -178,6 +178,15 @@
 \end{frame}
 
 \begin{frame}{ALNS - Điều chỉnh tham số tự động}
+  $\omega_{ij}$ là trọng số của heuristic $i$ được sử dụng tại bước $j$ \\
+  Khi bước $j$ kết thúc, ta tính toán trọng số cho tất cả heuristic $i$ để sử dụng cho bước thứ $j + 1$
+  \begin{equation}
+      \omega_{i, j+1} = \omega_{ij}(1-r)+r\frac{\pi_i}{\theta_i}.
+  \end{equation} \\
+  Trong đó, $\pi_i$ là điểm số của heuristic $i$ được nhận trong bước cuối cùng, $\theta_i$ là số lần ta cố gắng sử dụng heuristic $i$ trong bước thực hiện đó, $r$ là tham số điều khiển.
+\end{frame}
+
+\begin{frame}{ALNS - Điều chỉnh tham số tự động}
   Điểm của mỗi heuristic được đặt là $0$ khi bắt đầu và được tăng thêm $\sigma_1, \sigma_2, \sigma_3$ tùy thuộc vào tình huống.
   \begin{itemize}
     \justifying
@@ -185,15 +194,6 @@
     \item $\sigma_2$ khi hành động xóa-chèn cuối cùng dẫn đến một nghiệm chưa được chấp nhận trước đó, chi phí tốt hơn chi phí của nghiệm hiện tại.
     \item $\sigma_3$ khi hành động xóa-chèn cuối cùng dẫn đến một nghiệm chưa được chấp nhận trước đó, chi phí của nghiệm mới tệ hơn chi phí của nghiệm hiện tại nhưng thỏa mãn điều kiện chấp nhận nghiệm.
   \end{itemize}
-\end{frame}
-
-\begin{frame}{ALNS - Điều chỉnh tham số tự động}
-  $\omega_{ij}$ là trọng số của heuristic $i$ được sử dụng tại bước $j$ \\
-  Khi bước $j$ kết thúc, ta tính toán trọng số cho tất cả heuristic $i$ để sử dụng cho bước thứ $j + 1$
-  \begin{equation}
-      \omega_{i, j+1} = \omega_{ij}(1-r)+r\frac{\pi_i}{\theta_i}.
-  \end{equation} \\
-  Trong đó, $\pi_i$ là điểm số của heuristic $i$ được nhận trong bước cuối cùng, $\theta_i$ là số lần ta cố gắng sử dụng heuristic $i$ trong bước thực hiện đó, $r$ là tham số điều khiển.
 \end{frame}
 
 \begin{frame}{ALNS - B-ALNS}
@@ -207,10 +207,10 @@
   \end{block}
 \end{frame}
 
-\begin{frame}{ALNS - Số lượng yêu cầu bỏ đi, thêm lại}
-  \begin{itemize}
-    \item Bỏ đi một số lượng yêu cầu cố định. 
-    \item Chọn ngẫu nhiên số lượng bỏ đi trong một khoảng nhất định.
-  \end{itemize}
-\end{frame}
+% \begin{frame}{ALNS - Số lượng yêu cầu bỏ đi, thêm lại}
+%   \begin{itemize}
+%     \item Bỏ đi một số lượng yêu cầu cố định. 
+%     \item Chọn ngẫu nhiên số lượng bỏ đi trong một khoảng nhất định.
+%   \end{itemize}
+% \end{frame}
 
