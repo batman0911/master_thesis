@@ -43,7 +43,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
   }
 
 
-  Thí nghiệm được thiết lập có thời gian timeout một phút, chạy năm lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tối ưu và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm tối ưu.
+  Thí nghiệm được thiết lập có thời gian timeout một phút, chạy năm lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tốt và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm kém hơn nghiệm tốt nhất đã biết dưới $1\%$.
 
   Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu địa phương. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. Lớp R có thể được sử dụng để mô phỏng các yêu cầu ở những vùng thưa dân cư như nông thôn chẳng hạn. Các yêu cầu thưa thớt hơn ở thành phố và khoảng cách giữa các yêu cầu cũng không gần nhau (các yêu cầu không tập trung thành các cụm rõ rệt). Việc đặt số lượng lớn các bưu cục ở vùng nông thôn là không khả thi về mặt chi phí vận hành cho các doanh nghiệp. Như vậy, sử dụng một thuật toán tối ưu nào đó là tiết kiệm chi phí (quãng đường) rất nhiều so với việc giao hàng một cách ngẫu nhiên hay theo quy tắc "tham lam". 
 
@@ -53,7 +53,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{lrrrll}
     \hline
-    instance & alns best & nv & bk cost & bk nv & gap (\%) \\ \hline
+    instance & alns best & nv & bkcost & bknv & gap (\%) \\ \hline
     r101 & 1,642.88 & 20 & 1,637.70 & 20 & 0.32 \\ \hline
     r102 & 1,472.81 & 18 & 1,466.60 & 18 & 0.42 \\ \hline
     r103 & 1,213.62 & 15 & 1,208.70 & 14 & 0.41 \\ \hline
@@ -78,7 +78,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{lrrrll}
     \hline
-    instance & alns best & nv & bk cost & bk nv & gap (\%) \\ \hline
+    instance & alns best & nv & bkcost & bknv & gap (\%) \\ \hline
     r201 & 1,152.96 & \textbf{7} & 1,143.20 & 8 & 0.32 \\ \hline
     r202 & 1,035.32 & \textbf{7} & 1,029.60 & 8 & 0.42 \\ \hline
     r203 & 880.90 & 6 & 870.80 & 6 & 0.41 \\ \hline
@@ -103,7 +103,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrr}
     \hline
-    instance & alns best & nv & bk cost & bk nv & gap (\%) \\ \hline
+    instance & alns best & nv & bkcost & bknv & gap (\%) \\ \hline
     rc101 & 1,623.58 & 16 & 1,619.80 & 15 & 0.23 \\ \hline
     rc102 & 1,461.23 & 14 & 1,457.40 & 14 & 0.26 \\ \hline
     rc103 & 1,266.62 & 11 & 1,258.00 & 11 & 0.69 \\ \hline
@@ -123,7 +123,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrr}
     \hline
-    instance & alns best & nv & bk cost & bk nv & gap (\%) \\ \hline
+    instance & alns best & nv & bkcost & bknv & gap (\%) \\ \hline
     rc201 & 1,274.61 & \textbf{8} & 1,261.80 & 9 & 1.02 \\ \hline
     rc202 & 1,099.54 & \textbf{6} & 1,092.30 & 8 & 0.66 \\ \hline
     rc203 & 931.16 & 5 & 923.70 & 5 & 0.81 \\ \hline
@@ -157,8 +157,8 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \item[-] alns avg: giá trị hàm mục tiêu trung bình (với 5 lần đo) đạt được bởi ALNS
     \item[-] alns std: độ lệch chuẩn của giá trị hàm mục tiêu (với 5 lần đo) đạt được bởi ALNS
     \item[-] nv: số xe được sử dụng bởi ALNS
-    \item[-] bk cost: giá trị hàm mục tiêu tốt nhất đã biết
-    \item[-] bk nv: số xe được sử dụng bởi nghiệm tốt nhất đã biết
+    \item[-] bkcost: giá trị hàm mục tiêu tốt nhất đã biết
+    \item[-] bknv: số xe được sử dụng bởi nghiệm tốt nhất đã biết
     \item[-] gap (\%): chênh lệch giữa giá trị hàm mục tiêu tốt nhất đạt được bởi ALNS và giá trị hàm mục tiêu tốt nhất đã biết
   \end{itemize}
   Thời gian timeout là một phút.
@@ -172,7 +172,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
       \centering
       \begin{tabular}{rrrrrrrr}
         \hline
-        ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+        ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
         C1\_2\_1 & 2,704.57 & 2,704.57 & 0 & 20 & 2,698.6 & 20 & 0.22 \\ \hline
         C1\_2\_2 & 2,700.65 & 2,700.65 & 0 & 20 & 2,694.3 & 20 & 0.24 \\ \hline
         C1\_2\_3 & 2,682.18 & 2,711.28 & 45.2 & 20 & 2,675.8 & 20 & 0.24 \\ \hline
@@ -194,7 +194,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
       \centering
       \begin{tabular}{rrrrrrrr}
         \hline
-        ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+        ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
         R1\_2\_1 & 4,708.02 & 4,720.47 & 13.83 & 23 & 4,667.2 & 23 & 0.87 \\ \hline
         R1\_2\_2 & 4,011.45 & 4,029.16 & 12.06 & 20 & 3,919.9 & 20 & 2.34 \\ \hline
         R1\_2\_3 & 3,416.04 & 3,444.85 & 19.13 & 19 & 3,373.9 & 18 & 1.25 \\ \hline
@@ -216,7 +216,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     RC1\_2\_1 & 3536.71 & 3565.66 & 20.7 & 20 & 3516.9 & 20 & 0.56 \\ \hline
     RC1\_2\_2 & 3253.94 & 3273.73 & 21.67 & 19 & 3221.6 & 19 & 1 \\ \hline
     RC1\_2\_3 & 3034.11 & 3073.05 & 38.72 & 19 & 3001.4 & 18 & 1.09 \\ \hline
@@ -238,7 +238,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     C1\_4\_1 & 7,152.06 & 7,155.8 & 7.49 & 40 & 7,138.8 & 40 & 0.19 \\ \hline
     C1\_4\_2 & 7,127.29 & 7,167.34 & 78.96 & 40 & 7,113.3 & 40 & 0.2 \\ \hline
     C1\_4\_3 & 7,160.22 & 7,279.36 & 128.8 & 39 & 6,929.9 & 38 & 3.32 \\ \hline
@@ -260,7 +260,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     R1\_4\_1 & 10,688.08 & 10,709.24 & 17.6 & 41 & 10,305.8 & 41 & 3.71 \\ \hline
     R1\_4\_2 & 9,149.2 & 9,221.35 & 56.53 & 39 & 8,873.2 & 37 & 3.11 \\ \hline
     R1\_4\_3 & 8,132.17 & 8,226.37 & 105.28 & 37 & 7,781.6 & 37 & 4.51 \\ \hline
@@ -282,7 +282,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     RC1\_4\_1 & 8,969.66 & 9,054.11 & 67.58 & 39 & 8,522.9 & 37 & 5.24 \\ \hline
     RC1\_4\_2 & 8,360.36 & 8,422.77 & 63.37 & 38 & 7,878.2 & 36 & 6.12 \\ \hline
     RC1\_4\_3 & 7,969.51 & 8,027.17 & 35.9 & 37 & 7,516.9 & 37 & 6.02 \\ \hline
@@ -304,7 +304,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     C1\_6\_1 & 14,095.64 & 14,095.64 & 0 & 60 & 14,076.6 & 60 & 0.14 \\ \hline
     C1\_6\_2 & 14,137.09 & 14,382.74 & 134.48 & 59 & 13,948.3 & 58 & 1.35 \\ \hline
     C1\_6\_3 & 15,123.71 & 15,277.54 & 100.57 & 57 & 13,756.5 & 57 & 9.94 \\ \hline
@@ -326,7 +326,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     R1\_6\_1 & 22,534.32 & 22,810.62 & 165.87 & 63 & 21,274.2 & 58 & 5.92 \\ \hline
     R1\_6\_2 & 19,751.55 & 19,960.87 & 115.13 & 57 & 18,519.8 & 56 & 6.65 \\ \hline
     R1\_6\_3 & 18,268.88 & 18,398.55 & 87.36 & 55 & 16,874.9 & 54 & 8.26 \\ \hline
@@ -348,7 +348,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     RC1\_6\_1 & 18048.91 & 18228.51 & 134.64 & 57 & 16944.2 & 56 & 6.52 \\ \hline
     RC1\_6\_2 & 17003.23 & 17059.88 & 50.84 & 56 & 15890.6 & 55 & 7 \\ \hline
     RC1\_6\_3 & 16476.72 & 16561.34 & 116.14 & 57 & 15181.3 & 55 & 8.53 \\ \hline
@@ -370,7 +370,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     C1\_8\_1 & 25,550.61 & 25,834.96 & 332.72 & 81 & 25,156.9 & 80 & 1.57 \\ \hline
     C1\_8\_2 & 26,698.48 & 26,923.41 & 247.14 & 80 & 24,974.1 & 78 & 6.9 \\ \hline
     C1\_8\_3 & 26,912.55 & 27,224.07 & 248.94 & 75 & 24,156.1 & 73 & 11.41 \\ \hline
@@ -392,7 +392,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     R1\_8\_1 & 39,957.46 & 40,399.61 & 312.62 & 85 & 36,345 & 80 & 9.94 \\ \hline
     R1\_8\_2 & 35,708.47 & 36,107.65 & 215.79 & 76 & 32,277.6 & 72 & 10.63 \\ \hline
     R1\_8\_3 & 32,405.25 & 32,804.12 & 284 & 74 & 29,301.2 & 72 & 10.59 \\ \hline
@@ -414,7 +414,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     RC1\_8\_1 & 32,845.93 & 32,945.3 & 75.88 & 77 & 29,952.8 & 74 & 9.66 \\ \hline
     RC1\_8\_2 & 31,055.24 & 31,295.32 & 209.05 & 75 & 28,290.1 & 74 & 9.77 \\ \hline
     RC1\_8\_3 & 30,059.19 & 30,435.63 & 196.98 & 74 & 27,447.7 & 73 & 9.51 \\ \hline
@@ -436,7 +436,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     C1\_10\_1 & 44,214.75 & 45,678.8 & 1,113.93 & 104 & 42,444.8 & 100 & 4.17 \\ \hline
     C1\_10\_2 & 45,238.08 & 46,051.56 & 589.11 & 101 & 41,337.8 & 94 & 9.44 \\ \hline
     C1\_10\_3 & 45,272.64 & 46,070.45 & 529.64 & 94 & 40,060 & 91 & 13.01 \\ \hline
@@ -458,7 +458,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     R1\_10\_1 & 60,581.8 & 60,995.25 & 273.58 & 103 & 53,026.1 & 95 & 14.25 \\ \hline
     R1\_10\_2 & 56,255.34 & 56,723.58 & 472.21 & 95 & 48,261.6 & 91 & 16.56 \\ \hline
     R1\_10\_3 & 52,795.73 & 53,081.74 & 225.01 & 93 & 44,673.3 & 91 & 18.18 \\ \hline
@@ -480,7 +480,7 @@ Với các cấu hình loại C, ALNS cho nghiệm cách nghiệm tốt nhất �
     \centering
     \begin{tabular}{rrrrrrrr}
     \hline
-    ins & alns best & alns avg & alns std & nv & bk cost & bk nv & gap (\%) \\ \hline
+    ins & alns best & alns avg & alns std & nv & bkcost & bknv & gap (\%) \\ \hline
     RC1\_10\_1 & 51,798.33 & 52,030.75 & 185.35 & 96 & 45,790.7 & 90 & 13.12 \\ \hline
     RC1\_10\_2 & 49,501.03 & 49,828.93 & 285.98 & 92 & 43,678.3 & 90 & 13.33 \\ \hline
     RC1\_10\_3 & 47,870 & 48,389.62 & 452.14 & 91 & 42,121.9 & 90 & 13.65 \\ \hline

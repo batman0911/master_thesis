@@ -3,15 +3,15 @@
 
 Trong phần này, chúng ta cùng xem xét các mô hình toán học cơ bản cho VRP và xem xét cách các mô hình này được mở rộng để kết hợp hay bổ sung ràng buộc hoặc hàm mục tiêu.
 
-Có ba cách tiếp cận để mô hình hóa VRP. Loại mô hình đầu tiên là "công thức dòng xe" (\textit{vehicle flow formulations}) sử dụng các biến nguyên ứng với mỗi cung hay cạnh của đồ thị. Các biến này để đếm số lần mà xe đi qua cung hay cạnh đó. Loại mô hình này thường được sử dụng cho những phiên bản cơ bản của VRP. Mô hình đặc biệt phù hợp cho những trường hợp mà tổng chi phí, hay hàm mục tiêu có thể biểu diễn bằng tổng chi phí của mỗi cung hay cạnh và hầu hết các ràng buộc liên quan đến sự thay đổi giữa các yêu cầu trong cùng một tuyến. Khi đó, mô hình có thể được xây dựng một cách hiệu quả qua việc định nghĩa hợp lý tập cung và chi phí của cung. Tuy nhiên, "công thức dòng xe" không được sử dụng cho các bài toán mà tổng chi phí phụ thuộc vào chuỗi (có thứ tự) các nút hoặc phụ thuộc vào loại phương tiện.
+Có ba cách tiếp cận để mô hình hóa VRP. Loại mô hình đầu tiên là "mô hình dựa trên dòng xe" (\textit{vehicle flow formulations}) sử dụng các biến nguyên ứng với mỗi cung hay cạnh của đồ thị. Các biến này để đếm số lần mà xe đi qua cung hay cạnh đó. Loại mô hình này thường được sử dụng cho những phiên bản cơ bản của VRP. Mô hình đặc biệt phù hợp cho những trường hợp mà tổng chi phí, hay hàm mục tiêu có thể biểu diễn bằng tổng chi phí của mỗi cung hay cạnh và hầu hết các ràng buộc liên quan đến sự thay đổi giữa các yêu cầu trong cùng một tuyến. Khi đó, mô hình có thể được xây dựng một cách hiệu quả qua việc định nghĩa hợp lý tập cung và chi phí của cung. Tuy nhiên, "mô hình dựa trên dòng xe" không được sử dụng cho các bài toán mà tổng chi phí phụ thuộc vào chuỗi (có thứ tự) các nút hoặc phụ thuộc vào loại phương tiện.
 
-Loại mô hình thứ hai là "công thức dòng hàng" (\textit{commodity flow formulation}). Trong loại mô hình này, các biến nguyên ứng với mỗi cung hoặc cạnh biểu diễn "dòng" của lượng hàng dọc theo các tuyến đường. "Công thức dòng hàng" thường được sử dụng làm cơ sở cho các phương pháp giải chính xác VRP.
+Loại mô hình thứ hai là "mô hình dựa trên dòng hàng" (\textit{commodity flow formulation}). Trong loại mô hình này, các biến nguyên ứng với mỗi cung hoặc cạnh biểu diễn "dòng" của lượng hàng dọc theo các tuyến đường. "Mô hình dựa trên dòng hàng" thường được sử dụng làm cơ sở cho các phương pháp giải chính xác VRP.
 
 Loại mô hình cuối cùng có số biến nhị phân tăng theo cấp số nhân với kích thước của đầu vào, mỗi biến biểu thị cho một chu trình khả thi khác nhau. Trong loại mô hình này, VRP được mô hình hóa như một bài toán phân hoạch tập hợp (\textit{Set-Partitioning Problem - SPP}). SSP xác định một tập các chu trình có chi phí nhỏ nhất phục vụ mỗi yêu càu một lần và thỏa mãn các ràng buộc. Ưu điểm chính của loại mô hình này là nó cho phép tổng quát hóa chi phí của các tuyến đường ví dụ như khi chi phí của tuyến phụ thuộc vào toàn bộ chuỗi các cung hay cạnh và phụ thuộc vào loại xe. Hơn nữa, các ràng buộc không cần tính đến tính khả thi của một tuyến đường đơn lẻ. Kết quả là ràng buộc có thể được thay thế bằng các bất đẳng thức gọn gàng hơn. Đánh đổi lại, loại mô hình này cần một số lượng biến biểu diễn rất lớn.
 
 \subsubsection*{Mô hình dòng xe}
 
-Trước tiên, chúng ta mô tả công thức "lập trình tuyến tính nguyên" (\textit{integer linear programming}) cho ACVRP, sau đó là SCVRP. Mô hình "công thức dòng xe hai chỉ số" (\textit{two-index vehicle flow formulation}) sử dụng $O(n^2)$ biến nhị phân $x$ để chỉ thị nếu một xe đi qua cung $(i,j)$ hay không. Nói cách khác, $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại. 
+Trước tiên, chúng ta mô tả mô hình quy hoạch tuyến tính với biến nguyên (\textit{integer linear programming}) cho ACVRP, sau đó là SCVRP. Mô hình "mô hình dựa trên dòng xe hai chỉ số" (\textit{two-index vehicle flow formulation}) sử dụng $O(n^2)$ biến nhị phân $x$ để chỉ thị nếu một xe đi qua cung $(i,j)$ hay không. Nói cách khác, $x_{ij}$ nhận giá trị bằng $1$ nếu cung $(i, j) \in A$ nằm trong nghiệm tối ưu và $0$ nếu trong trường hợp còn lại. 
 
 \begin{equation} \label{eq:vrp1}
   \text{(VRP1)} \quad \min \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}
@@ -92,4 +92,4 @@ s.t.
   \label{ct_vrp5:8}  & x_{ek} \in \{0,1,2\}, \quad \forall e \in \delta(0), k=1,...,K.
 \end{flalign}
 
-Công thức dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Công thức này được trình bày trong phần \ref{sec:math_vrptw}. Công thức dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.
+Mô hình dựa trên dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Công thức này được trình bày trong phần \ref{sec:math_vrptw}. Mô hình dựa trên dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.

@@ -19,7 +19,7 @@ Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đ�
 \end{equation}
 Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
 
-\subsection{Công thức dòng xe}
+\subsection{Mô hình dựa trên dòng xe}
 Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
 \begin{equation}
 	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
@@ -32,11 +32,11 @@ s.t.
 	\label{ct3:3} & x_{0j} \in \{0,1,2\}, \quad \forall j \in V \setminus \{0\}, \\
 	\label{ct2:4} & x_{ij} \in \{0,1\}, \quad \forall i,j \in V \setminus \{0\},
 \end{flalign}
-trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$. Công thức dòng xe và các biến thể đã được trình bày kĩ từ chương \ref{chap:model}.
+trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$. Mô hình dựa trên dòng xe và các biến thể đã được trình bày kĩ từ chương \ref{chap:model}.
 
-\subsection{Công thức dòng hàng}
-Trong công thức dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi Gavish, Graves (1979) \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi Baldacci, Hadjiconstantinou, Mingozzi (2004) \cite{baldacci2004exact} dựa trên mô hình TSP của Finke, Claus, Gunn
-(1984) \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn không gian còn trống của xe trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Công thức dòng hàng được mô hình hóa như sau
+\subsection{Mô hình dựa trên dòng hàng}
+Trong mô hình dựa trên dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi Gavish, Graves (1979) \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi Baldacci, Hadjiconstantinou, Mingozzi (2004) \cite{baldacci2004exact} dựa trên mô hình TSP của Finke, Claus, Gunn
+(1984) \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn không gian còn trống của xe trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Mô hình dựa trên dòng hàng được mô hình hóa như sau
 
 \begin{equation}
 	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
@@ -64,7 +64,7 @@ Bài toán này được giải bằng \textit{branch-and-cut} với các bất 
 \end{figure}
 
 \subsection{Công thức phân hoạch tập hợp}
-Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là biến nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*$ là chi phí tối ưu của tuyến $r$ và gọi $y_k$ là biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong nghiệm tối ưu. Bài toán được mô hình hóa như sau
+Công thức phân hoạch tập hợp đơn giản của VRP lần đầu được nghiên cứu bởi Balinski, Quandt (1964) \cite{balinski1964integer}. Gọi $r$ là một tuyến, $a_{ir}$ là biến nhị phân có giá trị bằng $1$ khi và chỉ khi nút $i \in V \setminus \{0\}$ thuộc tuyến $r$, gọi $c^*_r$ là chi phí tối ưu của tuyến $r$ và gọi $y_r$ là biến nhị phân bằng $1$ khi và chỉ khi tuyến $r$ được dùng trong nghiệm tối ưu. Bài toán được mô hình hóa như sau
 
 \begin{equation}
 	\min \sum_r{c_r^* y_r}
