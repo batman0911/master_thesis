@@ -213,6 +213,8 @@
 	\AtBeginDocument{%
 		\renewcommand{\contentsname}{Contents}%
 		% \renewcommand{\listfigurename}{Figures}%
+        % \renewcommand{\commitmentname}{Lời cam đoan}%
+        % \renewcommand{\acknowledgementsname}{Lời cảm ơn}%
 		\renewcommand{\lstlistlistingname}{Listings}%
 		\renewcommand{\listtablename}{Tables}%
 		\renewcommand{\abstractname}{Abstract} %
@@ -335,7 +337,7 @@
 % Page style (override default plain style)
 \fancypagestyle{plain}{
 	\fancyhf{}
-	\fancyhead[LO,RE]{\nouppercase{\leftmark}}
+	% \fancyhead[LO,RE]{\nouppercase{\leftmark}}
 	\fancyhead[RO,LE]{\thepage}
 	\setlength{\headheight}{20pt} 
 	\renewcommand{\headrulewidth}{1pt} %set to 0 for no headrule
@@ -348,7 +350,9 @@
 \interfootnotelinepenalty=10000 % Prevent footnotes to be split over multiple pages
 
 % Sectioning formatting
-\titleformat{\chapter}{\normalfont\large\bfseries}{\makebox[1.5cm][l]{\thechapter}}{0pt}{}
+% \titleformat{\chapter}{\normalfont\large\bfseries}{\makebox[1.5cm][l]{\chaptername}}{0pt}{}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
 \titlespacing*{\chapter}{0pt}{-16pt plus 2pt minus 2pt}{8pt plus 2pt minus 2pt}
 
 \titleformat{\section}{\normalfont\bfseries}{\makebox[1.5cm][l]{\thesection}}{0pt}{}
@@ -711,8 +715,7 @@
     \endlist
     \vspace{10pt}
     \hrule
-    \pagebreak
-    
+    \pagebreak  
 }
 
 
@@ -830,6 +833,36 @@
     \pagebreak%
 }
 \renewcommand\l@lstlisting[2]{\@dottedtocline{1}{0pt}{2em}{\lstlistingname~#1}{#2}}
+
+% Commitment
+% \let\default@commitment\commitment
+% \renewcommand{\commitment}{%
+%     \phantomsection%
+%     \addcontentsline{toc}{chapter}{\commitmentname}%
+%     {%
+%         \setlength{\parskip}{0pt}%
+%         \default@commitment%
+%     }%
+%     \markboth{\commitmentname}{\commitmentname}
+%     \pagebreak%
+% }
+
+% \renewcommand{\cftfigindent}{0pt}
+
+% acknowledgements
+% \let\default@acknowledgements\acknowledgements
+% \renewcommand{\acknowledgements}{%
+%     \phantomsection%
+%     \addcontentsline{toc}{chapter}{\acknowledgementsname}%
+%     {%
+%         \setlength{\parskip}{0pt}%
+%         \default@acknowledgements%
+%     }%
+%     \markboth{\acknowledgementsname}{\acknowledgementsname}
+%     \pagebreak%
+% }
+
+% \renewcommand{\cftfigindent}{0pt}
 
 
 % Formatting of glossaries (using tabbing environment)

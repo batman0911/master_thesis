@@ -1,6 +1,6 @@
-\section{Thuật toán sửa}
+\subsection{Thuật toán sửa}
 
-\subsection{Phương pháp tham lam cơ bản}
+\subsubsection{Phương pháp tham lam cơ bản}
 \label{sec:basic_greedy}
 Heuristic tham lam cơ bản (\textit{basic greedy}) là một kỹ thuật xây dựng đơn giản (Ropke, Pisinger (2006) \cite{ropke2006adaptive}). Nó thực hiện tối đa $n$ lần lặp, chèn thêm một yêu cầu trong mỗi bước. Với $\Delta f_{i, k}$ biểu diễn cho sự thay đổi hàm mục tiêu bằng cách chèn thêm yêu cầu $i$ vào tuyến đường $k$ tại vị trí mà giá trị tăng thêm của hàm mục tiêu là nhỏ nhất. Nếu không chèn yêu cầu $i$ vào tuyến đường $k$ thì ta đặt $\Delta f_{i, k} = \infty$ và $c_i = \min_{k \in K}\{\Delta f_{i, k}\}$. Nói cách khác, $c_i$ là chi phí khi chèn thêm yêu cầu $i$ vào vị trí tốt nhất của nghiệm hiện tại, gọi là vị trí chi phí nhỏ nhất. Cuối cùng, ta chọn yêu cầu $i$ với $\min_{i \in U} c_i$ và chèn nó vào vị trí chi phí nhỏ nhất. Quá trình này tiếp tục cho đến khi tất cả các yêu cầu được thêm hoặc không còn yêu cầu nào nữa.
 
@@ -8,7 +8,7 @@ Trong mỗi vòng lặp, thuật toán chỉ thay đổi một tuyến đường
 
 Dễ dàng nhận thấy vấn đề với cách tiếp cận này là nó thường trì hoãn việc đặt các yêu cầu có chi phí cao cho các lần lặp cuối cùng, nơi chúng ta không có nhiều cơ hội cho việc chèn thêm yêu cầu vì nhiều tuyến đường đều đã kín. 
 
-\subsection{Phương pháp tham lam với nhiễu ngẫu nhiên}
+\subsubsection{Phương pháp tham lam với nhiễu ngẫu nhiên}
 
 Để giải quyết một phần hạn chế của phương pháp tham lam cơ bản, ta có thể thêm một chút nhiễu vào hàm mục tiêu (Demir và các cộng sự (2012) \cite{Demir2012}). Điều này giúp thuật toán có thể không chọn chèn yêu cầu vào tuyến làm tăng chi phí ít nhất mà có thể là ít thứ hai hoặc thứ ba (chẳng hạn). Nhiễu được cho bởi công thức
 \begin{equation}
@@ -19,7 +19,7 @@ với $\eta$ là nhiễu, $d_{\text{max}}$ là khoảng cách lớn nhất giữ
   \Delta f_{u, i, j, k} := \Delta f_{u, i, j, k} + \eta.
 \end{equation}
 
-\subsection{Phương pháp heuristic hối tiếc}
+\subsubsection{Phương pháp heuristic hối tiếc}
 Heuristic hối tiếc (\textit{regret heuristic}) đã được sử dụng bởi Potvin và Rousseau (1993) \cite{potvin1993parallel} cho VRPTW. Phương pháp này cố gắng cải thiện nhược điểm của kỹ thuật tham lam bằng cách kiểm tra lại kết quả sau khi chọn chèn thêm yêu cầu. Đặt $x_{ik} \in \{1, ..., m\}$ là biến biểu diễn tuyến đường cho yêu cầu $i$ có chi phí chèn thêm vào thấp thứ $k$, điều này có nghĩa là $\Delta f_{i, x_{ik}} \leqslant \Delta f_{i, x_{ik'}}$ với mọi $k \leq k'$. Sử dụng ký hiệu này, ta có thể biểu diễn $c_i$ từ phần \ref{sec:basic_greedy}, $c_i = \Delta f_{i, x_{i1}}$. Trong phương pháp này, chúng ta có thể định nghĩa một giá trị \textit{regret} $c_i^* = \Delta f_{i, x_{i2}} - \Delta f_{i, x_{i1}}$ . Nói cách khác, giá trị \textit{regret} là khoảng cách giữa chi phí của việc chèn thêm yêu cầu vào tuyến đường tốt nhất so với tuyến đường tốt thứ hai. Trong mỗi vòng lặp, thuật toán chọn ra yêu cầu $i$ thỏa mãn điều kiện $\max_{i \in V \setminus \{0\}} \{c_i^*\}$. Nói một cách không chính thống, chúng ta chọn việc chèn yêu cầu mà chúng ta sẽ "hối tiếc" nhất nếu không thực hiện nó ngay tại vòng lặp hiện tại.
 
 Ta có thể mở rộng phương pháp này để định nghĩa một lớp các phương pháp heuristic hối tiếc gọi là phương pháp regret-k heuristic là một phương pháp mà mỗi lần thêm yêu cầu vào phương án cần phải thỏa mãn điều kiện

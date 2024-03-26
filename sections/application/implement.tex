@@ -1,4 +1,4 @@
-\section{Triển khai thuật toán}
+\subsection{Triển khai thuật toán}
 Chương trình được chia làm ba giai đoạn \textit{Tiền xử lý}, \textit{Chương trình chính}, \textit{Đo đạc}.
 \begin{itemize}
 	\item \textit{Tiền xử lý}: trong giai đoạn này, các cấu hình trong các tập dữ liệu, được đọc vào và tính toán ma trận khoảng cách giữa các yêu cầu và lưu trữ vào các tệp. Các tệp có định dạng json và có schema như đối tượng \code{Instance} đã trình được trình bày trong mục \ref{sec:core-objects}. Các tệp này sẽ được đọc vào trong giai đoạn \textit{Chương trình chính} để giảm thiểu thời gian tính toán. Để đơn giản, phần tiền xử lý sử dụng ngôn ngữ lập trình \code{python}.
