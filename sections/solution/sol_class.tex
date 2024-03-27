@@ -2,13 +2,13 @@
 
 \subsection{Phương pháp nhánh-cận}
 
-Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm}. Với $m$ là tham số đầu vào, đầu tiên đồ thị được mở rộng với việc thêm vào $m-1$ kho ảo và đặt chi phí của chúng bằng một số vô cùng lớn. Sau đó giải bài toán m-TSP trên đồ thị này bằng thuật toán TSP được trình bày bởi Little và các cộng sự (1963) \cite{little1963algorithm}.
+Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon \cite{christofides1969algorithm} năm 1969. Với $m$ là tham số đầu vào, đầu tiên đồ thị được mở rộng với việc thêm vào $m-1$ kho ảo và đặt chi phí của chúng bằng một số vô cùng lớn. Sau đó giải bài toán m-TSP trên đồ thị này bằng thuật toán TSP được trình bày bởi J. D. Little và các cộng sự \cite{little1963algorithm}.
 
-Hiệu năng của các thuật toán nhánh-cận đầu tiên được cải thiện đáng kể hai phương pháp cận dưới là k-degree centre trees (k-DCT) và q-routes (Christofides và các cộng sự (1981) \cite{christofides1981exact}).
+Hiệu năng của các thuật toán nhánh-cận đầu tiên được cải thiện đáng kể hai phương pháp cận dưới là k-degree centre trees (k-DCT) và q-routes (N. Christofides và các cộng sự \cite{christofides1981exact}).
 
 \subsection{Quy hoạch động}
 
-Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có
+N. Christofides và S. Eilon \cite{christofides1969algorithm} đưa ra lời giải cho bài toán VRP bằng phương pháp quy hoạch động. Gọi $c(S)$ là chi phí tối ưu của một tuyến ứng với tập nút $S \subseteq V \setminus \{0\}$. Mục tiêu là cực tiểu hóa $\sum_{r=1}^{m} c(S_r)$ trên tất cả các quy hoạch khả dĩ $\{S_1,...,S_m\}$ của $V \setminus \{0\}$. Gọi $f_k(U)$ là chi phí nhỏ nhất có thể đạt được khi sử dụng $k$ xe cho một tập con $U$ của $V \setminus \{0\}$. Ta có
 \begin{equation}
 	\label{eq:dp}
 	f_k(U) =
@@ -20,7 +20,7 @@ Eilon, Watson-Gandy và Christofides (1971) \cite{christofides1969algorithm} đ�
 Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
 
 \subsection{Mô hình dựa trên dòng xe}
-Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi Laporte, Nobert (1983) \cite{laporte1983branch} và Laporte, Nobert, Desrochers (1985) \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của Dantzig, Fulkerson, Johnson (1954) \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
+Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi G. Laporte và Y. Nobert \cite{laporte1983branch} và G. Laporte, Y. Nobert, và M. Desrochers \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của , G. Dantzig, R. Fulkerson, và S. Johnson \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
 \begin{equation}
 	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
 \end{equation}

@@ -113,7 +113,7 @@
 \RequirePackage[
     style=ieee,
     backend=biber,
-    natbib=true]
+    sortlocale=en_US]
     {biblatex}
 
 % Advanced page layout
@@ -944,7 +944,7 @@
 
 \newcommand{\references}{%
     \addcontentsline{toc}{chapter}{\bibname}%
-    \printbibliography[title={References}, heading={bibintoc}]
+    \printbibliography[sorting=nty]
     % \bibliographystyle{abbrv}
     \pagebreak%
 }
