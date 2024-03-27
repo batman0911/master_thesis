@@ -1,6 +1,6 @@
 \section{Thuật toán chính xác}
 
-\subsection{Phương pháp nhánh cận}
+\subsection{Phương pháp nhánh-cận}
 
 Một trong những thuật toán chính xác được nghiên cứu sớm nhất là \textit{nhánh và cận}, lần đầu xuất hiện trong bài báo \textit{"An Algorithm for the Vehicle Dispatching Problem"} của N. Christofides và S. Eilon năm 1969 \cite{christofides1969algorithm}. Với $m$ là tham số đầu vào, đầu tiên đồ thị được mở rộng với việc thêm vào $m-1$ kho ảo và đặt chi phí của chúng bằng một số vô cùng lớn. Sau đó giải bài toán m-TSP trên đồ thị này bằng thuật toán TSP được trình bày bởi Little và các cộng sự (1963) \cite{little1963algorithm}.
 
@@ -57,7 +57,7 @@ Bài toán này được giải bằng \textit{branch-and-cut} với các bất 
 
 \begin{figure}[H] % places figure environment here   
   \centering % Centers Graphic
-  \includegraphics[width=0.8\textwidth]{figures/commondity-flow-model.png} 
+  \includegraphics[width=0.6\textwidth]{figures/commondity-flow-model.png} 
   % \includesvg[scale=1]{figures/core-object}
   \caption{Minh họa dòng hàng với $Q=25$} 
   % \label{fig:fg_02}
@@ -106,7 +106,7 @@ Tiếp theo, ta trình bày ý tưởng chính của một số lớp thuật to
 
 \subsection{Tìm kiếm địa phương}
 
-Về cơ bản, tìm kiếm lân cận cố gắng "khám phá" không gian nghiệm bằng cách "di chuyển" quanh nghiệm hiện tại tới một nghiệm khác trong vùng lần cận của nó. Một số phương pháp có thể kể đến như \textit{tabu search} (Glover (1986) \cite{glover1986future}), \textit{simulated annealing} (Kirkpatrick, Gelatt, and Vecchi
+Về cơ bản, tìm kiếm lân cận cố gắng "khám phá" không gian nghiệm bằng cách "di chuyển" quanh nghiệm hiện tại tới một nghiệm khác trong vùng lần cận của nó. Một số phương pháp có thể kể đến như \textit{tabu search} (Glover (1986) \cite{glover1986future}), \textit{simulated annealing} (Kirkpatrick, Gelatt và Vecchi
 (1983) \cite{kirkpatrick1983optimization}), \textit{deterministic annealing} (Dueck, Scheurer
 (1990) \cite{dueck1990threshold}; Dueck (1993) \cite{dueck1993new}), \textit{variable neighbourhood search} (Mladenović, Hansen (1997) \cite{mladenovic1997variable}), \textit{large neighbourhood search}(Shaw (1998) \cite{shaw1998using}) và \textit{adaptive large neighbourhood search} (Ropke, Pisinger (2006) \cite{ropke2006adaptive}). Các thành phần chính của tìm kiếm lân cận là các quy tắc để xác định vùng lân cận của một nghiệm và cơ chế để khám phá vùng lân cận đó.
 

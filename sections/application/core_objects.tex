@@ -20,13 +20,6 @@ Trước hết, chúng ta xây dựng các lớp chính. Các lớp được xâ
 	\item[-] \code{service\_time}: thời gian phục vụ khách hàng.
 \end{itemize}
 
-\begin{figure}[H] % places figure environment here   
-	\centering % Centers Graphic
-	\includegraphics[width=0.6\textwidth]{figures/CustomerState.png}
-	% \includesvg[scale=1]{figures/core-object}
-	\caption{Lớp trạng thái của khách hàng}
-	\label{fig:fg_03}
-\end{figure}
 
 \code{CustomerRoute}: lớp lưu trạng thái về tuyến đường.
 \begin{itemize}
@@ -40,6 +33,14 @@ Trước hết, chúng ta xây dựng các lớp chính. Các lớp được xâ
 	\item[-] \code{complete}: thời gian xe hoàn thành phục vụ khách hàng.
 \end{itemize}
 
+\begin{figure}[H] % places figure environment here   
+	\centering % Centers Graphic
+	\includegraphics[width=0.6\textwidth]{figures/CustomerState.png}
+	% \includesvg[scale=1]{figures/core-object}
+	\caption{Lớp trạng thái của khách hàng}
+	\label{fig:fg_03}
+\end{figure}
+
 \code{CustomerState}: lớp lưu trạng thái của khách hàng.
 \begin{itemize}
 	\item[-] \code{id}: id của khách hàng.
@@ -47,6 +48,13 @@ Trước hết, chúng ta xây dựng các lớp chính. Các lớp được xâ
 	\item[-] \code{customer\_time}: trạng thái về thời gian của khách hàng.
 \end{itemize}
 
+\begin{figure}[H] % places figure environment here   
+	\centering % Centers Graphic
+	\includegraphics[width=1\textwidth]{figures/core-object.png}
+	% \includesvg[scale=1]{figures/core-object}
+	\caption{Lớp trạng thái của hệ}
+	\label{fig:fg_04}
+\end{figure}
 
 \code{Instance}: lớp lưu cấu hình của bài toán.
 \begin{itemize}
@@ -57,14 +65,6 @@ Trước hết, chúng ta xây dựng các lớp chính. Các lớp được xâ
 	\item[-] \code{edge\_weight}: ma trận trọng số cạnh. Ma trận này có thể là ma trận khoảng cách hay thời gian di chuyển giữa các yêu cầu.
 	\item[-] \code{get\_instance\_size()}: phương thức trả về kích thước của cấu hình (số khách hàng cộng với kho).
 \end{itemize}
-
-\begin{figure}[H] % places figure environment here   
-	\centering % Centers Graphic
-	\includegraphics[width=1\textwidth]{figures/core-object.png}
-	% \includesvg[scale=1]{figures/core-object}
-	\caption{Lớp trạng thái của hệ}
-	\label{fig:fg_04}
-\end{figure}
 
 \code{State}: lớp lưu trạng thái của bài toán.
 \begin{itemize}

@@ -352,8 +352,8 @@
 % Sectioning formatting
 % \titleformat{\chapter}{\normalfont\large\bfseries}{\makebox[1.5cm][l]{\chaptername}}{0pt}{}
 \titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titlespacing*{\chapter}{0pt}{-16pt plus 2pt minus 2pt}{8pt plus 2pt minus 2pt}
+  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{2pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-8pt plus 2pt minus 2pt}{8pt plus 2pt minus 2pt}
 
 \titleformat{\section}{\normalfont\bfseries}{\makebox[1.5cm][l]{\thesection}}{0pt}{}
 \titlespacing*{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 2pt minus 2pt}
@@ -944,7 +944,7 @@
 
 \newcommand{\references}{%
     \addcontentsline{toc}{chapter}{\bibname}%
-    \printbibliography[sorting=anyt]
+    \printbibliography[title={References}, heading={bibintoc}]
     % \bibliographystyle{abbrv}
     \pagebreak%
 }
