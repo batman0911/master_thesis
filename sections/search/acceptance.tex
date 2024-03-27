@@ -10,7 +10,7 @@ Các tiêu chí chấp nhận nghiệm được tóm lược qua bảng \ref{tab
     \makecell[l]{Chấp nhận tham lam \\ (Greedy Acceptance)} & Nghiệm $s'$ được chấp nhận nếu chi phí của nó là nhỏ hơn so với nghiệm hiện tại \\ \hline
     \makecell[l]{Mô phỏng luyện kim \\ (Simulated Annealing)} & Mọi nghiệm cải thiện $s'$ được chấp nhận. Nếu $c(s') > c(s)$ thì $s'$ được chấp nhận với xác suất $\exp \{ \frac{c(s) - c(s')}{T} \}$ với $T$ là nhiệt độ. Nhiệt độ $T$ giảm sau mỗi vòng lặp với một hệ số $\Phi$ \\ \hline
     \makecell[l]{Chấp nhận với ngưỡng \\ (Threshold Acceptance)} & Nghiệm $s'$ được chấp nhận nếu $c(s') - c(s) < T$ với $T$ là ngưỡng, ngưỡng này được giảm sau mỗi vòng lặp với hệ số $\Phi$ \\ \hline
-    \makecell[l]{Đại hồng thủy \\ (Great Deluge Algorithm)} & Nghiệm $s'$ được chấp nhận nếu $c(s') < L$ với một ngưỡng $L$, ngưỡng này chỉ giảm nếu nghiệm được chấp nhận, và giảm với hệ số $\Phi$ \\ \hline
+    \makecell[l]{Đại hồng thủy \\ (Great Deluge Algorithm)} & Nghiệm $s'$ được chấp nhận nếu $c(s') < L$ với một ngưỡng $L$, ngưỡng này chỉ giảm nếu nghiệm được chấp nhận và giảm với hệ số $\Phi$ \\ \hline
     \end{tabularx}
 \end{table}
 
