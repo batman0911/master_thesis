@@ -9,7 +9,7 @@ Trước tiên, chúng ta bắt đầu với tập dữ liệu Solomon (1987) đ
 
 Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai tập loại 1 và loại 2. Quy tắc đặt tên \code{\{class\}\{type\}\{num\}} với \code{class} là lớp C, R hoặc RC, \code{type} là loại 1 hoặc 2, \code{num} là số thứ tự của cấu hình. Mỗi lớp có từ $8$ đến $12$ cấu hình. Các cấu hình cũng được chia thành ba nhóm với $25$, $50$ và $100$ yêu cầu. Trong luận văn này, tác giả chỉ đưa ra các kết quả cho các tập $100$ yêu cầu do các cấu hình $25$ hay $50$ yêu cầu là khá nhỏ và ta không thấy rõ sự khác biệt do hầu hết các thuật toán đều cho kết quả rất tốt.
 
-\begin{table}[caption={Kết quả đo với tập Solomon C}, label=exp:solomonC]
+\begin{table}[caption={Kết quả đo với tập Solomon C.}, label=exp:solomonC]
   \begin{adjustbox}{width=1\textwidth}
   \small
   \begin{tabularx}{\textwidth}{|XXXXXX|XXXXXX|}
@@ -45,7 +45,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
 
   Thí nghiệm được thiết lập có thời gian timeout một phút, chạy năm lần và lấy kết quả tốt nhất. Tập C1 và C2 tương đối nhỏ và đã phân cụm nên trong thực tế thuật toán chạy rất nhanh để ra được nghiệm tốt và không có sự khác biệt giữa các lần chạy, trên CPU được thí nghiệm, ALNS mất dưới 1 giây để tìm ra nghiệm kém hơn nghiệm tốt nhất đã biết dưới $1\%$.
 
-  \begin{table}[caption={Kết quả đo với tập Solomon R1}, label=exp:solomonR1]
+  \begin{table}[caption={Kết quả đo với tập Solomon R1.}, label=exp:solomonR1]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -71,7 +71,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
 
   Tập R1 và R2 có các yêu cầu được tạo hoàn toàn ngẫu nhiên thế nên cũng có nhiều nghiệm chấp nhận được và thuật toán cũng khó bị bẫy ở một nghiệm tối ưu địa phương. Tuy nhiên, thuật toán cũng mất nhiều thời gian để tìm nghiệm tối ưu hơn do có nhiều nghiệm thỏa mãn các ràng buộc. Riêng với tập R2, ALNS đã tìm ra nghiệm với số xe ít hơn nghiệm tốt nhất đã biết mà tổng khoảng cách chỉ chênh lệch nhỏ. Lớp R có thể được sử dụng để mô phỏng các yêu cầu ở những vùng thưa dân cư như nông thôn chẳng hạn. Các yêu cầu thưa thớt hơn ở thành phố và khoảng cách giữa các yêu cầu cũng không gần nhau (các yêu cầu không tập trung thành các cụm rõ rệt). Việc đặt số lượng lớn các bưu cục ở vùng nông thôn là không khả thi về mặt chi phí vận hành cho các doanh nghiệp. Như vậy, sử dụng một thuật toán tối ưu nào đó là tiết kiệm chi phí (quãng đường) rất nhiều so với việc giao hàng một cách ngẫu nhiên hay theo quy tắc "tham lam". 
 
-  \begin{table}[caption={Kết quả đo với tập Solomon R2}, label=exp:solomonR2, placement=h]
+  \begin{table}[caption={Kết quả đo với tập Solomon R2.}, label=exp:solomonR2, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -94,7 +94,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập Solomon RC1}, label=exp:solomonRC1, placement=h]
+  \begin{table}[caption={Kết quả đo với tập Solomon RC1.}, label=exp:solomonRC1, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -114,7 +114,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập Solomon RC2}, label=exp:solomonRC2, placement=h]
+  \begin{table}[caption={Kết quả đo với tập Solomon RC2.}, label=exp:solomonRC2, placement=h]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -167,7 +167,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
 
   Nếu cho rằng việc chênh lệch chất lượng nghiệm so với nghiệm tốt nhất đã biết không vượt quá $10\%$ là đủ thì ALNS thể hiện tốt đối với các cấu hình từ $600$ yêu cầu trở xuống. Đối với các cấu hình có số lượng yêu cầu rất lớn như $800$ và $1000$ yêu cầu, ALNS cho nghiệm còn cách nghiệm tốt nhất đã biết khá xa (lớn hơn $10\%$ cho tập $1000$ yêu cầu) với timeout một phút. Con số một phút được lựa chọn để phù hợp với yêu cầu thực tế khi mà ta không thể chờ quá lâu để nhận được kết quả. Một chiến thuật khác là ta có thể lên lịch cho các xe vào ngày hôm trước để có các tuyến đường cho ngày hôm sau chẳng hạn (cho chương trình chạy "qua đêm", hay chạy với thời gian chờ lâu có thể là vài tiếng đồng hồ). Tác giả đã thử nghiệm và nhận thấy rằng, với thời gian chạy lâu hơn nữa (timeout mười phút) ALNS cho kết quả tốt hơn nhưng tốc độ giảm nghiệm là chậm (kéo khoảng cách với nghiệm tốt nhất đã biết giảm $1$ đến $2$ phần trăm), do càng gần với nghiệm tối ưu thì các tuyến đường khá khó để thay đổi nhất là đối với các cấu hình có số lượng yêu cầu quá lớn như vậy.
   
-  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_2 200 yêu cầu}, label=exp:HGC12]
+  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_2 200 yêu cầu.}, label=exp:HGC12]
     % \begin{adjustbox}{width=1\textwidth}
       \small
       \centering
@@ -189,7 +189,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
       % \end{adjustbox}
   \end{table}
     
-  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_2 200 yêu cầu}, label=exp:HGR12]
+  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_2 200 yêu cầu.}, label=exp:HGR12]
     % \begin{adjustbox}{width=1\textwidth}
       \small
       \centering
@@ -211,7 +211,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
       % \end{adjustbox}
   \end{table}
       
-  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_2 200 yêu cầu}, label=exp:HGRC12]
+  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_2 200 yêu cầu.}, label=exp:HGRC12]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -233,7 +233,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_4 400 yêu cầu}, label=exp:HGC14]
+  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_4 400 yêu cầu.}, label=exp:HGC14]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -255,7 +255,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_4 400 yêu cầu}, label=exp:HGR14]
+  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_4 400 yêu cầu.}, label=exp:HGR14]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -277,7 +277,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_4 400 yêu cầu}, label=exp:HGRC14]
+  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_4 400 yêu cầu.}, label=exp:HGRC14]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -299,7 +299,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_6 600 yêu cầu}, label=exp:HGC16]
+  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_6 600 yêu cầu.}, label=exp:HGC16]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -321,7 +321,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_6 600 yêu cầu}, label=exp:HGR16]
+  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_6 600 yêu cầu.}, label=exp:HGR16]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -343,7 +343,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_6 600 yêu cầu}, label=exp:HGRC16]
+  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_6 600 yêu cầu.}, label=exp:HGRC16]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -365,7 +365,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_8 800 yêu cầu}, label=exp:HGC18]
+  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_8 800 yêu cầu.}, label=exp:HGC18]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -387,7 +387,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_8 800 yêu cầu}, label=exp:HGR18]
+  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_8 800 yêu cầu.}, label=exp:HGR18]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -409,7 +409,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_8 800 yêu cầu}, label=exp:HGRC18]
+  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_8 800 yêu cầu.}, label=exp:HGRC18]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -431,7 +431,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_10 1000 yêu cầu}, label=exp:HGC110]
+  \begin{table}[caption={Kết quả đo với tập HG\_C\_1\_10 1000 yêu cầu.}, label=exp:HGC110]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -453,7 +453,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_10 1000 yêu cầu}, label=exp:HGR110]
+  \begin{table}[caption={Kết quả đo với tập HG\_R\_1\_10 1000 yêu cầu.}, label=exp:HGR110]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
@@ -475,7 +475,7 @@ Tập dữ liệu được chia thành 3 lớp C, R và RC. Solomon sinh hai t�
     % \end{adjustbox}
   \end{table}
 
-  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_10 1000 yêu cầu}, label=exp:HGRC110]
+  \begin{table}[caption={Kết quả đo với tập HG\_RC\_1\_10 1000 yêu cầu.}, label=exp:HGRC110]
     % \begin{adjustbox}{width=1\textwidth}
     \small
     \centering
