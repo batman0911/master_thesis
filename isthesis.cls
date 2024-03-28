@@ -113,8 +113,27 @@
 \RequirePackage[
     style=ieee,
     backend=biber,
-    sortlocale=en_US]
+    natbib=true,
+    sorting=nyt]
     {biblatex}
+
+% \usepackage[style=ieee, sorting=nyt, backend=biber]{biblatex}
+
+% % Define a custom sorting scheme to sort by author name
+\DeclareSortingScheme{thesis}{
+    \sort{
+    \field{author}
+    }
+    \sort{
+    \field{title}
+    }
+    \sort{
+    \field{year}
+    }
+}
+
+% Use the custom sorting scheme
+\ExecuteBibliographyOptions{sorting=thesis}
 
 % Advanced page layout
 \RequirePackage{geometry}
