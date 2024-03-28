@@ -20,22 +20,26 @@ N. Christofides và S. Eilon \cite{christofides1969algorithm} đưa ra lời gi�
 Chi phí tối ưu là $f_m(V \setminus \{0\})$ và các tuyến là các phân hoạch của $V \setminus \{0\}$ theo phương trình (\ref{eq:dp}).
 
 \subsection{Mô hình dựa trên dòng xe}
-Công thức 2-chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi G. Laporte và Y. Nobert \cite{laporte1983branch} và G. Laporte, Y. Nobert và M. Desrochers \cite{laporte1985optimal} và mở rộng công thức TSP cổ điển của , G. Dantzig, R. Fulkerson và S. Johnson \cite{dantzig1954solution}. Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
-\begin{equation}
-	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
-\end{equation}
-s.t.
-\begin{flalign}
-	\label{ct2:1} & \sum_{j=1}^n x_{0j}=2m, \quad \\
-	\label{ct2:2} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2, \quad \forall k \in V \setminus \{0\}, \\
-	\label{ct2:3} & \sum_{i,j \in S} x_{ij} \leq |S| - \nu(S), \quad \forall S \subseteq V \setminus \{0\}, \\
-	\label{ct3:3} & x_{0j} \in \{0,1,2\}, \quad \forall j \in V \setminus \{0\}, \\
-	\label{ct2:4} & x_{ij} \in \{0,1\}, \quad \forall i,j \in V \setminus \{0\},
-\end{flalign}
-trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$. Mô hình dựa trên dòng xe và các biến thể đã được trình bày kĩ từ chương \ref{chap:model}.
+Mô hình hai chỉ số cho bài toán VRP được nghiên cứu đầu tiên bởi G. Laporte và Y. Nobert \cite{laporte1983branch} và G. Laporte, Y. Nobert và M. Desrochers \cite{laporte1985optimal} và mở rộng mô hình TSP cổ điển của , G. Dantzig, R. Fulkerson và S. Johnson \cite{dantzig1954solution}. Các biểu thức toán học của mô hình dựa trên dòng xe đã được đề cập trong chương \ref{chap:model}. Mô hình có thể được mở rộng bằng cách đưa vào thêm các bất đẳng thức. Các ràng buộc về tải trọng, thời gian... được thêm vào để giải quyết nhiều biến thể của VRP. Một cách tổng quan, ta có thể  xem nghiên cứu của D. Naddef và G. Rinaldi \cite{naddef2002branch}. Các tác giả đã phát triển thuật toán nhánh-cận để giải sáu cấu hình ($22 \leq n \leq 45$) \footnote[1]{$n$ là kích thước cấu hình} không sử dụng nhánh và chín cấu hình ($51 \leq n \leq 135$) sử dụng một vài nhánh. Một số thuật toán nhánh-cận dựa trên mô hình này có thể xem thêm trong nghiên cứu của Lysgaard, Letchford và Eglese \cite{lysgaard2004new}. 
+
+
+Mô hình dựa trên dòng xe với mô hình ba chỉ số cũng đã được đề cập trong chương \ref{chap:model} nhưng ít phổ biến hơn so với mô hình hai chỉ số. Ta có thể xem thêm trong nghiên cứu của Golden, Magnanti và Nguyen \cite{golden1977implementing} hay nghiên cứu của Fisher và Jaikumar \cite{fisher1981generalized}.
+% Gọi $x_{ij}$ là biến 0-1-2 bằng số lần một xe đi qua cung $(i,j)$. Bài toán được mô hình hóa như sau
+% \begin{equation}
+% 	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
+% \end{equation}
+% s.t.
+% \begin{flalign}
+% 	\label{ct2:1} & \sum_{j=1}^n x_{0j}=2m, \quad \\
+% 	\label{ct2:2} & \sum_{i<k} x_{ik} + \sum_{j>k} x_{kj} = 2, \quad \forall k \in V \setminus \{0\}, \\
+% 	\label{ct2:3} & \sum_{i,j \in S} x_{ij} \leq |S| - \nu(S), \quad \forall S \subseteq V \setminus \{0\}, \\
+% 	\label{ct3:3} & x_{0j} \in \{0,1,2\}, \quad \forall j \in V \setminus \{0\}, \\
+% 	\label{ct2:4} & x_{ij} \in \{0,1\}, \quad \forall i,j \in V \setminus \{0\},
+% \end{flalign}
+% trong đó $\nu(S)$ là cận dưới của số lượng xe cần thiết để phục vụ tập $S$. Mô hình dựa trên dòng xe và các biến thể đã được trình bày kĩ từ chương \ref{chap:model}.
 
 \subsection{Mô hình dựa trên dòng hàng}
-Trong mô hình dựa trên dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi B. Gavish và S. C. Graves \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi R. Baldacci, E. Hadjiconstantinou và A. Mingozz \cite{baldacci2004exact} dựa trên mô hình TSP của G. Finke \cite{finke1984two}. Công thức cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn không gian còn trống của xe trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Mô hình dựa trên dòng hàng được mô hình hóa như sau
+Trong mô hình dựa trên dòng hàng, biến $y_{ij}$ (hoặc $y_{ijk}$) định nghĩa tải (lượng hàng) của xe mang theo trên cung $(i,j)$. Ví dụ được trình bày bởi B. Gavish và S. C. Graves \cite{gavish1978travelling}, tuy nhiên các tác giả không đưa ra kết quả tính toán. Các ví dụ gần đây hơn được nghiên cứu bởi R. Baldacci, E. Hadjiconstantinou và A. Mingozz \cite{baldacci2004exact} dựa trên mô hình TSP của G. Finke \cite{finke1984two}. Mô hình cho một đồ thị mở rộng $\bar{G} = (\bar{V}, \bar{E})$, với $\bar{V} = V \cup \{ (i, n+1): i \in V \}$. Một tuyến được định nghĩa là một đường đi có hướng từ $0$ đến $n+1$. Biến nhị phân $x_{ij}$ bằng $1$ khi và chỉ khi cạnh $(i,j)$ được chọn vào tuyến. Biến $y_{ij}$ định nghĩa tải của xe trên cung $(i,j)$ và $y_{ji} = Q - y_{ij}$ biểu diễn không gian còn trống của xe trên cung $(j,i)$ mỗi khi $x_{ij} = 1$. Mô hình dựa trên dòng hàng được mô hình hóa như sau
 
 \begin{equation}
 	\min \sum_{(i,j) \in E} c_{ij} x_{ij}
@@ -56,7 +60,7 @@ Bài toán này được giải bằng \textit{branch-and-cut} với các bất 
 
 \begin{figure}[H] % places figure environment here   
   \centering % Centers Graphic
-  \includegraphics[width=0.6\textwidth]{figures/commondity-flow-model.png} 
+  \includegraphics[width=0.8\textwidth]{figures/commondity-flow-model.png} 
   % \includesvg[scale=1]{figures/core-object}
   \caption{Minh họa dòng hàng với $Q=25$.} 
   % \label{fig:fg_02}
