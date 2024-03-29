@@ -2,7 +2,7 @@
 \label{sec:implement}
 Chương trình được chia làm ba giai đoạn \textit{Tiền xử lý}, \textit{Chương trình chính}, \textit{Đo đạc}.
 \begin{itemize}
-	\item \textit{Tiền xử lý}: trong giai đoạn này, các cấu hình trong các tập dữ liệu, được đọc vào và tính toán ma trận khoảng cách giữa các yêu cầu và lưu trữ vào các tệp. Các tệp có định dạng json và có schema như đối tượng \code{Instance} đã trình được trình bày trong mục \ref{sec:core-objects}. Các tệp này sẽ được đọc vào trong giai đoạn \textit{Chương trình chính} để giảm thiểu thời gian tính toán. Để đơn giản, phần tiền xử lý sử dụng ngôn ngữ lập trình \code{python}.
+	\item \textit{Tiền xử lý}: trong giai đoạn này, các cấu hình trong các tập dữ liệu, được đọc vào và tính toán ma trận khoảng cách giữa các yêu cầu và lưu trữ vào các tệp. Các tệp có định dạng \code{json} và có schema như đối tượng \code{Instance} đã trình được trình bày trong mục \ref{sec:core-objects}. Các tệp này sẽ được đọc vào trong giai đoạn \textit{Chương trình chính} để giảm thiểu thời gian tính toán. Để đơn giản, phần tiền xử lý sử dụng ngôn ngữ lập trình \code{python}.
 	\item \textit{Chương trình chính}: Đây là chương trình triển khai ALNS, được viết bằng ngôn ngữ \code{C++}. Các độ đo của chương trình được ghi ra các tệp logs để sử dụng cho giai đoạn \textit{đo đạc}.
 	\item \textit{Đo đạc}: Trong giai đoạn này, các tệp logs được đọc vào và các độ đo được tính toán và phân tích.
 \end{itemize}
