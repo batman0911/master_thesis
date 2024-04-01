@@ -36,7 +36,7 @@ Như đã trình bày, với việc sử dụng chiến thuật lựa chọn tha
 	\label{eq:boost_adaptive_weight}
 	\omega_{i, j+1} = \omega_{ij}(1-r)+r\frac{\pi_i} {\theta_i} + \alpha \beta (1 - e^{-\gamma m})
 \end{equation}
-với $\alpha$ (có thể âm hoặc dương) và $\gamma$ (dương) là các tham số điều khiển, $\beta$ là một số ngẫu nhiên trong khoảng $(0,1)$. Trong phần thực nghiệm \ref{sec:performance}, tác giả sẽ chỉ ra sự vượt trội về hiệu năng khi thêm nhiễu vào việc điều chỉnh trọng số như trên. Chính vì vậy, thuật toán được đặt tên là B-ALNS (\textit{Boosted - Adaptive Large Neighborhood Search}).
+với $\alpha$ (có thể âm hoặc dương) và $\gamma$ (dương) là các tham số điều khiển, $\beta$ là một số ngẫu nhiên trong khoảng $(0,1)$ \footnote[1]{Trong thực nghiệm, các tham số được đặt mặc định $\alpha = -1$, $\gamma = 1$. Ta có thể điều chỉnh các tham số này tùy thuộc vào bài toán để thu được kết quả tốt nhất.}. Trong phần thực nghiệm \ref{sec:performance}, tác giả sẽ chỉ ra sự vượt trội về hiệu năng khi thêm nhiễu vào việc điều chỉnh trọng số như trên. Chính vì vậy, thuật toán được đặt tên là B-ALNS (\textit{Boosted - Adaptive Large Neighborhood Search}).
 
 \subsection{Số lượng yêu cầu bỏ đi và thêm lại}
 \label{sec:num_rm_req}
