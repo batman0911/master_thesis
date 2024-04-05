@@ -46,7 +46,7 @@ Phương pháp xóa này được phát triển bởi Shaw \cite{shaw1998using}.
 	\end{algorithmic}
 \end{algorithm}
 
-Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện là khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$. Chỉ số độ tương đồng được tính như sau
+Chỉ số độ tương đồng được sử dụng bao gồm phụ thuộc vào ba điều kiện là khoảng cách, thời gian, khối lượng. Các điều kiện này được đánh trọng số và ký hiệu lần lượt là $\varphi$, $\chi$ và $\psi$ \footnote[1]{Trong thực nghiệm, ta đặt mặc định $\phi=1$, $\chi=0$ và $\psi=0$.}. Chỉ số độ tương đồng được tính như sau
 \begin{equation}
 	\label{eq:shaw_related}
 	R(i,j) = \varphi d_{ij} + \chi |t_{i}-t_{j}| + \psi|l_i - l_j|
@@ -70,9 +70,9 @@ với $r$ là tuyến được chọn, $\text{cost}(r,s)$ là chi phí của tuy
 Ngoài ra để tránh việc bỏ đi tuyến "tệ" một cách cứng nhắc, tác giả đưa vào một nhiễu nhỏ. Khi đó, công thức tính chi phí trung bình trên mỗi yêu cầu được thay đổi thành
 \begin{equation}
 	\label{eq:destroy_route}
-	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1} + \lambda \phi d_{max}3w
+	\text{avg\_cost}(r, s) = \frac{\text{cost}(r, s)}{\text{size}(r)-1} + \lambda \phi d_{max}w
 \end{equation}
-với $d_{max}$ là khoảng cách lớn nhất giữa hai yêu cầu, $\phi$ là một số ngẫu nhiên trong khoảng $(-1,1)$ và $\lambda$ là một hằng số điều khiển.
+với $d_{max}$ là khoảng cách lớn nhất giữa hai yêu cầu, $\phi$ là một số ngẫu nhiên trong khoảng $(-1,1)$ và $\lambda$ là một hằng số điều khiển \footnote[1]{$\lambda$ được đặt mặc định bằng $1$ trong thực nghiệm.}.
 
 Ngoài ra, chúng ta cũng không muốn bỏ đi các tuyến đang phục vụ nhiều yêu cầu vì khi thêm lại thuật toán sẽ mất rất nhiều thời gian. Chính vì thế, tác giả chỉ bỏ đi những tuyến có số yêu cầu ít hơn số yêu cầu trung bình trên mỗi tuyến của nghiệm hiện tại.
 

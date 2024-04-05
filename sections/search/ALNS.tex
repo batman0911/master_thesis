@@ -26,7 +26,7 @@ Trong mỗi bước, thao tác xóa và thêm lại được cập nhật một 
 	\label{eq:adaptive_weight}
 	\omega_{i, j+1} = \omega_{ij}(1-r)+r\frac{\pi_i}{\theta_i}.
 \end{equation}
-Trong đó $\pi_i$ là điểm số của heuristic $i$ trong bước $j$ và $\theta_i$ là số lần ta cố gắng sử dụng heuristic $i$ trong bước $j$. Tham số $r$ là tham số điều khiển tốc độ điều chỉnh trọng số. Nếu $r=0$, nghĩa là chúng ta không sử dụng điểm để điều chỉnh trọng số hay nói cách khác là các trọng số được giữ nguyên từ trong suốt quá trình tìm kiếm. Nếu $r=1$, nghĩa là ta lấy điểm thu được từ bước gần nhất để quyết định trọng số.
+Trong đó $\pi_i$ là điểm số của heuristic $i$ trong bước $j$ và $\theta_i$ là số lần ta cố gắng sử dụng heuristic $i$ trong bước $j$. Tham số $r$ là tham số điều khiển tốc độ điều chỉnh trọng số (được đặt mặc định bằng $0.1$ trong thực nghiệm). Nếu $r=0$, nghĩa là chúng ta không sử dụng điểm để điều chỉnh trọng số hay nói cách khác là các trọng số được giữ nguyên từ trong suốt quá trình tìm kiếm. Nếu $r=1$, nghĩa là ta lấy điểm thu được từ bước gần nhất để quyết định trọng số.
 
 Việc điều chỉnh trọng số như trên làm tăng xác suất chọn thuật toán xóa (chèn) đã mang lại hiệu quả ở bước trước đó. Về cơ bản, với việc sử dụng chiến thuật điều chỉnh trọng số như trên, ta kì vọng rằng các thuật toán xóa (chèn) đã hiệu quả ở bước trước thì cũng sẽ hiệu quả ở bước tiếp theo. Trong thực nghiệm, các tham số được lựa chọn lần lượt là $\sigma_1=10$, $\sigma_2=4$ và $\sigma_3=2$.
 
