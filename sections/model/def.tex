@@ -26,7 +26,7 @@ Mỗi khách hàng $i$ có một nhu cầu (về tải trọng) là $d_i$ và nh
 
 Một tập hợp $K$ đại diện cho các xe, mỗi xe có tải trọng $C$, các xe sẵn sàng ở kho tại thời điểm bắt đầu. Ta giả thiết $d_i \leq C$ với mỗi $i=1,...,n$. Điều kiện này này là cần thiết để  mỗi khách hàng đều được phục vụ. Mỗi xe phục vụ nhiều nhất một tuyến và ta giả thiết $K$ không nhỏ hơn $K_{min}$ với $K_{min}$ là số xe ít nhất cần để phục vụ toàn bộ khách hàng.
 
-Với một tập $S \subseteq V \setminus \{0\}$, ta gọi $r(S)$ là số xe ít nhất để phục vụ toàn bộ khách hàng thuộc tập $S$. Chú ý rằng $r(V \setminus \{0\}) = K_{min}$.
+Với một tập $S \subseteq V \setminus \{0\}$, ta gọi $r(S)$ là số xe ít nhất để phục vụ toàn bộ khách hàng thuộc tập $S$. Chú ý rằng $r(V \setminus \{0\}) = K_{min}$. $K_{min}$ có thể được xác định bằng cách giải \textit{bài toán đóng gói} (\textit{Bin Packing Problem - BPP}). Bài toán yêu cầu tìm số gói nhỏ nhất, mỗi gói có tải trọng $C$ để chứa $n$ vật, mỗi vật có khối lượng không âm $d_i$, $i=1,...,n$. BPP cũng là một bài toán NP-khó, một trong những phương pháp hiệu quả có thể được tìm thấy trong công trình của S. Martello và P. Toth \cite{martello1990knapsack}.
 
 CVRP yêu cầu tìm một tập chính xác $K$ các chu trình đơn (mỗi chu trình ứng với một tuyến đường) với tổng chi phí của tất cả các cung thuộc các chu trình này là nhỏ nhất. Lời giải phải thỏa mãn các ràng buộc sau
 \begin{itemize}

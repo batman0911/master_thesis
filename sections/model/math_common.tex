@@ -42,7 +42,7 @@ s.t.
 \end{flalign}
 Ràng buộc (\ref{ct_vrp2:1}) và (\ref{ct_vrp2:2}) đảm bảo chỉ có đúng một cung vào và một cung ra cho mỗi nút ứng với mỗi yêu cầu, $2K$ để đảm bảo số xe xuất phát và kết thúc tại kho. Ràng buộc (\ref{ct_vrp2:3}) đảm bảo số xe được sử dụng không nhỏ hơn số xe tối thiểu cần để phục vụ tất cả các yêu cầu. 
 
-Phiên bản mô hình 2 chỉ số cho trường hợp hệ đối xứng có thể được biểu diễn chỉ với một chỉ số $e$ biểu thị cho cạnh vô hướng $e \in E$. Nếu ta không cho phép tuyến chỉ chứa đúng một yêu cầu thì các biến sử dụng đều là nhị phân. Ngoài ra, nếu $e \notin \delta(0)$ thì $x_e \in \{0, 1\}$ và nếu $e \in \delta(0)$ thì $x_e \in \{0, 1, 2\}$. Công thức \textit{VRP2} được viết lại như sau
+Phiên bản mô hình 2 chỉ số cho trường hợp hệ đối xứng có thể được biểu diễn chỉ với một chỉ số $e$ biểu thị cho cạnh vô hướng $e \in E$. Nếu ta không cho phép tuyến chỉ chứa đúng một yêu cầu thì các biến sử dụng đều là nhị phân. Ngoài ra, nếu $e \notin \delta(0)$ thì $x_e \in \{0, 1\}$ và nếu $e \in \delta(0)$ thì $x_e \in \{0, 1, 2\}$. Mô hình \textit{VRP2} được viết lại như sau
 
 \begin{equation} \label{eq:vrp3}
 	\text{(VRP3)} \quad \min \sum_{e \in E} c_e x_e
@@ -92,4 +92,4 @@ s.t.
   \label{ct_vrp5:8}  & x_{ek} \in \{0,1,2\}, \quad \forall e \in \delta(0), k=1,...,K.
 \end{flalign}
 
-Mô hình dựa trên dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Công thức này được trình bày trong phần \ref{sec:math_vrptw}. Mô hình dựa trên dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.
+Mô hình dựa trên dòng xe ba chỉ số được sử dụng cho các biến thể  VRP với nhiều ràng buộc ví dụ như VRPTW. Mô hình này được trình bày trong phần \ref{sec:math_vrptw}. Mô hình dựa trên dòng hàng và công thức phân hoạch tập hợp được trình bày trong chương \ref{chap:solution}.
