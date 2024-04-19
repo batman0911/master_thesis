@@ -216,10 +216,10 @@
 		\renewcommand*{\DTMdisplaydate}[4]{\DTMenglishordinal{##3} \DTMenglishmonthname{##2}  ##1}%
 		\renewcommand*{\DTMDisplaydate}{\DTMdisplaydate}%
 	}
-	\isthesis@new@option{label-principal}{label@principal}{Giảng viên hướng dẫn}
+	\isthesis@new@option{label-principal}{label@principal}{NGƯỜI HƯỚNG DẪN KHOA HỌC: \\ }
 	\isthesis@new@option{label-associate}{label@associate}{Associate Supervisor}
 	\isthesis@new@option{label-tutor}{label@tutor}{Tutor}
-	\isthesis@new@option{label-author}{label@author}{Học viên}
+	\isthesis@new@option{label-author}{label@author}{}
 	\isthesis@new@option{label-submission}{label@submission}{Ngày}
 	\isthesis@new@option{label-atthe}{label@atthe}{}
 	\isthesis@new@option{label-atthex}{label@atthex}{}
@@ -592,50 +592,48 @@
     \begin{titlepage}%
 		\pagenumbering{gobble}
     	\DTMsetdatestyle{isthesisdate}
-        \newgeometry{top=1cm,outer=2.5cm,bottom=2.5cm,inner=2.5cm}
-        \includegraphics[height=\isthesis@primary@logo@height]{\isthesis@primary@logo}%
+        \newgeometry{top=-2.5cm,outer=2.5cm,bottom=2.5cm,inner=2.5cm}
+        % \includegraphics[height=\isthesis@primary@logo@height]{\isthesis@primary@logo}%
         \hfill%
         \ifthenelse{\equal{\isthesis@secondary@logo}{}}{}{\includegraphics[height=\isthesis@secondary@logo@height]{\isthesis@secondary@logo}}%
         \vfill%
-        \begin{center}%
-        %    {\large \isthesis@author@name~\isthesis@author@lastname \par}%
-         %   \vskip 1.5em%
-            {\bfseries \Large \@title \par}%
-            {\large \isthesis@sub@title \par}
-            \vskip 3em%
-            {\bfseries \large \isthesis@title@type \par}%
-            \ifthenelse{\equal{\isthesis@type}{seminar}}{ \isthesis@label@context \- \enquote{\isthesis@seminar} \par}{}%
+        \begin{center}
             \ifthenelse{\equal{\isthesis@group@name}{}}{}{%
-                \vskip 3em%
+                % \vskip 3em%
                 {%
                     \ifthenelse{\equal{\isthesis@group@institute}{}}{}{ 
                         \isthesis@label@atthex ~\isthesis@group@university \\
                         \isthesis@label@atthe ~\isthesis@group@institute}\\
-                        \isthesis@group@name
+                        % \isthesis@group@name
                     % \textbf{\isthesis@group@name}%
                     \par%
                 }%
             }
-            % \ifthenelse{\equal{\isthesis@associate@group@name}{}}{}{%
-            %     \vskip 1.5em%
-            %     {%
-            %         in collaboration with the \isthesis@associate@group@name%
-            %         \ifthenelse{\equal{\isthesis@associate@group@institute}{}}{}{\\ (\isthesis@associate@group@institute)}%
-            %         \par%
-            %     }%
-            % }
-        \end{center}\par%
-        \vfill%
+            \vfill
+            {\includegraphics[height=\isthesis@primary@logo@height]{\isthesis@primary@logo} \par}
+            \vfill
+            {\isthesis@author@name \par}
+            {\bfseries \Large \@title \par}%
+        \end{center}
+        % \begin{align}
+            Chuyên ngành: Khoa học dữ liệu \\
+            Mã số: 8904648.01QTD
+        % \end{align}
+        % \vfill%
+        \begin{center}
+            LUẬN VĂN THẠC SĨ KHOA HỌC
+        \end{center}
+        \vfill
         \begin{center}%
             \parbox{0cm}{%
                 \begin{tabbing}%
 				\= \hspace*{5cm} \= \kill
-				\> \isthesis@label@principal: \> \isthesis@supervisor@principal \\ %
+				\> \isthesis@label@principal \> \isthesis@supervisor@principal \\ %
 				% \> \isthesis@label@associate: \> \isthesis@supervisor@associate \\%
 				\ifthenelse{\equal{\isthesis@supervisor@tutor}{}}{\relax}{ %
 				\> \isthesis@label@tutor: \> \isthesis@supervisor@tutor \\} %
 				\> \> \\
-				\> \isthesis@label@author: \> \isthesis@author@name \\ %
+				% \> \isthesis@label@author: \> \isthesis@author@name \\ %
 				\ifthenelse{\equal{\isthesis@author@address}{}}{\relax}{ %
 					\> \> \isthesis@author@address \\} %
 				\ifthenelse{\equal{\isthesis@author@city }{}}{\relax}{ %
@@ -649,10 +647,14 @@
 				% \ifthenelse{\equal{\isthesis@author@matriculation}{}}{\relax}{ %
 				% 	\> \> \isthesis@author@matriculation \\} %
 				% \> \> \\
-				% 	\> \isthesis@label@submission: \> {\isthesis@submission@date \DTMusedate{submissiondate}}
+					% \> {\isthesis@submission@date }
                 \end{tabbing}%
             }%
         \end{center}\par%
+        \vfill
+        \begin{center}
+            {\isthesis@submission@date \par}
+        \end{center}
         \restoregeometry%
         \renewcommand{\headrulewidth}{0pt}
         \cleardoublepage
@@ -662,7 +664,7 @@
 
 % Customizable logos on title page
 \isthesis@new@option{primary-logo}{primary@logo}{assets/aibe.png}
-\isthesis@new@option{primary-logo-height}{primary@logo@height}{16mm}
+\isthesis@new@option{primary-logo-height}{primary@logo@height}{36mm}
 % Secondary logo is language dependent and defined above
 \isthesis@new@option{secondary-logo-height}{secondary@logo@height}{18mm}
 
@@ -692,14 +694,14 @@
 \isthesis@new@option{studies}{author@studies}{International Information Systems}
 \isthesis@new@option{group}{group@name}{Khoa Toán-Cơ-Tin học}
 \isthesis@new@option{group-institute}{group@institute}{}
-\isthesis@new@option{group-university}{group@university}{Đại học Quốc gia Hà Nội}
+\isthesis@new@option{group-university}{group@university}{ĐẠI HỌC QUỐC GIA HÀ NỘI}
 % \isthesis@new@option{associate-group}{associate@group@name}{Đại học Khoa học Tự nhiên}
 % \isthesis@new@option{associate-group-institute}{associate@group@institute}{Khoa Toán, cơ, tin học}
 \isthesis@new@option{principal-supervisor}{supervisor@principal}{} %Themenersteller
 \isthesis@new@option{associate-supervisor}{supervisor@associate}{}
 \isthesis@new@option{tutor-supervisor}{supervisor@tutor}{} %Betreuer
 \isthesis@new@option{seminar}{seminar}{}
-\isthesis@new@option*{submission-date}{submission@date}{}{\DTMsavedate{submissiondate}{#1}}
+\isthesis@new@option{submission-date}{submission@date}{}
 % Roman page numbering from the beginning
 \AtBeginDocument{%
     \pagenumbering{Roman}%
